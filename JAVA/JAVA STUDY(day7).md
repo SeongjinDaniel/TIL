@@ -270,7 +270,7 @@ public class StudentTest3 {
 
 - **실습6 문제**
 
-[클래스 정의와 객체 생성(인스턴스)]
+[클래스 정의와 객체 생성(인스턴스)1]
 
 Member 객체 (인스턴스)를 3개 생성하고 
 
@@ -339,7 +339,7 @@ public class MemberTest {
 ```
 
 - **실습7 문제**
-
+[클래스 정의와 객체 생성 실습 2]
 ```java
 // Book
 // title : String
@@ -441,7 +441,7 @@ int[] ary = new int[5];
 Product[] p = new Product[5];
 
 - **실습8 문제**
-
+[클래스 정의와 객체 생성 실습 3]
 ```java
 [Product]
 -name : String
@@ -465,6 +465,7 @@ getPrice() : int
 ```
 
 ```java
+
 //실습8 Product
 class Product {
 	String name;
