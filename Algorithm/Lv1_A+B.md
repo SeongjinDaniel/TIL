@@ -22,7 +22,7 @@
 
 11
 
-```java
+```c++
 #include <cstdio>
 using namespace std;
 
