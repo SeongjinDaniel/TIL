@@ -400,14 +400,13 @@ public class ExceptionTest1 {
 ```java
 //실습6 LottoMachine
 package day11;
-
 import java.util.Random;
-
 class DuplicateException extends Exception {
     DuplicateException() {
     super("중복된 로또 번호가 발생했습니다.");
     }
 }
+
 public class LottoMachine {
 	private int nums[];
 	// 6개의 원소를 갖는 int 타입의 배열을 생성하여 nums 변수에 저장한다.
@@ -417,15 +416,17 @@ public class LottoMachine {
 	// 1-20 사이의 6 개 숫자를 추출하여 배열에 저장한다. (Random 클래스를 사용한다.)
 	public void createLottoNums() {
 		Random rand = new Random();
-		for(int i = 0; i < 6; i++) {
+		for(int i = 0; i < this.nums.length; i++) {
 			this.nums[i] = rand.nextInt(20) + 1;
 		}
 	}
 	// 6개의 모든 숫자들이 유니크한지 채크하고 중복숫자가 발견되면 DuplicateException을 발생시킨다.(throw, throws)
+	// throws 절은 알린다 !! 라는 말이다
+	// 메서드 헤더에 throws절이 있으면 호출할 때 예외처리를 해야한다 !! 
 	public void checkLottoNums() throws DuplicateException{
 		boolean checkNum[] = new boolean[21];
-		for(int i = 0; i < 6; i++) {
-
+		for(int i = 0; i < this.nums.length; i++) {
+			// 예외가 발생하면 더이상 for문이 진행되지 읺는다.
 			if(!checkNum[this.nums[i]]) {
 				checkNum[this.nums[i]] = true;				
 			}
@@ -439,6 +440,7 @@ public class LottoMachine {
 		return this.nums;
 	}
 }
+
 ```
 
 ```java
@@ -453,18 +455,18 @@ public class LottoGame {
 //		예외가 발생하지 않으면 getNums() 를 호출하여 로또 넘버들을 화면
 //		에 출력(x, x, x, x, x, x)하고 예외가 발생하면 예외 메시지
 //		(“중복된 로또 번호가 발생했습니다”)를 출력하고 종료한다.
-		int arr[] = new int[6];
+//		int arr[] = new int[6];
 		LottoMachine lottoMachine = new LottoMachine();
 		lottoMachine.createLottoNums();
 		
 		try {
 			lottoMachine.checkLottoNums();			
-		} catch(Exception e) {
+		} catch(DuplicateException e) {
 			System.out.println(e.getMessage());
 			return;
 		}
 		
-		arr = lottoMachine.getNums();
+		int arr[] = lottoMachine.getNums();
 		for(int i = 0; i < 6; i++) {
 			System.out.print(arr[i] + " ");			
 		}
