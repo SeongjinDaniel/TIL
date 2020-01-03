@@ -26,7 +26,6 @@ edu라는 프로젝트에서 우클릭 후 UTF-8로 다 변경한다.
 http://localhost:8000/edu/htmlexam/exam1.html
 
 ```html
-<!--실습 exam1-->
 <!DOCTYPE html>
 <html>
 
@@ -63,7 +62,7 @@ http://localhost:8000/edu/htmlexam/exam1.html
 	<li>JDBC</li>
 </ul>
 <hr>
-<!-- onOrdered List -->
+<!-- Ordered List -->
 <ol>
 	<!-- 항상 안에 있는 것들은 컨텐트이다.. -->
 	<li>Java Programming</li>
@@ -76,6 +75,8 @@ http://localhost:8000/edu/htmlexam/exam1.html
 	<li>JSP</li>
 	<li>JDBC</li>
 </ol>
+<!--행(tr)을 먼저 만들고 그 안에 셀(td)을 만들어 주었습니다.
+맨 위에 이름, 나이, 점수 부분과 같이 해당 테이블의 헤더 셀(제목 셀)은 th 요소를 사용합니다. -->
 <h2>테이블 태그</h2>
 <table border ="1">
 	<tr><th>언어이름</th><th>설명</th></tr> <!-- 제목행 -->
@@ -84,12 +85,26 @@ http://localhost:8000/edu/htmlexam/exam1.html
 	<tr><td>CSS</td><td>HTML의 스타일을 조정하는 언어</td></tr>
 	<tr><td>R</td><td>통계분석과 데이터 마이닝에 사용되는 언어</td></tr>
 </table>
-<h2>입력 폼</h2>
+<h2>입력 폼 태그</h2>
 <form action = "..."method=""> <!-- JSP나 svlet 프로그램이 원래 온다. -->
 	<!-- input tag는 type이 중요 -->
-	<input type="text" placeholder="이름을 입력하세요..." required name= "gname">
+	<input type="text" placeholder="이름을 입력하세요..." required name= "gname"><br>
+	<!-- number type이라서 숫자만 입력 가능 -->
+	<input type="number" placeholder="나이를 입력하세요..." required name= "gage"><br>
+	<input type="email" placeholder="메일 주소를 입력하세요..." required name= "gemail"><br>
+	<input type="date" name= "gage"><label>원하는 날짜를 입력하세요...</label><br>
+	성별을 선택하세요:<br>
+	남성<input type ="radio" name="gender"> <!-- type 속성과 name 속성이 같아야 한 그룹이 된다. -->
+	여성<input type ="radio" name="gender">
+	<br>
+	좋아하는 음식을 선택하세요:<br>
+	떡볶이<input type ="checkbox" name="food" value = "떡볶이"> <!-- type 속성과 name 속성이 같아야 한 그룹이 된다. -->
+	오뎅<input type ="checkbox" name="food" value ="오뎅">
+	튀김<input type ="checkbox" name="food" value ="튀김">
+	순대<input type ="checkbox" name="food" value ="순대">
+	김밥<input type ="checkbox" name="food" value ="김밥">
+	<br>
 	<input type="submit" value="전송">
-
 </form>
 </body>
 
@@ -136,30 +151,377 @@ gif, jpg(jpeg), png -> gif와 jpg의 장점을 합한게 png이다.  jpg는 사�
 
   **radio와 checkbox는 value 속성이 필수다!!**
 
-- Query String: Web Client가 Web Server에게 정보(페이지)를 요청할 때 함께 전달 가능한 name과 value 구성되는 문자열
+  
 
-  W3C가 정해놓기를
+  - Query String: Web Client가 Web Server에게 정보(페이지)를 요청할 때 함께 전달 가능한 name과 value 구성되는 문자열
 
-  1. name-value로 구성되어야 한다.
-  2. 여러개의 name=value를 전달하는 경우에는 & 기호로 분리한다.
-  3. 영문과 숫자 그리고 일부 특수문자를 제외하고는 %기호와 코드 값으로 전달된다.
-  4. 공백 + 기호로 전달된다.
+    W3C가 정해놓기를
 
-![image-20200103114143915](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103114143915.png)
+    1. name-value로 구성되어야 한다.
+    2. 여러개의 name=value를 전달하는 경우에는 & 기호로 분리한다.
+    3. 영문과 숫자 그리고 일부 특수문자를 제외하고는 %기호와 코드 값으로 전달된다.
+    4. 공백 + 기호로 전달된다.
 
--------
+  ![image-20200103114143915](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103114143915.png)
 
-http://html5test.com/
+  -------
+
+  http://html5test.com/
+
+  
+
+  http://localhost:8000/edu/htmlexam/exam1.html
+
+  **HTML5를 지원하는 정도는 브라우저마다 다르다.**
+
+  -------
+
+- 실습2 exam2
+
+목록을 만드는 방법은 아래 세 가지가 있다.
+
+```html
+<ul>내용</ul>
+<ol>내용</ol>
+<dl>내용</dl>
+```
+
+**<ol>태그는** ordered list의 약자로, 숫자나 알파벳 등 순서가 있는 목록을 만드는 데 사용한다.
+
+**<ul>태그는** unordered list의 약자로, 순서가 필요 없는 목록을 만든다.
+
+**<dl>태그는** definition list의 약자로, 사전처럼 용어를 설명하는 목록을 만든다.
+
+```html
+<ol>과 <ul>의 각 항목들을 나열할 때는 ** 태그를** 사용하는데 list item의 약자입니다.
+```
+
+[목록을 만드는 ul, ol, li 태그](http://aboooks.tistory.com/210)
+
+**<dl>태그는** definition list(정의 목록)의 약자로, 사전처럼 용어를 설명하는 목록을 만든다.
+
+**<dt>**는 definition term(정의 용어)의 약자로, 정의되는 용어의 제목을 넣을 때 사용한다..
+
+**<dd>**는 definition description(정의 설명)의 약자로, 용어를 설명하는 데 사용한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>리스트 출력 태그</h1>
+<hr>
+<h2>좋아하는 칼라</h2>
+<ul>
+	<li>녹색</li>
+	<li>보라색</li>
+	<li>주황색</li>
+</ul>
+<hr>
+<h2>좋아하는 음식</h2>
+<ol>
+	<li>피자</li>
+	<li>떡볶이</li>
+	<li>짜장면</li>
+</ol>
+<hr>
+<dl>
+	<dt>자바</dt>
+	<dd>플랫폼에 의존적이지 않은 OOP 언어</dd>
+	<dt>HTML</dt>
+	<dd>웹 페이지의 구조와 내용을 작성하는 마크업언어</dd>
+	<dt>CSS</dt>
+	<dd>HTML 엘리먼트들이 브라우저에 랜더링될 때 스타일을 조정하는 언어</dd>
+</dl>
+</body>
+</html>
+```
+
+- 실습3 exam3
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>입력폼 학습</h1>
+<hr>
+<form>
+이름 <input type="text" name="stname" required><br>
+암호 <input type="password" name="stpwd"><br>
+나이 <input type="number" name="stage"><br> <!-- HTML5 -->
+좋아하는 칼라 <input type="color" name="stcolor"><br> <!-- HTML5 -->
+좋아하는 음식 <br>
+햄버거 <input type="checkbox"  name="stfood" value="f1">
+비지찌게 <input type="checkbox"  name="stfood" value="f2">
+회덮밥 <input type="checkbox"  name="stfood" value="f3">
+돈까스 <input type="checkbox"  name="stfood" value="f4"><br>
+성별 <br>
+남성 <input type="radio"  name="gender" value="male">
+여성 <input type="radio"  name="gender" value="female"><br>
+<input type="submit" value="전송하기">
+<input type="reset" value="초기상태로">
+</form>
+</body>
+</html>
+```
+
+**실습 4 exam4**
+
+#### form 요소
+
+form 요소는 **폼(FORM)의 범위**를 표시한다. 폼은 사용자 입력을 위한 다양한 형식의 컨트롤(W3C는 입력필드, 버튼 등 폼을 구성하는 입력 요소를 컨트롤이라고 부름)로 구성되는 영역이며, 이 영역의 시작과 종료 지점은 form 요소에 의해 정의된다.
+
+상호작용이 양방향으로 이루어지면서 사용자로부터 데이터를 수집해야 하는 상황이 자주 발생하였고, 이를 위해 고안된 것이 바로 컨트롤이다. 그리고 이 컨트롤들이 모여 있는 곳이 바로 폼이다.
+
+```html
+<form>
+...
+</form>
+```
+
+#### action 속성
+
+action 속성은 **실행 애플리케이션**을 지정한다. 실행 애플리케이션은 입력된 데이터를 처리하는 서버 또는 프로그램이다. 이곳으로 데이터를 보내려면 브라우저가 전송 위치(URL)를 알아야 하며, 이를 위해 action 속성을 사용한다.
+
+```html
+<form action="http://www.example.com/addresscheck.html/"> </form>
+```
+
+#### accept-charset 속성
+
+accept-charset 속성은 **승인된 문자 세트(accepted character set encoding)**을 지정한다. 일반적으로 HTML 문서에 적용된 문자 세트가 적용된다. 그런데 폼에 입력된 문자를 문서 전체에 적용된 문자 세트로 표현할 수 없는 경우도 있을 수 있다. 이럴 때 accept-charset 속성을 사용하여 적절한 문자 세트를 적용시킬 수 있다.
+
+```html
+<form accept-charset="utf-8"> </form>
+```
+
+- `enctype="application/x-www-form-urlencoded"` : 서버에 보내기전에 모든 문자를 인코딩하는 방식이며 폼에 텍스트 데이터를 포함했을 때 지정한다(기본값).
+- `enctype="multipart/form-data"` : 파일 업로드 컨트롤처럼 문자가 아닌 파일을 전송할 때 사용된다.
+- `enctype="text/plain"` : 일반 텍스트로 인코딩된다.
+
+#### method 속성
+
+method 속성은 **HTTP 메소드(HTTP method)**를 지정한다. HTTP 메소드는 클라이언트와 서버 간 데이터를 주고받기 위한 방식을 의미하는데 주로 사용되는 방식은 GET과 POST 방식이다.
+
+```html
+<form action="http://www.example.com/form.html/" method="post"> </form>
+```
+
+- GET 방식 : 입력된 데이터가 URL에 의해 전송되므로 암호화하지 않으면 URL만으로도 어떤 데이터를 입력했는지 알 수 있다. POST 방식보다 상대적으로 보안이 취약하고 전송할 수 있는 데이터도 제한적이다.
+
+- POST 방식 : 입력된 데이터를 HTTP Body에 담아 전송하면서 서버측에서 데이터를 처리하는 방식이다. HTTP Body는 URL에 비해 더 많은 정보를 담을 수 있기 때문에 POST 방식은 GET 방식보다 더 많은 양의 데이터를 전송할 수 있으며 상대적으로 보안이 높은 편이다.
+
+#### name 속성
+
+name 속성은 **폼 이름**을 지정한다. 이 속성은 스크립트에서 폼을 참조할 때 필요하다.
+
+```html
+<form action="http://www.example.com/form.html/" method="post" name="profile_new"> </form>
+```
+
+### FIELDSET 요소
+
+fieldset 요소는 관련 있는 **폼 필드 세트(form FIELD SET)**를 표시한다. 폼 필드 세트는 폼 내에서 관련 컨트롤을 하나의 그룹으로 묶은 것을 말한다.
+
+```html
+<form> <fieldset> ... </fieldset> </form>
+```
+
+- 폼을 효과적으로 계층화시킬 수 있다.
+- legend 요소를 함께 사용해야 한다.
+
+#### form 속성
+
+form 속성은 해당 **fieldset 요소가 속해 있는 폼**을 지정한다. 이 속성을 지정하면 특정 form과 fieldset 요소의 관계를 명시적으로 연결할 수 있다. 이렇게 연결하면 브라우저는 두 요소 사이의 상호작용이 좀 더 쉽게 이루어질 수 있도록 도울 수 있으며 fieldset 요소가 form 요소 밖에 있더라도 둘 사이의 관계를 유지할 수 있다. 특히 하나의 fieldset 요소가 복수의 form 요소와 관계를 맺어야 할 때 효과적인 속성이다.
+
+```html
+<form id="user"> ... 
+</form> 
+<p>The fieldset below is outside the form element, but still part of the form</p> 
+<fieldset form="user"> 
+    <legend>법인등록</legend> 
+    ... 
+</fieldset>
+```
+
+### LEGEND 요소
+
+legend 요소는 **fieldset 요소의 제목(LEGEND)**을 표시한다. fieldset 요소를 이용하여 여러 개의 컨트롤들을 묶었으면 이 묶음이 어떤 성격 또는 용도인지 알려줄 필요가 있으며, 이때 legend 요소를 사용한다.
+
+```html
+<form> 
+    <fieldset> 
+        <legend>개인정보:</legend> 
+        <label>이름: <input type="text"></label><br> 
+        <label>주소: <input type="text"></label><br> 
+        <input type="submit"> 
+    </fieldset> 
+</form>
+```
+
+```html
+<!--실습4-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<form action="...." method="get">
+<fieldset>
+	<legend>필수 항목</legend>
+	<ul>
+	<li>
+		<label for=head_size>머리 둘레(cm)</label>
+		<input id=head_size name=head_size type=number min=60 max=100 autofocus required>
+	</li>
+	<li>
+		<label for=name>이름</label>
+		<input id=name name=name type=text required maxlength=4>
+	</li>
+	<li>
+		<label for=email>Email</label>
+		<input id=email name=email type=email placeholder="example@xxx.yyy" required>
+	</li>
+	</ul>
+</fieldset>
+<fieldset>
+	<legend>선택 항목</legend>
+	<ul>
+	<li>
+		<label for=phone>연락처</label>
+		<input id=phone name=phone type=tel 
+		        placeholder="00*-000*-0000" 
+		        pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}">
+	</li>
+	<li>
+		<label for=date_of_birth>생일</label>
+		<input id=date_of_birth name=date_of_birth type=date min="1950-01-01" max="2000-01-01">
+	</li>
+	<li>
+		<!--  url type은 유효성 검증은 하지 않음 -->
+		<label for=homepage>홈페이지</label>
+		<input id=homepage name=homepage type=url>
+	</li>
+	<li>
+		<label for=favorite_color>좋아하는 색</label>
+		<input id=favorite_color name=favorite_color type=color>
+	</li>
+	<li>
+		<label for=gender>성별</label>
+		<input id=gender name=gender type=text list=gender_list>
+		<datalist id=gender_list>
+			<option value=male label=남>
+			<option value=female label=여>
+		</datalist>
+	</li>
+	<li>
+		<label for=favorite_star>좋아하는 연예인</label>
+		<input id=favorite_star name=favorite_star type=text list=favorite_star_list>
+		<datalist id=favorite_star_list>
+			<option value=윤아>
+			<option value=태연>
+			<option value=유리>
+			<option value=제시카>			
+		</datalist>
+	</li>
+	</ul>
+</fieldset>
+<button type="submit">Submit</button>
+</form>
+</body>
+</html>
+```
+
+[결과 화면]
+
+![image-20200103204015912](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103204015912.png)
+
+#### 실습5 exam5
+
+줄바꾸기 기능을 하는 가장 일반적인 태그는 \<p>와 \<br>태그입니다.
+
+**하나의 문단을 의미하는  태그**
+
+p는 paragraph의 약자로 문단을 의미합니다.
+
+```html
+<p>태그와 </p>태그 사이에 위치하는 내용이 하나의 문단을 구성합니다.
+<p>첫번째 문단(paragraph)</p>
+<p>두번째 문단(paragraph)</p>
+```
+
+위와 같이 코딩하면 아래와 같이 첫번째 문단과 두번째 문단 사이에 공백라인이 들어갑니다.
+
+```
+첫번째 문단(paragraph)
+
+두번째 문단(paragraph)
+```
+
+한글의 경우에는 문단의 첫글자를 들여쓰기 하지만 영문의 경우에는 문단과 문단 사이에는 한줄의 공백이 있습니다.
+
+**강제 줄바꿈을 할때는 \<br> 태그**
+
+br은 Line Break를 의미하며 우리말로 하면 강제 줄바꿈이라고 할 수 있습니다.
+
+```html
+<!--실습5-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>날짜와 시간 컨트롤 만들기</title>
+</head>
+<body>
+	<form id="myForm"  method="get" action="not.jsp">
+		<fieldset>
+			<legend>날짜와 시간 컨트롤 만들기</legend>
+			<p>
+				<label>Date Picker 컨트롤에서 날짜를 선택하시오: <input type="date"  name="a"/>
+				</label>
+			</p>
+			<p>
+				<label>시간을 선택하시오: <input type="time"  name="b"/>
+				</label>
+			</p>
+			<p>
+				<label>날짜와 시간을 선택하시오(datetime-local): <input type="datetime-local"  name="c"/>
+				</label>
+			</p>
+			<p>
+				<label>월을 선택하시오: <input type="month"  name="d"/>
+				</label>
+			</p>
+			<p>
+				<label>주를 선택하시오: <input type="week"  name="e"/>
+				</label>
+			</p>
+		</fieldset><br>
+		<input type="submit" value="전달해보자">
+	</form>
+</body>
+</html>
+```
+
+[결과 화면]
+
+![image-20200103204600472](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103204600472.png)
+
+#### 실습6 exam6
+
+정리 할것!!
 
 
-
-http://localhost:8000/edu/htmlexam/exam1.html
-
-**HTML5를 지원하는 정도는 브라우저마다 다르다.**
 
 **웹에서 표현되는 color**
-
-
 
 ![image-20200103134855339](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103134855339.png)
 
@@ -212,7 +574,10 @@ At w3schools.com you will learn how to make a website. We offer free tutorials i
 
 ```
 
+#### 실습7 exam7
+
 ```html
+<!--실습7 exam7-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -349,3 +714,72 @@ At w3schools.com you will learn how to make a website. We offer free tutorials i
 </html>
 ```
 
+## colspan과 rowspan
+
+표를 만들다 보면, 다음과 같이 셀을 병합하는 형태를 만들 필요가 있습니다.
+
+| 참가자 | 점수 |      |
+| :----: | :--: | ---- |
+|  이름  | 나이 |      |
+| 홍길동 | 19세 | 62점 |
+
+colspan과 rowspan이 쓰인 예
+
+여기서 보면, 두 번의 셀 병합이 있습니다. 하나는 '참가자' 셀이 가로로 두 칸을 차지하고, 다른 하나는 '점수' 셀이 세로로 두 칸을 차지하고 있습니다.
+
+이럴 때 사용하는 것이 **colspan** 속성과 **rowspan** 속성입니다. 여기서 'colspan'은 가로로 합치는 것, 다시 말해 열(col)들을 병합(span: 걸치다)하는 속성이고, 'rowspan'은 세로로 합치는 것, 행(row)들을 병합하는 속성입니다. 이 속성은 th 또는 td에 사용할 수 있으며, 속성 값으로 병합할 셀의 숫자를 적습니다. 다음과 같이 사용합니다.
+
+```html
+<td colspan="2">참가자</td>
+```
+
+colspan에 속성 값을 2를 주어 두 개의 같은 행의 셀을 병합했습니다. 만약 다음과 같은 형태의 표를 만든다면 그 다음과 같이 작성합니다.	
+
+![image-20200103194721713](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103194721713.png)
+
+```html
+<table>
+  <tr>
+    <td>a</td>
+    <td>b</td>
+  </tr>
+  <tr>
+    <td colspan="2">c</td>
+  </tr>
+</table>
+```
+
+여기서 눈 여겨 봐야 할 것은 **병합된 셀의 수만큼 \**같은 행(tr) 안에 셀\**을 덜 적어 준 것**입니다.
+
+그 다음은 rowspan 예시 입니다.
+
+![image-20200103194821080](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103194821080.png)
+
+```html
+<table>
+  <tr>
+    <td rowspan="3">a</td>
+    <td>b</td>
+  </tr>
+  <tr>
+    <td>c</td>
+  </tr>
+  <tr>
+    <td>d</td>
+  </tr>
+</table>
+```
+
+여기서 참고 해야 할 부분은 **병합된 셀의 수 만큼 \**다음 행(tr)의 셀\** 개수가 하나씩 줄어들었다는 점** 입니다.
+
+colspan과 rowspan은 표가 복잡해 질 수록, 조금 헷갈릴 수 있습니다. 하지만, 표를 몇 번 직접 작성 하다 보면, 금방 익숙해질 것 입니다.
+
+- 테이블 요소들은 레이아웃이 아닌 도표의 의미가 필요할 때에만 사용.
+- 테이블 요소들은 table 요소안에 포함.
+- tr은 행, td는 셀.
+- tr이 먼저 만들어지고, 그 안에 td가 들어가는 방식.
+- 헤더, 제목이 되는 셀은 th 사용.
+- colspan 속성은 열 병합, rowspan 속성은 행 병합.
+- 셀 병합을 할 경우, 병합된 개수 만큼의 셀은 뺄 것.
+
+참고 사이트: http://webberstudy.com/html-css/html-2/tables-and-layout/ 
