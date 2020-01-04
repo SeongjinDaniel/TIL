@@ -1,4 +1,4 @@
-# Day2 Web
+# Day2 Web(HTML)
 
 ```html
 <!DOCTYPE html>
@@ -367,7 +367,7 @@ legend 요소는 **fieldset 요소의 제목(LEGEND)**을 표시한다. fieldset
 ```
 
 ```html
-<!--실습4-->
+<!-- 실습4 exam4 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -399,10 +399,11 @@ legend 요소는 **fieldset 요소의 제목(LEGEND)**을 표시한다. fieldset
 		<label for=phone>연락처</label>
 		<input id=phone name=phone type=tel 
 		        placeholder="00*-000*-0000" 
-		        pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}">
+		        pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"> <!-- [0-9]{2,3} 0부터 9까지 숫자가 2개 아니면 3개 -->
 	</li>
 	<li>
 		<label for=date_of_birth>생일</label>
+		<!-- Date Type에도 min, max 사용가능 -->
 		<input id=date_of_birth name=date_of_birth type=date min="1950-01-01" max="2000-01-01">
 	</li>
 	<li>
@@ -424,6 +425,7 @@ legend 요소는 **fieldset 요소의 제목(LEGEND)**을 표시한다. fieldset
 	</li>
 	<li>
 		<label for=favorite_star>좋아하는 연예인</label>
+		<!-- 적어도 되지만 선택도가능 -->
 		<input id=favorite_star name=favorite_star type=text list=favorite_star_list>
 		<datalist id=favorite_star_list>
 			<option value=윤아>
@@ -434,7 +436,14 @@ legend 요소는 **fieldset 요소의 제목(LEGEND)**을 표시한다. fieldset
 	</li>
 	</ul>
 </fieldset>
+<!-- 비교!! button~~ -->
 <button type="submit">Submit</button>
+<button>Submit</button> <!--form 태그 안에서 사용하면 type속성 생략해도 버튼 태그는 submib 역할을 하게 된다.-->
+<!-- 버튼 태그는 이미지도 사용가능 button 태그는 form 태그 밖에서도 사용가능하다 -->
+<input type="submit"> <!-- value 속성을 생략했더니 제출이라고 사용됨 IE는 쿼리전송이라고 사용됨 -->
+<!-- submit type은 폼 태그 안에서 사용해야한다. -->
+<!-- button 보다 input 태그가 많이 사용됨 -->
+<input type="reset">
 </form>
 </body>
 </html>
@@ -517,7 +526,34 @@ br은 Line Break를 의미하며 우리말로 하면 강제 줄바꿈이라고 �
 
 #### 실습6 exam6
 
-정리 할것!!
+```html
+<!--실습6 exam6-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>&lt;select&gt; 태그, &lt;textarea&gt; 태그, file 타입의 &lt;input&gt; 태그</h2>
+<form>
+학년을 선택하세요 : 
+<select name="grade">
+	<option>1학년</option>
+	<option>2학년</option>
+	<option>3학년</option>
+	<option>4학년</option>
+</select><br>
+<mark>댓글</mark>남기기 :<br>
+<textarea name="memo" rows="10" cols="50"></textarea><br>
+업로드할 파일을 선택하세요 :<br>
+<input type="file" name="files" multiple>
+</form>
+</body>
+</html>
+```
+
+
 
 
 
@@ -604,11 +640,12 @@ At w3schools.com you will learn how to make a website. We offer free tutorials i
 </html>
 ```
 
-- 실습 1 문제
+#### 실습 1 문제
 
 ![image-20200103172032110](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103172032110.png)
 
 ```html
+<!--실습 1 문제-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -664,11 +701,12 @@ At w3schools.com you will learn how to make a website. We offer free tutorials i
 </html>
 ```
 
-- 실습 2 문제
+#### 실습 2 문제
 
 ![image-20200103175457321](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103175457321.png)
 
 ```html
+<!--실습2 문제-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -690,11 +728,12 @@ At w3schools.com you will learn how to make a website. We offer free tutorials i
 </html>
 ```
 
-- 실습 문제3
+#### 실습 문제3
 
 ![image-20200103175546909](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200103175546909.png)
 
 ```html
+<!--실습 문제3-->
 <!DOCTYPE html>
 <html>
 <head>

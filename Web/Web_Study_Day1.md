@@ -1,4 +1,4 @@
-# Day1 Web
+# Day1 Web(HTML)
 
 [Web 프로그래밍 기술 학습]
 
