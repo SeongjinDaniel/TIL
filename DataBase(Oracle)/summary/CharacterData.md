@@ -1,6 +1,6 @@
-# CHARACTER DATA
+# Character Data
 
-표시는 안했지만 scott 계정에서 EMP데이터를 가져오는 것이 아니라면 반드시 ***FROM DUAL*** 써줘야 합니다! 
+☘️표시는 안했지만 scott 계정에서 EMP데이터를 가져오는 것이 아니라면 반드시 ***FROM DUAL*** 써줘야 합니다! 
 
 
 
@@ -166,7 +166,7 @@ SELECT
 
 ##### 특정문자를 지우는
 
-When you only use "TRIM"
+When you only use **"TRIM"**
 
 * 왼쪽에 있는 글자를 지우는 **LEADNING**
 
@@ -174,15 +174,60 @@ When you only use "TRIM"
 
 * 양쪽의 글자를 모두 지우는 **BOTH**
 
+  ​	삭제할 문자가 없을때/있을때 두가지 케이스가 있다. 꼭 살펴보자!
+  
+  * 삭제할 문자가 없을때
+  
   ~~~SQL
   TRIM (삭제기본옵션(선택사항) || 삭제할 문자(선택사항) )
-  
-  SELECT '[''
-  
+
+  SELECT '['|| TRIM(' _ _Oracle_ _ ') || ']'
+  --[__Oracle__]
+  SELECT '['|| TRIM(LEADING FROM ' _ _Oracle_ _ ') || ']'
+  --[__Oracle__]
+  SELECT '['|| TRIM(TRAILING FROM ' _ _Oracle_ _ ') || ']'
+  --[__Oracle__]
+  SELECT '['|| TRIM(BOTH  FROM ' _ _Oracle_ _ ') || ']'
+  --[__Oracle__]
+  -- ||은 공백 문자가 제거 됐는지 확인하기 위해 ||연산자를 사용하여 대괄호 []로 문자열을 감싸도록 했다아
   ~~~
-
+  
+  
+  
+  * 삭제할 문자가 있을때
+  
+  ~~~SQL
+  SELECT '[' || TRIM('_' FROM '_ _Oracle_ _') || ']'
+  --[_Oracle_]
+  SELECT '[' || TRIM(LEADING'_' FROM '_ _Oracle_ _') || ']'
+  --[_Oracle__]
+  SELECT '[' || TRIM(TRAILING'_' FROM '_ _Oracle_ _') || ']'
+  --[__Oracle_]
+  SELECT '[' || TRIM(BOTH'_' FROM '_ _Oracle_ _') || ']'
+  --[_Oracle_]
+  ~~~
+  
   
 
-트림은 너무너무 너무너무 어려운데 그렇게 많이 안쓰임 생각보다 어려우면 기본 개념만 외워도 that's okay!
+**LTRIM, RTRIM**
 
-삭제는 어려우니깐.. 내일 다시!!!!
+~~~SQL
+LTRIM (원본문자 문자열 데이터, 삭제할 문자 집합) 
+TRTIM (원본문자 문자열 데이터, 삭제할 문자 집합)
+
+--삭제할 문자 집합을 선택하지 않으면 공백이 제거된다.
+
+SELECT '[' || TRIM(' _Oracle_ ') || ']'
+--[_Oracle_]
+SELECT '[' || LTRIM(' _Oracle_ ') || ']'
+--[_Oracle_ ]
+SELECT '[' || LRIM('<_Oracle_>', '_<') || ']'
+--[Oracle_>]
+SELECT '[' || RTRIM(' _Oracle_ ') || ']'
+--[ _Oracle_]
+SELECT '[' || RTRIM('<_Oracle_>', '>_') || ']'
+----[<_Oracle]
+~~~
+
+
+
