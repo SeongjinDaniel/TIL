@@ -31,7 +31,7 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
 
 ## CSS(Cascading Style Sheets) 란?
 
-구조적으로 짜여진 문서(HTML,XML)에 Style(글자,여백,레이아웃)을 적용하기 위해 사용 하는 언어(Language)이다.
+구조적으로 짜여짂 문서(HTML,XML)에 Style(글자,여백,레이아웃)을 적용하기 위해 사용 하는 언어(Language)이다.
 
 - CSS 스타일시트는 HTML 문서의 요소에 적용되는 CSS 스타일 정의를 포함하며 CSS
 - 스타일은 요소 표시 방법 및 페이지에서의 요소 위치를 지정한다.
@@ -47,7 +47,7 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
 
 - 확장성 : 표현을 더욱 다양하게 확장하거나 표현 기능의 변경 가능
 - 편의성 : 훨씬 간편하게 레이아웃 등의 스타일 구성
-- 재사용성 : 독립된 스타일 모듈 작성, 여러 HTML 문서에 공통으로 활용
+- 재사용성 : 독립된 스타일 모듈 작성, 여러 HTML 문서에 공통으로 홗용
 - 생산성 : 역할 분담에 따른 전문화, 모듈 단위의 협업과 생산성의 향상
 
 #### CSS 의 작성 방법
@@ -55,7 +55,7 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
 - 인라인 방법 - HTML 엘리먼트에 style 이라는 속성으로 정의하는 방법
   <tag style="property: value">
 
-- 전역적 방법 - <style> 이라는 태그에 웹 페이지의 태그들에 대하여 스타일을 정의하는 방법
+- 전역적 방법 - <style> 이라는 태그에 웹 페이지의 태그들에 대핚 스타읷을 정의하는 방법
 
   ```html
   <style type="text/css">
@@ -63,7 +63,7 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
   </style>
   ```
 
-- 외부 파일 연결 방법 - 독립된 파일(확장자 .css)을 읽어서 HTML 문서에 연결하는 방법
+- 외부 파일 연결 방법 - 독릱된 파읷(확장자 .css)을 릶들어서 HTML 문서에 연결하는 방법
 
   ```html
   <link rel="stylesheet" type="text/css" href="style.css" />
@@ -72,7 +72,6 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
 #### CSS 실습1 exam1
 
 ```html
-<!-- CSS 실습1 exam1 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,7 +94,6 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
 #### CSS 실습2 exam2
 
 ```html
-<!-- CSS 실습2 exam2 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,7 +154,7 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
 <!-- style="text-decoration:none" 이걸 사용하면 화면에 보여줄때 underline이 없어진다. -->
 <a href="http://www.w3schools.com/">W3Schools</a><br>
 <a href="http://www.html5test.com/">HTML5테스트</a><br>
-<a href="http://www.caniuse.com/">HTML과 CSS의 지원여부 체크</a>ㅋㅋㅋ<br>
+<a href="http://www.caniuse.com">HTML과 CSS의 지원여부 체크</a>ㅋㅋㅋ<br>
 <img src="../images/totoro.png"width="200" class="t2"> <!-- 상대 URL -->
 <img src="/edu/images/totoro.png"width="200" class="t2"> <!-- 상대 URL -->
 <img src="http://localhost:8000/edu/images/totoro.png"width="200"> <!-- 절대 URL -->
@@ -221,19 +219,9 @@ id : unique하게 이름을 부여할 때 사용, id가 중복되면 아무일�
 
 블럭 스타일 태그 : 처음 부터 끝까지 블럭이 적용됨
 
-- block태그는 쉽게말해 박스형식으로 차곡차곡 쌓는 태그
-
 인라인 스타일 태그 : 해당 문자에만 블럭이 적용됨
 
-- inline태그는 한줄로 쭉- 늘어놓은 태그
-- inline은 block과는 달리 여백이 남는만큼 일렬로 나열.
-  즉 여백이 다 찰때까지 줄바꿈이 일어나지 않음.
-  inline 태그는 크기지정이 불가능하며 여백도 지정이 안됨.
-  물론 이러한 inline태그도 나중에 css를 사용하여 크기, 여백을 줄 수 있음.
-  inline태그에는 sapn, a, img, input 등이 있음.
-
 ```html
-<!--CSS 실습3_0 exam3_0-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -396,6 +384,7 @@ ol.d {
   list-style-type: upper-roman;
 }
 ol.e {
+
   list-style-type: lower-alpha;
 }
 </style>
