@@ -394,20 +394,30 @@ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
      ```javascript
      var dom = document.getElementsTagName("button")[0]; // 첫번째 버튼 Tag
      dom.onclick = function() { 코드 };
-     ```
-
+     dom.onclick = null; // 해제 할 수 있음
+```
      
-
-   - 표준 이벤트 모델
-
-     ```html
+- 표준 이벤트 모델
+   
+  ```html
      <button>3</button>
      ```
-
-     ```javascript
+   
+  ```javascript
      var dom = document.getElementsTagName("button")[0]; // 첫번째 버튼 Tag
      dom.addEventListener("click", function() { 코드 });
+     dom.removeEventListener("click", function() { 코드 })
      ```
+     
+     이벤트 : 웹 페이지상에서 마우스, 키보드 등을 통해 발생하는 액션
+     
+     ​			  웹 브라우저에서 자동으로 발생하는 액션
+     
+     이벤트 핸들러(리스너) : 이벤트가 발생했을 때 수행되는 기능을 구현한 함수
+     
+     이벤트 타겟 : 이벤트가 발생한 대상 DOM 객체
+     
+     ​					  ((1)this, (2) 핸들러에 매개변수(e)를 하나 정의한 후 : e.target)
 
 #### 실습8 exam1
 
