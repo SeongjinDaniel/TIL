@@ -17,6 +17,8 @@
 
   ​                                             															-----> Tomcat 9.0(https://tomcat.apache.org/)
 
+  ​												------>> [32-bit/64-bit Windows Service Installer](http://apache.mirror.cdnetworks.com/tomcat/tomcat-9/v9.0.30/bin/apache-tomcat-9.0.30.exe) ([pgp](https://www.apache.org/dist/tomcat/tomcat-9/v9.0.30/bin/apache-tomcat-9.0.30.exe.asc), [sha512](https://www.apache.org/dist/tomcat/tomcat-9/v9.0.30/bin/apache-tomcat-9.0.30.exe.sha512)) 설치!!
+
   ​																				Tomcat 설치시 오라클과 포트 번호가 겹치면 안되니까
 
   ​																				HTTP/1.1Connector Port 를 8000으로 변경
@@ -38,5 +40,7 @@
     -> check box check(Generate web ~~~ )
 
     edu 에서 -> WebContent
-
+  
     http://localhost:8000/edu/imsi.html -> 확인가능!!
+
+-> trouble shooting web site : https://record22.tistory.com/17

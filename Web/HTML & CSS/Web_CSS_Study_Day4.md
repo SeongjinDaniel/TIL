@@ -6,14 +6,6 @@ Img[src=duke.png]
 Img[src$=png]
 ```
 
-![image-20200106094432024](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200106094432024.png)
-
-![image-20200106094700447](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200106094700447.png)
-
-![image-20200106103415230](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200106103415230.png)
-
-![image-20200106103428434](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200106103428434.png)
-
 #### 실습1 exam8
 
 ```html
@@ -263,7 +255,7 @@ Img[src$=png]
 </html>
 ```
 
-#### 실습5 exam8_4
+#### 실습5 exam8_4 (깔끔함!)
 
 ```html
 <!-- 실습5 exam8_4 -->
@@ -441,6 +433,8 @@ display : none, block, inline, inline-block
 		border-radius : 10px;
 		margin-right : 20px;
 		margin-top : 5px;
+		width : 200px;
+		height : 200px;
 	}
 	div{
 		text-align : center;
@@ -459,17 +453,17 @@ display : none, block, inline, inline-block
 <h1>과일<span style="color:white">의</span><span style="color:#ff9900"> 종류</span></h1>
 <hr>
 <div>
-<img src="../images/r1.gif" width="200" height="200" class="cl">
-<img src="../images/r2.gif" width="200" height="200" class="cl">
-<img src="../images/r3.jpg" width="200" height="200" class="cl">
-<img src="../images/r4.gif" width="200" height="200" class="cl">
+<img src="../images/r1.gif"class="cl">
+<img src="../images/r2.gif"class="cl">
+<img src="../images/r3.jpg"class="cl">
+<img src="../images/r4.gif"class="cl">
 </div>
 <br>
 <div>
-<img src="../images/r5.png" width="200" height="200" class="cll">
-<img src="../images/r6.png" width="200" height="200" class="cll">
-<img src="../images/r7.png" width="200" height="200" class="cll">
-<img src="../images/r8.jpg" width="200" height="200" class="cll">
+<img src="../images/r5.png" class="cll">
+<img src="../images/r6.png" class="cll">
+<img src="../images/r7.png" class="cll">
+<img src="../images/r8.jpg" class="cll">
 </div>
 </body>
 </html>

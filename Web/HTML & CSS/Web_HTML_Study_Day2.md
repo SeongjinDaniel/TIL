@@ -526,6 +526,18 @@ br은 Line Break를 의미하며 우리말로 하면 강제 줄바꿈이라고 �
 
 #### 실습6 exam6
 
+<input> 태그의 multiple 속성은 <input> 요소에 사용자가 둘 이상의 값을 입력할 수 있음을 명시합니다.
+
+multiple 속성이 제대로 동작하는 <input> 요소의 type 속성값은 다음과 같습니다.
+
+\- email, file
+
+<input> 요소의 type 속성값이 “email”인 경우에는 이메일 사이에 콤마(,)를 추가하여 여러 이메일 주소를 동시에 입력할 수 있으며, type 속성값이 “file”인 경우에는 CTRL이나 SHIFT키를 사용하여 여러 파일을 동시에 선택할 수 있습니다.
+
+multiple 속성은 불리언(boolean) 속성입니다.
+
+불리언 속성은 해당 속성을 명시하지 않으면 속성값이 자동으로 false 값을 가지게 되며, 명시하면 자동으로 true 값을 가지게 됩니다.
+
 ```html
 <!--실습6 exam6-->
 <!DOCTYPE html>
@@ -552,10 +564,6 @@ br은 Line Break를 의미하며 우리말로 하면 강제 줄바꿈이라고 �
 </body>
 </html>
 ```
-
-
-
-
 
 **웹에서 표현되는 color**
 
@@ -663,7 +671,7 @@ At w3schools.com you will learn how to make a website. We offer free tutorials i
 	<li>이름 : 유성진</li>
 	<li>별명 : oliver</li>
 	<li>관심기술 : Web Server</li>
-	<li>취미 : 스티커모으기</li>
+	<li>취미 : 향수 만들기</li>
 </ul>
 
 <h2>올해 재미있게 읽은 책</h2>

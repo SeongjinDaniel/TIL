@@ -31,15 +31,15 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
 
 ## CSS(Cascading Style Sheets) 란?
 
-구조적으로 짜여짂 문서(HTML,XML)에 Style(글자,여백,레이아웃)을 적용하기 위해 사용 하는 언어(Language)이다.
+구조적으로 짜여진 문서(HTML,XML)에 Style(글자,여백,레이아웃)을 적용하기 위해 사용 하는 언어(Language)이다.
 
 - CSS 스타일시트는 HTML 문서의 요소에 적용되는 CSS 스타일 정의를 포함하며 CSS
 - 스타일은 요소 표시 방법 및 페이지에서의 요소 위치를 지정한다.
-- W3C의 표준이며 HTML구조는 그대로 두고 CSS 파일만 변경해도 젂혀 다른 웹사이트처럼 꾸밀 수 있다.
+- W3C의 표준이며 HTML구조는 그대로 두고 CSS 파일만 변경해도 전혀 다른 웹사이트처럼 꾸밀 수 있다.
 
 #### CSS(Cascading Style Sheets) 사용한 웹 페이지 개발
 
-- 웹 표준에 기반핚 웹 사이트를 개발할 수 있다. (페이지의 내용과 디자읶을 분리)
+- 웹 표준에 기반한 웹 사이트를 개발할 수 있다. (페이지의 내용과 디자읶을 분리)
 - 클라이언트 기기에 알맞는 반응형 웹 페이지를 개발 할 수 있다.
 - 이미지의 사용을 최소화시켜 가벼운 웹 페이지 개발을 가능하게 한다.
 
@@ -47,7 +47,7 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
 
 - 확장성 : 표현을 더욱 다양하게 확장하거나 표현 기능의 변경 가능
 - 편의성 : 훨씬 간편하게 레이아웃 등의 스타일 구성
-- 재사용성 : 독립된 스타일 모듈 작성, 여러 HTML 문서에 공통으로 홗용
+- 재사용성 : 독립된 스타일 모듈 작성, 여러 HTML 문서에 공통으로 활용
 - 생산성 : 역할 분담에 따른 전문화, 모듈 단위의 협업과 생산성의 향상
 
 #### CSS 의 작성 방법
@@ -55,7 +55,7 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
 - 인라인 방법 - HTML 엘리먼트에 style 이라는 속성으로 정의하는 방법
   <tag style="property: value">
 
-- 전역적 방법 - <style> 이라는 태그에 웹 페이지의 태그들에 대핚 스타읷을 정의하는 방법
+- 전역적 방법 - <style> 이라는 태그에 웹 페이지의 태그들에 대한 스타일을 정의하는 방법
 
   ```html
   <style type="text/css">
@@ -63,7 +63,7 @@ HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
   </style>
   ```
 
-- 외부 파일 연결 방법 - 독릱된 파읷(확장자 .css)을 릶들어서 HTML 문서에 연결하는 방법
+- 외부 파일 연결 방법 - 독립된 파일(확장자 .css)을 읽어들여서 HTML 문서에 연결하는 방법
 
   ```html
   <link rel="stylesheet" type="text/css" href="style.css" />
@@ -512,7 +512,7 @@ CSS 실습6 exam6
 	div:nth-of-type(2) { /*두번째 div에게 적용 */
 		background-color : lightgreen;
 		border : 2px dotted magenta;
-		border-radius : 20px 40px 60px 80px;
+		border-radius : 20px 40px 60px 80px; /*왼쪽 위부터 시계방향*/
 	}
 	div:nth-of-type(3) { /*세번째 div에게 적용 */
 		background-color : #000000;
@@ -540,6 +540,34 @@ CSS 실습6 exam6
 ```
 
 CSS 실습7 exam7
+
+text-shadow: offset-x offset-y blur-radius color | none | initial | inherit
+
+- offset-x : 그림자의 수평 거리를 정합니다. (필수)
+
+  - offset-x의 값을 증가시키면 그림자의 위치가 오른쪽으로 이동합니다.
+
+- offset-y : 그림자의 수직 거리를 정합니다. (필수)
+
+  - offset-y의 값을 증가시키면 그림자의 위치가 아래로 이동합니다.
+
+- blur-radius : 흐림 정도를 정합니다. (선택 : 값을 정하지 않으면 0)
+
+  - blur-radius의 값을 증가시키면 그림자가 흐려집니다.
+
+- color : 색을 정합니다. (선택 : 값을 정하지 않으면 브라우저 기본값)
+
+- none : 글림자 효과를 없앱니다.
+
+- initial : 기본값으로 설정합니다.
+
+- inherit : 부모 요소의 속성값을 상속받습니다.
+
+- 속성값을 쉼표로 구분하여 여러 번 쓰면 여러 개의 그림자가 생깁니다.
+
+  ```css
+  text-shadow: 4px 4px 0px #1565C0, 8px 8px 0px #42A5F5, 12px 12px 0px #E3F2FD;
+  ```
 
 ```html
 <!doctype html>
@@ -575,7 +603,7 @@ CSS 실습7 exam7
 		text-shadow : 2px 2px 5px white, -2px -2px 5px white;
 	}
 	div.jbGrad07{
-		background-image : url("/edu/images/pink.gif");		
+		background-image : url("/edu/images/pink.gif");	
 	}
 </style>
 </head>
