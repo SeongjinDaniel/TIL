@@ -56,8 +56,6 @@ get방식을 보완하기 위해서 post(쿼리문자의 길이 제한이 없다
 
 
 
-
-
 ## 웹 의 처리 구조
 
 웹 통신에 사용되는 표준 통신 프로토콜은 HTTP( HyperText Transfer Protocol) 이다.
