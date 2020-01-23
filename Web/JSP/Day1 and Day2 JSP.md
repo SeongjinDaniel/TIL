@@ -1,6 +1,6 @@
-# Day1 JSP
+# Day1, Day2 JSP
 
-## JSP : JavaServer Pages
+## JSP : JavaServer Pages	
 
 ```
 CGI		 -->	   ASP, PHP
@@ -17,6 +17,8 @@ Servlet	  -->	   JSP ----> 실행시 Servlet으로 변경됨(최초한번만)
    9개가 있다.
 
    - request, response, session, out, application, config, exception, page, pageContext
+     - page : this와 같다.
+     - exception : 아무곳에서 사용할 수 없다. 나머지는 필요할 때 언제든지 사용가능
 
 2. JSP 태그
 
@@ -26,15 +28,44 @@ Servlet	  -->	   JSP ----> 실행시 Servlet으로 변경됨(최초한번만)
 
    ​                           멤버변수를 선언   (out.print와 같다.)    (if문 for문 같은것들)
 
-3. 액션태그
+   ​                           ------------------------------------------------------------------------스크립트 태그(자바 언어 사용가능)
+
+   - <%@   %>  - **(page 지시자태그)**
+
+     - Converter라는것이 jsp소스를 servlet으로 변경해준다.
+
+     - <%-- errorPage는 실행하다가 에러가 생겼을때 발생 가능 이 구문이 에러면 해당 안된다. --%>
+
+     - (<%@ page 속성명 ="속성값", ....   %>)
+
+       속성명 : import, language, contentType, pageEncoding, errorPage, isErrorPage, session, buffer, isELIgored ...
+
+   - <%@ incude file="포함하려는대상파일의로컬URL"   %> -** (include 지시자태그)**
+
+     포함하는 위치 : 이 지시자태그가 사용된 위치
+
+     포함하는 시기 : JSP를 Servlet으로 변환하기 전
+
+     포함하는 대상 : html, jsp, jspf(f: fragment조각):또다른 jsp
+
+     Servlet으로 변환하기전에 포함시켜서 함수마냥 사용할수있다.
+
+3. **액션태그**(자바 코드를 대신할 때 사용)
 
    <jsp:include />, <jsp:forward />, <jsp:param   />...
 
+   ​                          -------------------.
+
+   ​                          servlet의 RequestDispatcher
+
 4. 커스텀 태그 - 스크립트 코드와 EL을 혼합해서 사용하는 대신 또 다른태그를 만들어서 사용할 수 있도록 지원한다.
 
-   
+```
+include action 태그로 : 2개의 서블릿 : 동적 포함, 다른 servlet이나 프로그램이어도 된다.
+include 지시자 태그로 : 1개의 서블릿 : 정적 포함
+```
 
-
+**html 주석으로 막혀있으면 jsp문을 무조건 실행된다.**
 
 Servers  -> Tomcat v9.0 Servet at localhost -> server.xml 내부에 reloadable = true이면 계속 리로드한다 개발이 끝나면 이것을 false로 변경한다.
 
@@ -208,6 +239,14 @@ C:\Oliver_C\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp
 </body>
 </html>
 ```
+
+
+
+**xxxVO - Value Object - 값을 보관하는 용도의 객체**
+
+**xxxDAO - Data Access Object - DB 연동기능(JDBC)을 지원하는 객체**
+
+**Service(xxxBiz) - Service Object - 이런 저런 서비스 로직을 지원하는 객체**
 
 
 
