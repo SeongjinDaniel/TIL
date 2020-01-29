@@ -34,10 +34,11 @@ hr();
 dom = document.getElementById("test");
 write(dom, "h2");
 write(dom.textContent, "h2");
+// setInterval 은 매초마다 주기적으로 사용할 때 사용
 window.setTimeout(function() {
-	dom.innerHTML = "오늘은 월요일";
+	dom.innerHTML = "오늘은 불금";
 	dom.style.color ="red";
-	dom.style.backgroundColor ="lime";
+	dom.style.backgroundColor ="lime"; // 원래는 background-color 이지만 자바스크립트는 -기호 인정 X
 }, 5000);
 </script>
 </body>
