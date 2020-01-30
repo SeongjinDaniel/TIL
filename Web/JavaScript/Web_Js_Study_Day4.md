@@ -10,7 +10,88 @@
 
 ​					  ((1)this, (2) 핸들러에 매개변수(e)를 하나 정의한 후 : e.target)
 
-#### 실습1 exam3
+#### 실습 exam1
+
+```html
+	<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>컨텐트1</h1>
+<h1>컨텐트2</h1>
+<h1>컨텐트3</h1>
+<h1>컨텐트4</h1>
+<h1>컨텐트5</h1>
+<h2>컨텐트5</h2>
+<script src="../util.js"></script>
+<script>
+var h1dom=document.getElementsByTagName("h1");
+write(h1dom.length, "h3");
+for(var i=0;i<h1dom.length;i++)
+   writeColor(h1dom[i].textContent,"h4", "red");
+   
+var h2dom = document.getElementsByTagName("h2");
+writeColor(h2dom[0].textContent, "h2", "green");
+writeColor(h1dom[0], "h2", "blue");
+writeColor(h2dom[0], "h2", "blue");
+
+var h5dom = document.getElementsByTagName("h5");
+writeColor(h5dom.length, "h5", "magenta");
+</script>
+</body>	
+</html>
+```
+
+#### 실습 exam2
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script src = "../util.js"></script>
+<script>
+		// 이벤트 핸들러로써의 기능을 하기 떄문에 그때 그때 사용!
+		window.onload = function() {
+		var dom1 = document.getElementById("t1");
+		console.log(dom1);
+		console.log(dom1.textContent);
+		var dom2 = document.getElementById("t3");
+		console.log(dom2);
+		var dom3 = document.getElementById("t4");
+		console.log(dom3);
+		var dom4 = document.getElementById("t5");
+		console.log(dom4);
+		console.log(dom4.getAttribute("src")); // src에 작성한 대로 추출
+		console.log(dom4.src); // 절대 URL로 추출 
+		var dom5 = document.getElementById("p");
+		// textContent는 HTML 태그를 사용할 수 없다.
+		// 사용하려면 innerHTML을 사용해야한다.
+		//dom5.textContent = "<h2>" + new Date().toLocaleString() + "</h2>";
+		
+		dom5.innerHTML = "<h2>" + new Date().toLocaleString() + "</h2>";
+	}
+</script>
+<h1 id = "t1">컨텐트1</h1>
+<h2 id = "t2">컨텐트5</h2>
+<p id = "t3">컨텐트2</p>
+<div id = "t4">컨텐트2</div>
+<img id = "t5" src="../../images/totoro.png" width="100">
+<hr>
+<output id = "p"></output> <!-- javaScript의 수행능력을 표현하는 용도 ?-->
+<hr>
+
+</body>
+</html>
+```
+
+#### 실습 exam3
 
 ```html
 <!DOCTYPE html>
@@ -45,7 +126,7 @@ window.setTimeout(function() {
 </html>
 ```
 
-#### 실습2 exam4
+#### 실습 exam4
 
 ```html
 <!DOCTYPE html>
@@ -74,7 +155,7 @@ function stopTime() {
 </html>
 ```
 
-#### 실습3 exam4_1
+#### 실습 exam4_1
 
 ```html
 <!DOCTYPE html>
@@ -107,7 +188,7 @@ function stopTime() {
 </html>
 ```
 
-#### 실습4 exam4_2
+#### 실습 exam4_2
 
 ```html
 <!DOCTYPE html>
@@ -141,7 +222,7 @@ function stopTime() {
 </html>
 ```
 
-#### 실습5 exam5
+#### 실습 exam5
 
 ```html
 <!DOCTYPE html>
@@ -178,7 +259,7 @@ function stopTime() {
 </html>
 ```
 
-#### 실습6 exam5_1
+#### 실습 exam5_1
 
 ```html
 <!DOCTYPE html>
@@ -209,6 +290,179 @@ function stopTime() {
 	} 
     dom2.onclick = f2;
     dom3.addEventListener("click", f2);
+</script>
+</body>
+</html>
+```
+
+#### 실습 exam6
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>고전 이벤트 모델과 표준 이벤트 모델의 차이</h1>
+<hr>
+<button>고전 이벤트 모델</button>
+<button>표준 이벤트 모델</button>
+<script>
+	var doms = document.querySelectorAll("button");
+	var dom1 = doms[0];
+	var dom2 = doms[1];
+	
+	// 고전은 똑같은 이벤트핸들러에 두개를 등록할수 없다.
+	dom1.onclick = function () {
+		alert("첫 번째 핸들러 수행(고전)");
+	};
+	dom1.onclick = function () {					
+		alert("두 번째 핸들러 수행(고전)");
+	};
+	// 똑같은 이벤트 핸들러를 여러개 등록할수 있다.							  
+	dom2.addEventListener("click", 
+			                 function () { alert("첫 번째 핸들러 수행(표준)");});
+	dom2.addEventListener("click", 
+            function () { alert("두 번째 핸들러 수행(표준)");});
+
+</script>
+</body>
+</html>
+```
+
+#### 실습 exam7
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>자바스크립트의 이벤트 모델</h1>
+<hr>
+<!-- 마우스 올릴때마다 경고창 뜬다. -->
+<button onmouseover="test1();">인라인이벤트모델</button>
+<!-- 한버만 수행 -->
+<button id="b1">고전이벤트모델</button>
+<button id="b2">표준이벤트모델</button>
+<script>
+
+function test1() {
+	alert("인라인이벤트모델 버튼 클릭");
+}
+function test2() {
+	alert("고전이벤트모델 버튼 클릭");
+	btn1.onmouseover = null;
+}
+function test3() {
+	alert("표준이벤트모델 버튼 클릭");
+	btn2.removeEventListener("mouseover", test3);
+}
+var btn1 = document.querySelector("#b1");
+var btn2 = document.getElementById("b2");
+btn1.onmouseover = test2;  // 고전
+btn2.addEventListener("mouseover", test3);
+</script>
+</body>
+</html>
+```
+
+#### 실습 exam8
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>디폴트 이벤트 핸들러</h1>
+<hr>
+<!-- 인라인 이벤트 는 return false;를 사용하면 이벤트 핸들러 제외 -->
+<!-- 고전 이벤트 는 return false;를 사용하면 이벤트 핸들러 제외 -->
+<!-- 표준 이벤트 는 return false;를 사용하면 이벤트 핸들러 제외 --> 
+<a href="http://www.w3schools.com/" onclick="test1(); return false;">HTML5 학습하기(인라인)</a><hr>
+<a id="t1" href="http://www.w3schools.com/">HTML5 학습하기(고전)</a><hr>
+<a id="t2" href="http://www.w3schools.com/">HTML5 학습하기(표준)</a>
+<script>
+function test1() {
+	alert("인라인이벤트모델 버튼 클릭");
+	//여기서 return false해도 소용없다
+}
+function test2() {
+	alert("고전이벤트모델 버튼 클릭");	
+	return false;
+}
+function test3(e) {
+	e.preventDefault();
+	alert("표준이벤트모델 버튼 클릭");	
+}
+var link1 = document.querySelector("#t1");
+var link2 = document.getElementById("t2");
+link1.onclick = test2;  // 고전
+link2.addEventListener("click", test3);
+
+</script>
+</body>
+</html>
+```
+
+#### 실습 exam9
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	section {
+		border : 1px solid lime;	
+		padding :10%;
+		margin : 0px auto;	
+	}
+	div {
+		border : 1px solid blue;	
+		width : 80%;
+		padding :10%;
+		margin : 0px auto;	
+	}
+	h1 {
+		border : 1px solid red;	
+		width : 80%;
+		padding :10%;
+		margin : 0px auto;		
+	}
+</style>
+
+</head>
+<body>
+  <section>
+	<div>
+		<h1>테스트</h1> <!-- h1 입장에서 div section body 모두 조상이다 -->
+	</div>
+  </section>
+<script>
+function clickHandler() {
+	var dom1 = document.getElementsByTagName("h1")[0];
+	var dom2 = document.getElementsByTagName("div")[0];
+	var dom3 = document.getElementsByTagName("section")[0];
+	var dom4 = document.getElementsByTagName("body")[0];
+	dom1.addEventListener("click", displayAlert);
+	dom2.addEventListener("click", displayAlert);	
+	dom3.addEventListener("click", displayAlert);	
+	dom4.addEventListener("click", displayAlert);	
+}
+function displayAlert(e) {
+	window.alert(e.target+"\n"+e.currentTarget+"\n"+this);
+	e.stopPropagation(); // 조상들한테 올리지마!
+}
+window.addEventListener("load", clickHandler);
 </script>
 </body>
 </html>

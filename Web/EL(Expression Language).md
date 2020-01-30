@@ -1,5 +1,11 @@
 # EL(Expression Language)
 
+${header.referer}
+
+${header.user-agent} // 요청하는 클라이언트의 정보가 들어가있다.
+
+------->  ${header.["user-agent"]}    // . 을 쓸때 적절하지 않을 때 [""]이런 형식을 쓴다.
+
 특정
 스코프 영역에 보관되어 있는 객체를 추출하여 이 객체의 값 또는 속성 값을 추출하여 표현 하고 하는 경우 사용된다 . 적절한 Java 코드와 함께 표현식 태그를 사용해도 되지만 JSP 가 추가로 지원하는 Expression Language 라는 구문으로 좀 더 간단하게 구현하는 것이 가능하다
 EL은 $ 와 블록 ({ 으로 구현하는 것으로 표현하는 것과 관련된 연산자 와 EL 만의 내장 객체를 사용할 수 있다 . Query 문자열을 추출하여 표현하는 경우도 다음과 같이 스크립 팅 태그를 사용하는 것보다 간단하게 구현 한다
@@ -229,3 +235,6 @@ ${ LanguageInfoBean.getKindInfo() }<br>
 </html>
 ```
 
+jdbc 드라이버 파일 : sedu 프로젝트의 WEB-INF/lib/ojdbc6.jar
+
+​								mvc 프로젝트의 WEB-INF/lib/ojdbc6.jar
