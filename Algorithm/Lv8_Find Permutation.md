@@ -29,7 +29,18 @@
 ### 예제 출력
 
 ```
-ab ac ad ba bc bd ca cb cd da db dc
+ab 
+ac
+ad
+ba
+bc
+bd
+ca
+cb
+cd
+da
+db
+dc
 ```
 
 ----
