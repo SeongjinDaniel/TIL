@@ -83,7 +83,9 @@ help -> Eclipse Marketplace -> STS 검색 -> go클릭 -> Spring Tools 3 Add-On f
 
 [자바](https://ko.wikipedia.org/wiki/자바_(프로그래밍_언어))용 **프로젝트 관리 도구**이다. 추가로 설치해야하는 라이브러리를 관리해준다. 이 프로그램에서는 어떤 라이브러리를 설정하여 사용할수있다
 
-<description 밑에 복붙!!
+
+
+<description 밑에 복붙!!(pom.xml)
 
 ```html
 <dependencies>
@@ -99,6 +101,116 @@ help -> Eclipse Marketplace -> STS 검색 -> go클릭 -> Spring Tools 3 Add-On f
 https://mvnrepository.com/   -> mybatis 검색하면  -> 해당 라이브러리 소스 코드를 확인해서 사용하면된다.
 
 C:\Users\student\.m2\repository   -----> 메이븐 파일 확인 가능
+
+#### exam1
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="morning" class="exam1.MorningGreetingImpl" scope="prototype"/>
+<bean id="afternoon" class="exam1.AfternoonGreetingImpl"/>
+<bean id="evening" class="exam1.EveningGreetingImpl"/>
+<bean id="night" class="exam1.NightGreetingImpl"/>
+
+<bean id="time" class="java.time.LocalDateTime" factory-method="now" /> <!-- LocalDateTime 생성자가 숨어있다. Abstract 클래스도 생성자 호출이 안되서 factory-method를 사용한다.-->
+         
+</beans>
+```
+
+```java
+package exam1;
+
+public interface Greeting {
+	public void greet();
+}
+```
+
+```java
+package exam1;
+
+public class MorningGreetingImpl implements Greeting {
+	@Override
+	public void greet() {
+		System.out.println("상쾌한 아침입니다.");
+	}
+}
+```
+
+```java
+package exam1;
+
+public class AfternoonGreetingImpl implements Greeting {
+	@Override
+	public void greet() {
+		System.out.println("즐거운 오후되세요.");
+	}
+	
+}
+```
+
+```java
+package exam1;
+
+public class EveningGreetingImpl implements Greeting {
+	@Override
+	public void greet() {
+		System.out.println("편안한 저녁되세요.");
+	}
+}
+```
+
+```java
+package exam1;
+
+public class NightGreetingImpl implements Greeting {
+	@Override
+	public void greet() {
+		System.out.println("안녕히 주무세요.");
+	}
+}
+```
+
+```java
+package exam1;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class GreetingTest {
+	
+	public static void main(String[] args) {
+		ApplicationContext factory = new ClassPathXmlApplicationContext("exam1/beans.xml");
+		
+		LocalDateTime current = (LocalDateTime)factory.getBean("time");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH");
+        int formatted = Integer.parseInt(current.format(formatter));
+        Greeting bean;
+        if(formatted >= 6 && formatted < 12) {
+        	bean = (Greeting)factory.getBean("morning");
+        }
+        else if(formatted >= 12 && formatted < 17) {
+        	bean = (Greeting)factory.getBean("afternoon");
+        }
+        else if(formatted >= 17 && formatted <= 22) {
+        	bean = (Greeting)factory.getBean("evening");
+        }
+		else {
+			bean = (Greeting)factory.getBean("night");
+		}
+        bean.greet();
+		((ClassPathXmlApplicationContext)factory).close();
+	}
+}
+```
+
+--------------
 
 #### 예제1
 
@@ -275,15 +387,292 @@ public class FooTestApp {
 
 ### 예제3
 
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="userService" class="sample3.UserServiceImpl" 
+                                                    scope="prototype"/>
+<bean id="obj1" class="sample3.UserVo">
+	<constructor-arg value="Dooly"/>	
+</bean>
+<bean id="obj2" class="sample3.UserVo">
+	<constructor-arg value="Duke"/>	
+</bean>
+</beans>
+```
+
+```java
+package sample3;
+
+public interface UserService {
+	public void addUser(UserVo vo);
+}
+```
+
+```java
+package sample3;
+
+public class UserVo {
+	private String userName;
+
+	public UserVo(String userName) {
+		super();
+		this.userName = userName;
+		System.out.println("UserVO Constructor Call");
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+}
+```
+
+```java
+package sample3;
+
+public class UserServiceImpl implements UserService{
+	public UserServiceImpl() {
+		super();
+		System.out.println("UserService Constructor Call");
+	}
+
+	@Override
+	public void addUser(UserVo vo) {
+		System.out.println("UserService : addUser() Method Call");
+		System.out.println("NAME : " + vo.getUserName());
+	}
+}
+```
+
+```java
+package sample3;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class UserServiceApp {
+	public static void main(String[] args) {
+		ApplicationContext factory
+        		=new ClassPathXmlApplicationContext("sample3/applicationContext.xml");
+		System.out.println("** Container Initialization End **");
+		
+		UserService u1=(UserService)factory.getBean("userService");
+		UserVo vo = (UserVo)factory.getBean("obj1");
+		u1.addUser(vo);
+		System.out.println(u1);
+		System.out.println("----------------------------------------------------");
+		
+		UserService u2=factory.getBean("userService", UserService.class);//UserService.class : 확장자 지정
+		UserVo vo2 = (UserVo)factory.getBean("obj2");
+		u2.addUser(vo2);
+		System.out.println(u2);		
+		((ClassPathXmlApplicationContext)factory).close();
+	}
+}
+```
+
 ----------
 
 ### 예제4
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="test" class="sample4.AbstractTest" 
+                          factory-method="getInstance"/><!-- factory-method를 이용하여 객체생성을 미리 생성한다. 생성자로 객체생성x -->
+
+</beans>
+```
+
+```java
+package sample4;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+public abstract class AbstractTest {
+	public abstract String dayInfo();	
+	public static AbstractTest getInstance(){ //리턴 값이 AbstractTest이니까 factory 메서드 객체 생성을한다.
+		GregorianCalendar cal=new GregorianCalendar();
+		int day=cal.get(Calendar.DAY_OF_WEEK);
+		AbstractTest test = null;
+		switch(day){
+			case 1 : test = new Sunday(); break;
+			case 2 : test = new Monday(); break;
+			case 3 : test = new Tuesday(); break;
+			case 4 : test = new Wednesday(); break;
+			case 5 : test = new Thursday(); break;
+			case 6 : test = new Friday(); break;
+			case 7 : test = new Saturday(); break;
+		}
+		return test;
+	}
+}
+```
+
+```java
+package sample4;
+
+public class Monday extends AbstractTest{
+	@Override
+	public String dayInfo() {
+		return "Monday";
+	}
+}
+```
+
+```java
+package sample4;
+
+public class Tuesday extends AbstractTest{
+	@Override
+	public String dayInfo() {
+		return "Tuesday";
+	}
+}
+```
+
+```java
+package sample4;
+
+public class Wednesday extends AbstractTest{
+	@Override
+	public String dayInfo() {
+		return "Wednesday";
+	}
+}
+```
+
+```java
+package sample4;
+
+public class Thursday extends AbstractTest{
+	@Override
+	public String dayInfo() {
+		return "Thursday";
+	}
+}
+```
+
+```java
+package sample4;
+
+public class Friday extends AbstractTest{
+	@Override
+	public String dayInfo() {
+		return "금요일 입니다";
+	}
+}
+```
+
+```java
+package sample4;
+
+public class Saturday extends AbstractTest{
+	@Override
+	public String dayInfo() {
+		return "Saturday";
+	}
+}
+```
+
+```java
+package sample4;
+
+public class Sunday extends AbstractTest{
+	@Override
+	public String dayInfo() {
+		return "Sunday";
+	}
+}
+```
+
+```java
+package sample4;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestApp {
+	public static void main(String[] args) {
+		ApplicationContext factory = new ClassPathXmlApplicationContext("sample4/app.xml");
+		
+		AbstractTest bean = (AbstractTest) factory.getBean("test");
+		System.out.println("Today : " + bean.dayInfo() + ".");
+		
+		((ClassPathXmlApplicationContext)factory).close();
+	}
+}
+```
 
 ---------------
 
 ### 예제5
 
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 네임스페이스 선언!!!을 반드시 해주어야 한다.-> 이문서에서 사용되는것들이 어떤 룰을 통해서 선언하고 작성되어야한다. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<bean id="hong" class="sample5.DateVo">
+	<property name="name" value="Duke"/>
+	<property name="birth" value="1990-01-01"/>
+	<!-- constant-arg 없으니까 아규먼트 없는 생성자 호출 -->
+</bean>
+
+<bean id="lee" class="sample5.DateVo" 
+	p:name="Dooly"  p:birth="2000-12-12"/>	<!-- p라는 prefix -> property를 대신한다.-->
+</beans>
+```
+
+```java
+package sample5;
+public class DateVo {
+	private String name;
+	private String birth;
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+	@Override
+	public String toString() {
+		return name + "'s birthday : " + birth;
+	}
+}
+```
+
+```java
+package sample5;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class BirthdayEx { 
+	public static void main(String[] args) {
+		ApplicationContext factory = 
+			       new ClassPathXmlApplicationContext("sample5/date.xml");
+		
+		//DateVo ob1=(DateVo)factory.getBean("hong");
+		DateVo ob1 = factory.getBean("hong", DateVo.class); // 확장자까지 주었음
+		System.out.println(ob1.toString());
+			
+		DateVo ob2=factory.getBean("lee", DateVo.class);
+		System.out.println(ob2.toString());
+		
+		((ClassPathXmlApplicationContext)factory).close();
+	}
+}
+```
 
 -----------
 
