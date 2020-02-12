@@ -351,7 +351,7 @@ resources내에 있는 폴더만 브라우저에서 요청해서 사용이 가�
 
 servletContext에 getRealPath를 사용해서 파일을 업로드하거나 읽는다.(context.getRealPath("/")) -> 이 컨트롤러가 수행하고 있는 최상위 폴더를 추출하는 메서드
 
-
+​	
 
 --------
 
