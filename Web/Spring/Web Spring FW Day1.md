@@ -676,25 +676,125 @@ public class BirthdayEx {
 
 -----------
 
-### 예제6
+####  스키마(schema)
 
------------
+- XML은 다른 마크업 언어를 만드는데 사용되는 다목적 마크업 언어입니다.
+
+- 이렇게 다른 언어를 정의하기 위해서는 먼저 해당 언어에 필요한 요소와 속성을 파악해야만 합니다.
+
+- 이러한 정보들의 집합을 스키마(schema)라고 부릅니다.
+
+- 스키마는 일관성 있는 XML 문서를 유지하는데 아주 중요한 역할을 합니다.
+
+- XML에서 스키마를 작성할 때에는 다음과 같이 두 가지 방법을 사용할 수 있습니다.
+
+1. DTD(Document Type Definition)
+
+2. XML 스키마(XSD)
+
+#### 문서 타입 정의(DTD)란?
+
+- 문서 타입 정의(DTD)는 XML 문서의 구조 및 해당 문서에서 사용할 수 있는 적법한 요소와 속성을 정의합니다.
+- DTD는 엔티티를 정의할 수 있으며, 빠른 개발을 위한 내부 DTD를 사용할 수 있습니다.
+
+- DTD는 예전부터 사용해 온 구식 방법이지만, 특유의 장점을 바탕으로 아직도 널리 사용되고 있습니다.
+
+- 이러한 DTD는 XML 문서 내부에 명시할 수도 있으며, 별도의 파일로 분리할 수도 있습니다.
+
+#### DTD의 사용 목적
+
+- DTD를 사용하여 새로운 XML 문서의 구조를 정의함으로써 새로운 문서 타입을 만들 수 있습니다.
+
+  이렇게 생성된 DTD는 새로운 문서 타입을 이용한 데이터의 교환에서 표준으로써 활용됩니다.
+
+  또한, 응용 프로그램은 DTD의 정의에 따라 XML 문서의 구문 및 구조에 대한 유효성을 검사할 수 있습니다.
+
+#### DTD 문법
+
+XML에서 DTD를 작성하는 문법은 다음과 같습니다.
+
+##### 문법
+
+```
+<!DOCTYPE 루트요소 DTD식별자 [ 선언1 선언2 ... ]>
+```
+
+DTD는 <!DOCTYPE 으로 시작합니다.
+
+루트(root) 요소는 XML 파서(parser)에 명시된 루트 요소부터 파싱(parsing)을 시작하라고 알려주는 역할을 합니다.
+
+DTD 식별자는 프로그램 외부에 존재하는 DTD 파일을 위한 식별자입니다.
+
+만약에 DTD 식별자가 외부 주소를 가리키고 있으면, 그것을 외부 서브셋(subset)이라고 합니다.
+
+괄호([]) 안에는 내부 서브셋(subset)이라 불리는 추가로 선언한 엔티티(entity)의 리스트가 존재합니다.
+
+#### DTD 내부 서브셋(subset)
+
+DTD가 XML 파일 내부에서 선언되면, 그 선언은 반드시 <!DOCTYPE>안에 위치해야 합니다.
+
+```xml
+예제
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE food [
+<!ELEMENT food (name,type,cost)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT cost (#PCDATA)>
+]>
+<food>
+    <name>상추</name>
+    <type>야채</type>
+    <cost>2000</cost>
+</food>
+```
 
 
+위의 예제에서 !DOCTYPE food 는 이 문서의 루트(root) 요소가 <food>요소라는 사실을 명시합니다.
 
+!ELEMENT food는 <food>요소가 <name>, <type>, <cost>의 세 요소를 반드시 포함해야 한다는 사실을 명시합니다.
 
+!ELEMENT name은 <name>요소가 #PCDATA 타입의 요소라는 사실을 명시합니다.
 
+!ELEMENT type은 <type>요소가 #PCDATA 타입의 요소라는 사실을 명시합니다.
 
+!ELEMENT cost은 <cost>요소가 #PCDATA 타입의 요소라는 사실을 명시합니다.
 
+#### DTD 외부 서브셋(subset)
 
+DTD가 XML 파일 외부에서 선언되면, <!DOCTYPE>은 반드시 외부 DTD 파일의 주소 정보를 포함해야 합니다.
 
-DTD나 [XML Schema](https://ko.wikipedia.org/w/index.php?title=XML_Schema&action=edit&redlink=1)는 크게 다음과 같은 문서들을 일정한 규칙을 정하여 통합하고, 다양한 문서간의 표준을 제시하기 위해 쓰인다.
+이러한 외부 DTD 파일은 .dtd 확장자를 사용하여 저장합니다.
+
+#### data.xml
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE food SYSTEM "food.dtd">
+<food>
+    <name>상추</name>
+    <type>야채</type>
+    <cost>2000</cost>
+</food>
+```
+
+#### food.dtd
+
+```xml
+<!ELEMENT food (name,type,cost)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT cost (#PCDATA)>
+```
+
+DTD(Document Type Definition)나 [XML Schema](https://ko.wikipedia.org/w/index.php?title=XML_Schema&action=edit&redlink=1)는 크게 다음과 같은 문서들을 일정한 규칙을 정하여 통합하고, 다양한 문서간의 표준을 제시하기 위해 쓰인다.
 
 DTD는 정의된 것을 써야된다 라고하면 Schema는 정의된것을 String으로 int형으로 설정하면서 더 세세하게 사용할수있다.
 
 -----
 
-bean설정파일은 만드는 방법 
+**bean설정파일은 만드는 방법 **
 
 src-> new-> other->Spring->Spring Bean Configuration File -> File name 설정 Next-> 사용하고자하는 것을 선택하고 Finish
 
