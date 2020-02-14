@@ -8,17 +8,13 @@ Component의 자손
 - @Controller
 - @Service
 
-
-
-
-
 Controller -> Service -> DAO
 
 Autowired를 통해서 객체를 넘겨줌?
 
 ##### bean에 추가
 
-```
+```xml
 	<context:component-scan base-package="service" /> <!-- 내가 넣어준것임 -->
 	<context:component-scan base-package="dao" /> <!-- 내가 넣어준것임 -->
 	<beans:bean id="multipartResolver"
@@ -27,7 +23,7 @@ Autowired를 통해서 객체를 넘겨줌?
 
 ##### web.xml에 추가
 
-```
+```xml
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId> <!-- 응답을 xml로 하겠어, json으로 하겠어 응답을 도와주는 라이브러리 -->
