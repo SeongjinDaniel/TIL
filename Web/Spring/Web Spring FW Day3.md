@@ -2,7 +2,7 @@
 
 필드에 설정된 @Autowired  - Spring FW 전용
 (1) 타입으로 찾아서 1개이면 해당 객체 주입
-(2) 타입으로 찾아서 2개 이상이면 변수명과 동일한 id 값을 갖는 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 변수명과 동일한 id(id를 따로 주지 않으면 객체의 맨앞 소문자 이름) 값을 갖는 객체 주입
 (3) 없으면 NoSuchBeanDefinitionException 발생
      (required = false 속성을 사용하여 없으면 null 이 되게 지정 가능)x
 (4) @Qualifier(value="xxx")를 추가로 사용해서 변수명이 아닌 다른 이름 지정 가능

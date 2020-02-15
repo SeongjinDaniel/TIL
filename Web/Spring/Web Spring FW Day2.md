@@ -417,8 +417,8 @@ autowire="byName"  : setter
 (2) 없으면 null 주입
 
 autowire="byType"  : setter
-(1) 타입으로 찾아서 1개이면 해당 객체 주입
-(2) 타입으로 찾아서 2개 이상이면 NoUniqueBeanDefinitionException 발생
+(1) 매개변수 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 매개변수 타입으로 찾아서 2개 이상이면 NoUniqueBeanDefinitionException 발생
 (3) 없으면 null 주입
 
 autowire="constructor"  : constructor
@@ -549,10 +549,122 @@ public class UserMain {
 #### 예제 sampleanno02
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 테스트1 -->
+<!-- 
+<bean id="myFood" class="sampleanno02.MyFoodMgr">
+	<property name="favoriteFood" ref="favoriteFood"/>
+	<property name="unFavoriteFood" ref="unFavoriteFood"/>
+</bean>
+
+<bean id="favoriteFood" class="sampleanno02.Food" >
+	<property name="foodName" value="Bread"/>
+	<property name="foodPrice" value="1500"/>
+</bean>
+<bean id="unFavoriteFood" class="sampleanno02.Food" >
+	<property name="foodName" value="Noodle"/>
+	<property name="foodPrice" value="2500"/>
+</bean> -->
+
+<!-- 테스트2 -->
+<bean id="myFood" class="sampleanno02.MyFoodMgr" autowire="constructor"/>
+
+<bean id="favoriteFood" class="sampleanno02.Food" >
+	<property name="foodName" value="Noodle"/>
+	<property name="foodPrice" value="2500"/>
+</bean>
+<bean id="unFavoriteFood" class="sampleanno02.Food" >	
+	<property name="foodName" value="Bread"/>
+	<property name="foodPrice" value="1500"/>
+</bean>
+</beans>
 
 ```
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="myFood" class="sampleanno02.MyFoodMgr" autowire="byName"/>
+<bean id="favoriteFood" class="sampleanno02.Food" p:foodName="Bread" p:foodPrice="1500"/>
+<bean id="unFavoriteFood" class="sampleanno02.Food" p:foodName="Noodle" p:foodPrice="2500"/>
+</beans>
 
+```
+
+```java
+package sampleanno02;
+
+//setter, toString()추가
+public class MyFoodMgr{
+	private Food favoriteFood;
+	private Food unFavoriteFood;	
+	
+	public MyFoodMgr() {}
+	public MyFoodMgr(Food favoriteFood, Food unFavoriteFood) {
+		super();
+		this.favoriteFood = favoriteFood;
+		this.unFavoriteFood = unFavoriteFood;
+		System.out.println(favoriteFood);
+		System.out.println(unFavoriteFood);
+	}
+	public void setFavoriteFood(Food favoriteFood) {
+		this.favoriteFood = favoriteFood;
+	}
+	public void setUnFavoriteFood(Food unFavoriteFood) {
+		this.unFavoriteFood = unFavoriteFood;
+	}
+	@Override
+	public String toString() {
+		return "[Food1=" + favoriteFood + ", Food2=" + unFavoriteFood + "]";
+	}
+}
+```
+
+```java
+package sampleanno02;
+
+public class Food {
+	private String foodName;
+	private int foodPrice;
+	
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
+	}
+	public void setFoodPrice(int foodPrice) {
+		this.foodPrice = foodPrice;
+	}
+	@Override
+	public String toString() {
+		return "Food [foodName=" + foodName + ", foodPrice=" + foodPrice + "]";
+	}
+}
+```
+
+```java
+package sampleanno02;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class FoodTest {
+	public static void main(String[] args) {
+		ApplicationContext factory = 
+				new ClassPathXmlApplicationContext("sampleanno02/bean1.xml");
+
+		System.out.println("-------------1");
+		MyFoodMgr ob=factory.getBean("myFood", MyFoodMgr.class);
+		System.out.println("-------------2");
+		System.out.println(ob.toString());
+
+		((ClassPathXmlApplicationContext) factory).close();
+	}
+}
 ```
 
