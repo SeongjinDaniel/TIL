@@ -1,4 +1,4 @@
-# Leaflet SVG
+# SVG
 
 [ SVG 학습시 ]
 
