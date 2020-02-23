@@ -54,6 +54,142 @@
 
 ```c++
 //[solution]
+#include <cstdio>
+#include <queue>
+using namespace std;
+const int MAX = 1005;
 
+struct position{
+	int y, x;
+};
+
+int n, m;
+bool checkS[MAX][MAX], checkE[MAX][MAX];
+int dir[4][2] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+int map[MAX][MAX], mapS[MAX][MAX], mapE[MAX][MAX];
+int shortest[MAX][MAX];
+
+bool isInside(int y, int x) {
+	return ((y >= 0 && y < n) && (x >= 0 && x < m));
+}
+
+void bfsS(int yy, int xx) {
+	queue <position> q;
+	position pos;
+	pos.y = yy;
+	pos.x = xx;
+	q.push(pos);
+	mapS[yy][xx] = 0;
+	checkS[yy][xx] = true;
+
+	while (!q.empty()) {
+		int curY = q.front().y;
+		int curX = q.front().x;
+		q.pop();
+
+		for (int i = 0; i < 4; i++) {
+			position np;
+			np.y = curY + dir[i][0];
+			np.x = curX + dir[i][1];
+
+			if (isInside(np.y, np.x) && !checkS[np.y][np.x]) {
+				checkS[np.y][np.x] = true;
+				mapS[np.y][np.x] = mapS[curY][curX] + 1;
+				if (map[np.y][np.x] == 0) {
+					q.push(np);
+				}
+			}
+		}
+	}
+
+}
+
+void bfsE(int yy, int xx) {
+	queue <position> q;
+	position pos;
+	pos.y = yy;
+	pos.x = xx;
+	q.push(pos);
+	mapE[yy][xx] = 0;
+	checkE[yy][xx] = true;
+
+	while (!q.empty()) {
+		int curY = q.front().y;
+		int curX = q.front().x;
+		q.pop();
+
+		for (int i = 0; i < 4; i++) {
+			position np;
+			np.y = curY + dir[i][0];
+			np.x = curX + dir[i][1];
+
+			if (isInside(np.y, np.x) && !checkE[np.y][np.x]) {
+				checkE[np.y][np.x] = true;
+				mapE[np.y][np.x] = mapE[curY][curX] + 1;
+				if (map[np.y][np.x] == 0) {
+					q.push(np);
+				}
+			}
+		}
+	}
+
+}
+int main() {
+	scanf("%d %d", &n, &m);
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			scanf("%d", &map[i][j]);
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			mapS[i][j] = 987987987;
+			mapE[i][j] = 987987987;
+		}
+	}
+
+	bfsS(n - 1, 0);
+	bfsE(0, m - 1);
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			printf("%d ", mapS[i][j]);
+		}
+		printf("\n");
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			printf("%d ", mapE[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			shortest[i][j] = mapS[i][j] + mapE[i][j];
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			printf("%d ", shortest[i][j]);
+		}
+		printf("\n");
+	}
+
+	int min = 987987987;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (shortest[i][j] == 0) continue;
+			if (min > shortest[i][j]) {
+				min = shortest[i][j];
+			}
+		}
+	}
+	printf("%d\n", min);
+
+	return 0;
+}
 ```
 

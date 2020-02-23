@@ -33,7 +33,7 @@ CRUD(Create Read Update Delete)
 
 1. cmd 창에 나가서 sqlplus 라는 명령을 수행시킨다.
 
-   ->>> cmd 창에서 sqlplus -> username: system, password : management -> select user from dual;(세미콜론 필수!) -> USER -------- SYSTEM이라고 뜸!!! -> 
+   ->>> cmd 창에서 sqlplus -> username: system, password : manager -> select user from dual;(세미콜론 필수!) -> USER -------- SYSTEM이라고 뜸!!! -> 
 
    C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin 의 path를 입력-> 
 
