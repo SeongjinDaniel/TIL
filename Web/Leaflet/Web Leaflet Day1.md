@@ -31,81 +31,56 @@ https://thenounproject.com/
 
 
 
-#### 실습
+#### 실습 geolocation.html
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-   crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-   crossorigin=""></script>
 </head>
 <body>
    <p id="demo">위치정보를 추출하려면 실행 버튼을 클릭하세요:</p>
    <button onclick="getLocation()">실행</button>
-   <hr>
-   <div id="mapid" style="width: 600px; height: 400px;"></div>
    <script>
       var x=document.getElementById("demo");
 	  function getLocation() {
-         if (navigator.geolocation) {
+         if (navigator.geolocation) { // navigator가 geolocation을 가지고 있니?
             navigator.geolocation.getCurrentPosition(showPosition,showError);
          }
-         else {
-        	 x.innerHTML=" 이 브라우저는 geolocation을 지원하지 않습니다.";        	
-       	 }         
+         else{x.innerHTML=" 이 브라우저는 geolocation을 지원하지 않습니다.";}
       }
       function showPosition(position) {
-          x.innerHTML="위도: " + position.coords.latitude + "<br />경도: " + position.coords.longitude;
-          var lat = position.coords.latitude;
-          var lng = position.coords.longitude;
-          var mymap = L.map('mapid').setView([lat, lng], 1)
-          	// 이정보를 쓰면 지도 오른쪽 아래에 Leflet 지도라는 것이 기재된다.
-			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-				maxZoom: 18,
-				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-					'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-					'Imagery <a href="https://www.mapbox.com/">Mapbox</a>',
-				id: 'mapbox.streets'
-			}).addTo(mymap);
-
-       		// L.marker를 통해서 표시해줌
-			// bindPopup("<b>우리가 있는 곳... 쬠 이상하다ㅜ") 팝업창을 보여줌
-			// openPopup하면 마커만 출력 되는게 아니라 팝업창도 같이 출력된다.
-			L.marker([lat, lng]).addTo(mymap)
-				.bindPopup("<b>우리가 있는 곳... 쬠 이상하다ㅜ").openPopup(); 
-			
+          x.innerHTML="위도: " + position.coords.latitude + "<br />경도: " + position.coords.longitude;       
       }
       function showError(error) {
          switch(error.code) {
             case error.PERMISSION_DENIED:
-               	x.innerHTML="사용자가 위치 기능 사용을 거부했습니다."
-            	break;
+               x.innerHTML="사용자가 위치 기능 사용을 거부했습니다."
+            break;
  
             case error.POSITION_UNAVAILABLE:
-            	x.innerHTML="위치를 구할 수 없습니다.";
-           	 	break;
+            x.innerHTML="위치를 구할 수 없습니다.";
+            break;
  
             case error.TIMEOUT:
-           	 	x.innerHTML="사용자가 위치 기능 사용을 거부했습니다.";
-            	break;
+            x.innerHTML="사용자가 위치 기능 사용을 거부했습니다.";
+            break;
+           
             case error.UNKNOWN_ERROR:
-            	x.innerHTML="기타 에러";            	
+             x.innerHTML="기타 에러";
+             break;
          }
       }
 </script>
 </body>
 </html>
+
 ```
 
 ------------
 
-#### 실습
+#### 실습 geolocation_map.html
 
 ```html
 <!DOCTYPE html>
@@ -179,7 +154,7 @@ https://thenounproject.com/
 
 ----------
 
-#### 실습
+#### 실습 geocoding.html
 
 ```html
 <!DOCTYPE html>
@@ -222,7 +197,7 @@ https://thenounproject.com/
 
 --------
 
-#### 실습
+#### 실습 geocoding_map.html
 
 ```html
 <!DOCTYPE html>

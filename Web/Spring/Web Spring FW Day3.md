@@ -120,16 +120,677 @@ public class FoodTest {
 </beans>
 ```
 
-````
+````java
+package sampleanno04;
+
+public class Emp {
+	private String name;
+	private int age;
+	private double score;
+	
+	public Emp() {
+		super();
+	}
+	public Emp(String name, int age, double score) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.score = score;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public void setScore(double score) {
+		this.score = score;
+	}
+	@Override
+	public String toString() {
+		return name+ " is "+age+" years old and has an entry score of "+score;
+	}
+}
+```
+
+```java
+package sampleanno04;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component // 이름을 안줬으니까 engineer로 만들어진다.
+public class Engineer {
+	@Autowired
+	@Qualifier("emp1") // 있고 없고에 따라서!! 확인하기!
+	//@Resource(name="emp1")
+	private Emp emp; // Emp 객체가 두개면 소문자 emp가 등록된다.
+	private String dept;
+	
+	public Engineer() {
+		super();
+	}
+	@Autowired // 멤버 변수, setter변수, 일반 메서드에도 모두 가능하다.
+	public void ddd(String dept) {
+		this.dept = dept;
+	}
+
+	@Override
+	public String toString() {
+		return emp.toString()+"\n"+ "and works at the "+dept+" department.";
+	}
+}
+```
+
+```java
+package sampleanno04;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class EmpTest {
+	public static void main(String[] args) {
+		System.out.println("1----------");
+		ApplicationContext factory = new ClassPathXmlApplicationContext("sampleanno04/bean.xml");
+		System.out.println("2----------");
+		Engineer my = factory.getBean("engineer", Engineer.class);
+		System.out.println("3----------");
+		System.out.println(my.toString());
+		
+		((ClassPathXmlApplicationContext) factory).close();
+	}
+}
 
 ```
 
+----------
+
+#### sampleanno05
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<context:component-scan base-package="sampleanno05"/>
+</beans>
 ```
+
+```java
+package sampleanno05;
+
+public interface Tire {
+	public String getBrand();
+}
+```
+
+```java
+package sampleanno05;
+
+import org.springframework.stereotype.Component;
+
+@Component // name = vestTire
+public class VestTire implements Tire{
+
+	public VestTire() {
+		System.out.println("VestTire - Create object");
+	}
+	@Override
+	public String getBrand() {
+		return "MICHELIN Tire!!";
+	}
+}
+```
+
+```java
+package sampleanno05;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("carTire") // 기본값 : car
+public class Car {
+	@Autowired(required = false) // default = true -> required, required = false 속성을 사용하여 없으면 null 이 되게 지정 가능
+	private Tire tire;
+
+	public Car() {
+		System.out.println("Tire - Create object 0");
+	}
+
+	@Autowired(required = false)
+	public Car(Tire tire) {
+		System.out.println("Tire - Create object 1");
+	}
+
+	public void drive() {
+		if (tire != null)
+			System.out.println("Nice made of "+tire.getBrand()+"s car.");
+		else
+			System.out.println("tire --> "+tire);
+	}
+}
+```
+
+```java
+package sampleanno05;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class DriverCar {
+	public static void main(String[] args) {
+		ApplicationContext factory=new ClassPathXmlApplicationContext("sampleanno05/bean.xml");
+		System.out.println("**** Container Initialization End ****");
+		Car tire2=factory.getBean("carTire", Car.class);
+		tire2.drive();
+		/*
+		 * Tire tire=factory.getBean("vestTire", Tire.class);
+		 * System.out.println(tire.getBrand());
+		 */
+		((ClassPathXmlApplicationContext)factory).close();	
+	}
+}
+```
+
+-----
+
+#### sampleanno06
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+<context:component-scan base-package="sampleanno06"/>
+</beans>
+```
+
+```java
+package sampleanno06;
+
+public interface Tv {
+	public void powerOn();
+	public void powerOff();
+	public void volumeUp();
+	public void volumeDown();
+}
+```
+
+```java
+package sampleanno06;
+
+import org.springframework.stereotype.Component;
+
+@Component("samsung")
+public class SamsungTv implements Tv{
+
+	@Override
+	public void powerOn() {
+		System.out.println("SAMSUNG TV - Power On");
+	}
+
+	@Override
+	public void powerOff() {
+		System.out.println("SAMSUNG TV - Power Off");
+	}
+
+	@Override
+	public void volumeUp() {
+		System.out.println("SAMSUNG TV - Volume Up");
+	}
+
+	@Override
+	public void volumeDown() {
+		System.out.println("SAMSUNG TV - Volume Down");
+	}
+
+}
+```
+
+```java
+package sampleanno06;
+
+import org.springframework.stereotype.Component;
+
+@Component("lg") 
+public class LgTv implements Tv{
+
+	@Override
+	public void powerOn() {
+		System.out.println("LG TV - Power On");
+	}
+
+	@Override
+	public void powerOff() {
+		System.out.println("LG TV - Power Off");
+	}
+
+	@Override
+	public void volumeUp() {
+		System.out.println("LG TV - Volume Up");
+	}
+
+	@Override
+	public void volumeDown() {
+		System.out.println("LG TV - Volume Down");
+	}
+
+}
+```
+
+```java
+package sampleanno06;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TvUser {
+	public static void main(String[] args) {
+		ApplicationContext factory
+		        = new ClassPathXmlApplicationContext("sampleanno06/bean.xml");
+	
+		Tv tv=(Tv)factory.getBean(args[0]);   //samsung or lg
+		tv.powerOn();
+		tv.powerOff();
+		tv.volumeUp();
+		tv.volumeDown();
+		
+		((ClassPathXmlApplicationContext)factory).close();
+	}
+}
+```
+
+---------
+
+#### sampleanno07
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<context:component-scan base-package="sampleanno07" />
+	<bean id="userName" class="java.lang.String"> <!-- 자바가 이미 내장하고 있는 클래스는 여기서 생성을 해야한다. -->
+		<constructor-arg value="dooly" />
+	</bean>
+
+</beans>
+```
+
+```java
+package sampleanno07;
+
+public interface UserService {
+	public void addUser();
+}
+```
+
+```java
+package sampleanno07;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("myUser")
+public class User {
+	@Autowired
+	private String userName;
+
+	public User() {
+		super();
+	}
+
+	public User(String userName) {
+		super();
+		this.userName = userName;      
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+}
+```
+
+```java
+package sampleanno07;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component("userService")
+public class UserServiceImpl implements UserService{
+	@Autowired
+	@Qualifier("myUser") // bean id와 같아야한다.
+	User member;
+	
+	public void setMember(User member) {
+		this.member = member;
+	}
+
+	@Override
+	public void addUser() {
+		System.out.println("Added member : " + member.getUserName());
+	}
+}
+```
+
+```java
+package sampleanno07;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class UserServiceTest {
+
+	public static void main(String[] args) {
+		ApplicationContext factory 
+		   = new ClassPathXmlApplicationContext("sampleanno07/bean.xml");
+
+		UserService uu = factory.getBean("userService", UserService.class);
+		uu.addUser();
+
+		((ClassPathXmlApplicationContext) factory).close();
+	}
+}
+```
+
+-------
+
+sampleanno08
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+<context:component-scan base-package="sampleanno08"/>
+<bean id="member"  class="sampleanno08.User">
+	<constructor-arg value="Duke"/>
+</bean>
+</beans>
+```
+
+```java
+package sampleanno08;
+
+public class User {
+	private String userName;
+
+	public User() {
+	}
+
+	public User(String userName) {
+		this.userName = userName;      
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+}
+```
+
+```java
+package sampleanno08;
+
+public interface UserService {
+	public void addUser();
+}
+```
+
+```java
+package sampleanno08;
+
+import javax.annotation.Resource;
+import org.springframework.stereotype.Component;
+
+@Component("userService")   //기본값 : userServiceImpl
+public class UserServiceImpl implements UserService{
+	//or @Autowired
+	@Resource // java의 annotation
+	User member; // type도 당연히 같아야 하지만 이름을 먼저찾는다.
+	
+	public void setMember(User member) {
+		this.member = member;
+	}
+
+	@Override
+	public void addUser() {
+		System.out.println("Added member : " + member.getUserName());
+	}
+}
+```
+
+```java
+package sampleanno08;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class UserServiceTest {
+
+	public static void main(String[] args) {
+		ApplicationContext factory 
+		   = new ClassPathXmlApplicationContext("sampleanno08/bean.xml");
+
+		UserService uu = factory.getBean("userService", UserService.class);
+		uu.addUser();
+
+		((ClassPathXmlApplicationContext) factory).close();
+	}
+}
+```
+
+----------
+
+sampleanno09
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+<context:component-scan base-package="sampleanno09"/>
+
+</beans>
 
 ```
 
+```java
+package sampleanno09;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
+public class MyMessage {
+	String message;
+	
+	public MyMessage(){
+		System.out.println("Create object");
+		message="Good day!!";
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getMessage() {
+		return message;
+	}	
+}
 ```
 
+```java
+package sampleanno09;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MTest {
+
+	public static void main(String[] args) {
+		ApplicationContext factory=new ClassPathXmlApplicationContext("sampleanno09/bean.xml");
+		System.out.println("**** Container Initialization End ****");
+
+		MyMessage ob1=(MyMessage)factory.getBean("myMessage");
+		System.out.println(ob1.getMessage() +"  "+ob1);
+		
+		MyMessage ob2=(MyMessage)factory.getBean("myMessage");
+		System.out.println(ob2.getMessage() +"  "+ob2);
+		
+		((ClassPathXmlApplicationContext)factory).close();
+	}
+}
+```
+
+------------------
+
+sampleanno10
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+<context:component-scan base-package="sampleanno10"/>
+<bean id="msg"  class="java.lang.String">
+	<constructor-arg value="Happy Friday"/>
+</bean>
+<bean id="message"  class="java.lang.String">
+	<constructor-arg value="Happy Friday2"/>
+</bean>
+</beans>
+```
+
+```java
+package sampleanno10;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class A {
+	A(){
+		System.out.println("AAA");
+	}
+}
+```
+
+```java
+package sampleanno10;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class B {
+	B(){
+		System.out.println("BBB");
+	}
+}
+```
+
+```java
+package sampleanno10;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class C {
+	C(){
+		System.out.println("CCC");
+	}
+}
+```
+
+```java
+package sampleanno10;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component  
+public class MyMessage {
+	// Autowired 순서는 생성자 메서드, 멤버변수, 세터 메서드, 일반 메서드 순으로!!
+	@Autowired
+	String message;
+	
+	public MyMessage(){
+		System.out.println("Create object 0 : "+message);		
+	}
+	@Autowired // 이게 되있기 때문에 이생성자가 호출된다.
+	public MyMessage(String msg){
+		System.out.println("Create object 1 : "+msg);
+	}
+	@Autowired
+	public void setMessage(String message) {
+		System.out.println("SETTER : "+message);
+		this.message = message;
+	}
+	// 일반 메서드는 누굴 먼저 호출하느냐가 정해져있지 않다.
+	@Autowired
+	public void ccc(String message) {
+		System.out.println("ccc : "+message);
+		this.message = message;
+	}
+	@Autowired
+	public void aaa(String message) {
+		System.out.println("aaa : "+message);
+		this.message = message;
+	}
+	@Autowired
+	public void bbb(String message) {
+		System.out.println("bbb : "+message);
+		this.message = message;
+	}
+	public String getMessage() {
+		return message;
+	}	
+}
+```
+
+```java
+package sampleanno10;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MTest {
+
+	public static void main(String[] args) {
+		ApplicationContext factory=new ClassPathXmlApplicationContext("sampleanno10/bean.xml");
+		System.out.println("**** Container Initialization End ****");
+
+		MyMessage ob1=(MyMessage)factory.getBean("myMessage");
+		System.out.println(ob1.getMessage() +"  "+ob1);
+		
+		MyMessage ob2=(MyMessage)factory.getBean("myMessage");
+		System.out.println(ob2.getMessage() +"  "+ob2);
+		
+		((ClassPathXmlApplicationContext)factory).close();
+	}
+}
 ```
 
 
@@ -459,7 +1120,7 @@ http://localhost:8000/springedu      ->>> 웹앱까지 찾아감
 
 http://localhost:8000/springedu/resources/multi.html
 
-#### 실습 
+#### MVC 실습 
 
 ```java
 package my.spring.springedu;
@@ -543,7 +1204,7 @@ public class MultiController {
 
 ----------
 
-#### 실습 
+#### MVC 실습 
 
 ```java
 package my.spring.springedu;
@@ -639,5 +1300,71 @@ public class RequestMethodController {
 
 -----
 
-#### 실습
+#### MVC 실습(kakako, line)
+
+```java
+package my.spring.springedu;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+@Controller
+public class PathController {
+	@RequestMapping
+	     (value="/character/detail/{name}/{number}") // name, number의 뜻은 여러개로 변형할 수있다라는 뜻. url 지정 !!
+	 public String getAllBoards(@PathVariable("number") int num, 
+	                             @PathVariable String name, Model model){ // Model 객체를 아규먼트로 사용 하면 재사용이 된다 그래서 효율적인 데이터를 사용할수있다. // 이 아규먼트들은 request객체에 보관도 된다. 
+		 System.out.println(model.getClass().getName());
+	     if(name.equals("kakao")) {
+	    	 if (num == 1) 
+	    		 model.addAttribute("imgname", "ryan");
+	    	 else if (num == 2) 
+	    		 model.addAttribute("imgname", "muzicon");
+	    	 else if (num == 3) 
+	    		 model.addAttribute("imgname", "apeach");
+	    	 else if (num == 4) 
+	    		 model.addAttribute("imgname", "jayg");
+	    	 else if (num == 5) 
+	    		 model.addAttribute("imgname", "frodoneo");
+	    	 else if (num == 6) 
+	    		 model.addAttribute("imgname", "tube");
+	     } else if (name.equals("line")) {
+	    	 if (num == 1) 
+	    		 model.addAttribute("imgname", "brown");
+	    	 else if (num ==2) 
+	    		 model.addAttribute("imgname", "james");
+	    	 else if (num == 3) 
+	    		 model.addAttribute("imgname", "cony");
+	    	 else if (num == 4) 
+	    		 model.addAttribute("imgname", "edward");
+	    	 else if (num == 5) 
+	    		 model.addAttribute("imgname", "leonard");
+	    	 else if (num == 6) 
+	    		 model.addAttribute("imgname", "moon");
+	    	 else if (num == 7) 
+	    		 model.addAttribute("imgname", "sally");
+	    	 else if (num == 8) 
+	    		 model.addAttribute("imgname", "jessica");
+	     }
+	     return "detailView";
+	 }
+}
+```
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body style="text-align : center">
+<H1>${ name } - Introducing characters.</H1>
+<hr>
+<img src=' /springedu/resources/images/${ imgname }.jpg '>
+</body>
+</html>
+```
 
