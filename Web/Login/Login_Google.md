@@ -440,3 +440,231 @@ doGet(request, response);
 https://minwan1.github.io/2018/02/24/2018-02-24-OAuth/
 
 OAuth 개념정리 사이트
+
+---------------------------------
+
+### 생활코딩
+
+https://developers.google.com/identity/sign-in/web/sign-in
+
+#### Load the Google Platform Library
+
+에서 
+
+```html
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+```
+
+복붙
+
+#### Specify your app's client ID
+
+```html
+<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+```
+
+복붙
+
+#### Add a Google Sign-In button
+
+에서 
+
+```html
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+```
+
+복붙
+
+#### Get profile information
+
+에서
+
+```javascript
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+```
+
+**총 내용 index.html**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Index</title>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="905573480053-nj2mct13m72s933mfpvqb65du0hlu51u.apps.googleusercontent.com">
+<script>
+	function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	}
+
+</script>
+</head>
+<body>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div><!-- 로그인이 끝났을 때 onSignIn 함수를 호출할 것이다. -->
+	
+</body>
+</html>
+```
+
+여기까지 첫번째 방법!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+----------
+
+Google에 Google Sign-In JavaScript client reference를 검색한다.
+
+-> 없어서 Building a custom Google Sign-In button 검색해서 https://developers.google.com/identity/sign-in/web/build-button이곳으로 들어간다.
+
+#### Auth Setup
+
+에서 
+
+```html
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+```
+
+복붙(body 맨 밑에다가)
+
+```javascript
+<script>
+	function init(){
+		console.log('init');
+		gapi.load('auth2', function() {
+		/* Ready. Make a call to gapi.auth2.init or some other API */
+			console.log('auth2');
+			gapi.auth2.init({
+				
+			})
+		});
+	}
+</script>
+```
+
+-----------
+
+#### gapi.auth2.init(params)
+
+에서
+
+```javascript
+gapi.auth2.init({
+				{
+					  client_id: '905573480053-nj2mct13m72s933mfpvqb65du0hlu51u.apps.googleusercontent.com'
+				}
+})
+```
+
+추가
+
+그럼 meta 태그 지움
+
+so, 
+
+```javascript
+<script>
+	function init(){
+		console.log('init');
+		gapi.load('auth2', function() {
+		/* Ready. Make a call to gapi.auth2.init or some other API */
+			console.log('auth2');
+			var gauth = gapi.auth2.init({
+				{
+					  client_id: '905573480053-nj2mct13m72s933mfpvqb65du0hlu51u.apps.googleusercontent.com'
+				}
+			})
+		});
+	}
+</script>
+```
+
+gapi.auth2.init이것이 리턴 값이 있으니까 변수에 저장
+
+### GoogleAuth.then(onInit, onError) 
+
+첫번째 인자는 성공을 의미하고 두번째 인자는 에러를 의미한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Index</title>
+
+<script>
+	function init(){
+		console.log('init');
+		gapi.load('auth2', function() {
+		/* Ready. Make a call to gapi.auth2.init or some other API */
+			console.log('auth2');
+			var gauth = gapi.auth2.init({
+				client_id: '905573480053-nj2mct13m72s933mfpvqb65du0hlu51u.apps.googleusercontent.com'
+			})
+			gauth.then(function(){
+				console.log('googleAuth success');
+			}, function(){
+				console.log('googleAuth fail');
+			});
+		});
+	}
+</script>
+
+</head>
+<body>
+	
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script> <!-- 다른 예제들을 보니까 맨 밑에 있어서 맨 밑으로 뺌 -->
+</body>
+</html>
+```
+
+여기까지 Initialize 코드 완료!!!!!!!!!!!!!!!!
+
+-------
+
+### GoogleAuth.isSignedIn.get()
+
+에서 보면 로그인이 되어 있으면 true, 아니면 false를 리턴한다.
+
+### GoogleAuth.signIn(), GoogleAuth.signOut()
+
+에서 보면 로그인과 로그아웃을
+
+--------------
+
+### GoogleAuth.currentUser.get()
+
+에서 보면 현재 Google 유저를 리턴한다.
+
+### GoogleUser.getBasicProfile()
+
+| Returns                   |      |
+| :------------------------ | ---- |
+| `gapi.auth2.BasicProfile` |      |
+
+You can retrieve the properties of `gapi.auth2.BasicProfile` with the following methods:
+
+- BasicProfile.getId()
+- BasicProfile.getName()
+- BasicProfile.getGivenName()
+- BasicProfile.getFamilyName()
+- BasicProfile.getImageUrl()
+- BasicProfile.getEmail()
+
+- 사용법
+
+  GoogleAuth.currentUser.get().getBasicProfile();
+
+------------
+
+google calendar api scope를 검색하면 Authorizing Requests ~어쩌구 에서 어떤 Scope를 써라라고 나와있다.
+
+​	
