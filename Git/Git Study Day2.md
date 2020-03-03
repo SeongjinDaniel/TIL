@@ -1,5 +1,39 @@
 # Git Study Day2
 
+Git의 세 가지 단계는 `Working directory`, `Staging area`, `Git directory` 단계로 나뉜다. Git은 파일을 `Committed`, `Modified`, `Staged` 이렇게 세 가지 상태로 관리한다.
+
+## Committed
+
+데이터가 로컬 데이터베이스에 안전하게 저장되었다는 것을 의미한다.
+
+## **Modified**
+
+수정한 파일을 아직 로컬 데이터베이스에 커밋 하지 않은 것을 의미한다.
+
+## **Staged**
+
+현재 수정한 파일을 곳 커밋 할 것이라고 표시한 상태를 의미한다.
+
+위의 세 가지 상태는 Git의 세 가지 단계와 연결돼 있다.
+
+**Git directory**는 Git이 프로젝트의 메타데이터와 객체 데이터베이스를 저장하는 곳을 말한다. `Git directory`가 Git의 핵심이다. 다른 컴퓨터에 있는 저장소를 `Clone` 할 때 `Git directory`가 만들어진다.
+
+**Working directory**는 프로젝트의 특정 버전을 `Checkout` 한 것이다. Git 디렉토리는 지금 작업하는 디스크에 있고 그 디렉터리에 압축된 데이터베이스에서 파일을 가져와서 워킹 디렉터리를 만든다.
+
+**Staging area**는 Git 디렉터리에 있다. 단순한 파일이고 곧 커밋 할 파일에 대한 정보를 저장한다. 종종 인덱스라고 불리기도 하지만, `Staging area`라는 명칭이 표준이 되어가고 있다.
+
+Git으로 하는 일은 기본적으로 아래와 같다
+
+- `Working directory`에서 파일을 수정한다.
+- `Staging area`에 파일을 `Stage` 해서 커밋 할 스냅샷을 만든다.
+- `Staging area`에 있는 파일들을 커밋해서 Git 디렉터리에 영구적인 스냅샷으로 저장한다.
+
+Git 디렉터리에 있는 파일들은 `Committed` 상태이다. 파일을 수정하고 `Staging area`에 추가했다면 `Staged`이다. 그리고 `Checkout` 하고 나서 수정했지만, 아직 `Staging area`에 추가하지 않았으면 `Modified`이다.
+
+--------
+
+
+
 ### 워킹트리를 정리하는 git clean
 
 git 명령어 중에서 워킹트리의 내용을 변경하는 대표적인 명령은 checkout과 reset이다. 그런데 워킹트리의 내용을 변경하는 대부분의 git 명령은 untracked 상태인 파일은 건드리지 않는 경향이 있다. 그래서 파일의 상태가 untracked인 것이다. 사람으로 따지면 '관심없어' 정도에 해당하는 느낌이다.
@@ -117,4 +151,28 @@ a3c0f7e (origin/master, origin/HEAD, master) master 커밋 2
 5. ls 명령을 이용해 파일을 보면 방금 만들었던 reset.txt가 사라진 것을 확인할 수 있음.
 6. git status 명령으로 스테이지를 보면 마찬가지로 스테이지도 깨끗하다.
 7. HEAD의 위치가 최초 브랜치를 생성했던 [master]브랜치로 돌아간 것을 볼 수 있다.
+
+### hard reset의 복구
+
+```
+(reset-test) $ git reset --hard 378c96e # 1 메모장에 기록해둔 체크섬을 이용해서 원래대로 돌아감
+HEAD is now at 378c96e reset 테스트용 커밋
+
+$ cat reset.txt # 2 파일 내용 확인
+reset1
+
+$ git log --oneline -n2 # 3 로그 확인
+378c96e (HEAD -> reset-test)reset 테스트용 커밋
+a3c0f7e (origin/mster, origin/HEAD, master) master 커밋 2
+```
+
+1. 메모장에 기록해 둔 커밋 체크섬을 이용해 병합했다.
+2. 파일 내용을 확인해 보니 정상적으로 복구되었다.
+3. 로그도 마찬가지로 되살아난 것을 볼 수 있다.
+
+로컬저장소의 커밋은 없어지지 않는다. 사라진 것처럼 안 보일 뿐이다. 우리는 이전 실습에서 메모장에 커밋 체크섬을 기록해 뒀기 때문에 쉽게 다시 살릴 수 있었다. 그럼 커밋 체크섬을 항상 기억해야 할까?
+
+--------
+
+
 
