@@ -67,6 +67,10 @@ CRUD(Create Read Update Delete)
 
    ->quit 로 나감
 
+   **create user 계정명 identified by 비밀번호; 이렇게 명령어를 입력하여 새로운 계정을 생성줍니다.**
+
+   **grant connect, resource to 계정명; **
+
 2. sqldeveloper라는 추가프로그램을 설치하여 사용. -> oraclec 사이트에서 다운 받을 수 있음
 
    jdk 설치 된곳 잘 찾아서! path 잘 선택하고 설치
