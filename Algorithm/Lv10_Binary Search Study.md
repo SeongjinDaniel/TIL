@@ -122,9 +122,83 @@ int main(){
 }
 ```
 
+---------
 
+#### Binary Search의 구현(비재귀호출)
 
+- while을 이용하여 구현 가능
 
+  각각의 변수가 무슨일을 하는지 말로 명확히 정확 해야함
 
+  2 3 4 5 7 8 9 11 14 23, value = 11
 
+  start, mid, end
+
+  이것을 대충 코딩하다가 보면 무한루프 나고 잘 안될것이다.
+
+  start와 end가 어떤 값을 가르키는지 정확하게 정의해야함
+
+  ```
+  start = 찾고자 하는 값보다 항상 작은 값을 가리킴
+  end = 찾고자 하는 값보다 항상 큰 값을 가리킴
+  ```
+
+```c++
+// binary search (비재귀 호출)
+#include <stdio.h>
+
+int binarySearch(int arr[], int myStart, int ,myEnd, int value){
+    // arr의 start부터 end까지 중에서
+    // value를 찾아 그 위치를 반환하는 함수.
+    // 만약, 없다면 -1을 반환한다.
+    
+    int start, end;
+    int mid;
+    
+    // start: value보다 항상 작은 값을 가리킴
+    // end: value보다 항상 큰 값을 가리킴
+    // value = 50 이러면 s, e 둘다 만족을 하지 못한다.
+    // 1 4 7 10 19 22 24 27 39
+    // s                     e
+    
+    if(arr[myStart] > value) return -1; // value = -3 맨
+    if(arr[myEnd] < value) return -1; // value = 40
+    
+    start = myStart;
+    end = myEnd;
+    
+    while(start + 1 < end){
+        mid = (start + end) / 2;
+        
+        if(arr[mid] == value) return mid;
+        else if(arr[mid] > value) end = mid;
+        else start = mid;
+    }
+    
+    // 이제는 start end가 붙어 있는 경우
+    // 찾고 싶은 값이 없는 경우이다.
+    return -1;
+}
+
+int main(){
+    int n, m;
+    int arr[100];
+    scanf("%d", &n);
+    
+    for(int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+    
+    scanf("%d", &m);
+    
+    int idx = binarySearch(arr, 0, n-1, m);
+    
+    if(idx == -1){
+        printf("수를 찾을 수 없습니다. \n");
+    }else{
+        printf("%d번째에 있습니다.", idx);
+    }
+    
+    return 0;
+}
+```
 
