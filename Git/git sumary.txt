@@ -1,0 +1,30 @@
+http://www.talkdev.net/git-%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%82%AC%EC%9A%A9%EB%B2%95/
+-> 굿!!
+
+git init
+
+vim f1.txt
+
+git이 파일을 추적하도록 명령합니다. 
+git add f1.txt
+
+프로젝트 폴더의 상태를 확인합니다. 
+git status
+
+버전에 포함될 버전을 만든 사람에 대한 정보를 설정합니다. 이 설정은 ~/.gitconfig 파일에 저장되고 1번만 해주면 됩니다.
+git config --global user.name "자신의 닉네임"
+git config --global user.email "자신의 이메일"
+
+// error: failed to push some refs to 'https://github.com/SeongjinOliver/TIL.git'
+이런 에러가 난다면
+-> solution : git pull origin 브런치명 --allow-unrelated-histories
+
+git remote add origin master <원격저장주소>
+-> git remote add origin <원격저장주소>
+-> 원격저장소 등록
+git remote -v
+-> 원격저장소 보기
+git push -u origin master :
+-> 앞으로 현재 브랜치를 원격저장소 origin의 master에 동기화하겠다.
+git remote remove <원격저장소이름>
+-> 원격저장소로 등록한 이름과 주소 삭제
