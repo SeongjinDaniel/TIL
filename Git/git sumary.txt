@@ -25,6 +25,6 @@ git remote add origin master <원격저장주소>
 git remote -v
 -> 원격저장소 보기
 git push -u origin master :
--> 앞으로 현재 브랜치를 원격저장소 origin의 master에 동기화하겠다.
+-> 앞으로 현재 브랜치를 원격저장소 origin의 mastergit 에 동기화하겠다.
 git remote remove <원격저장소이름>
 -> 원격저장소로 등록한 이름과 주소 삭제
