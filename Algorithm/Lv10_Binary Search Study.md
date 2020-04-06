@@ -147,37 +147,26 @@ int main(){
 // binary search (비재귀 호출)
 #include <stdio.h>
 
-int binarySearch(int arr[], int myStart, int ,myEnd, int value){
-    // arr의 start부터 end까지 중에서
-    // value를 찾아 그 위치를 반환하는 함수.
-    // 만약, 없다면 -1을 반환한다.
-    
-    int start, end;
-    int mid;
-    
-    // start: value보다 항상 작은 값을 가리킴
-    // end: value보다 항상 큰 값을 가리킴
-    // value = 50 이러면 s, e 둘다 만족을 하지 못한다.
-    // 1 4 7 10 19 22 24 27 39
-    // s                     e
-    
-    if(arr[myStart] > value) return -1; // value = -3 맨
-    if(arr[myEnd] < value) return -1; // value = 40
-    
-    start = myStart;
-    end = myEnd;
-    
-    while(start + 1 < end){
-        mid = (start + end) / 2;
-        
-        if(arr[mid] == value) return mid;
-        else if(arr[mid] > value) end = mid;
-        else start = mid;
-    }
-    
-    // 이제는 start end가 붙어 있는 경우
-    // 찾고 싶은 값이 없는 경우이다.
-    return -1;
+int binarySearch(int arr[], int start, int end, int value) {
+	// arr의 숫자가 start부터 end까지
+	// value의 값이 존재하면 그 위치를 반환하고
+	// 존재하지 않는다면 -1을 반환하는 함수
+	
+	// start : value보다 항상 작은 값을 가리킴
+	// end : value보다 항상 큰 값을 가리킴
+	if (arr[start] > value) return -1;
+	else if(arr[start] == value) return start;
+	if (arr[end] < value) return -1;
+	else if (arr[end] == value) return end;
+
+	while (start + 1 < end) {
+		int mid = (start + end) / 2;
+		if (arr[mid] == value) return mid;
+		else if (arr[mid] > value) end = mid;
+		else start = mid;
+	}
+
+	return -1;
 }
 
 int main(){
