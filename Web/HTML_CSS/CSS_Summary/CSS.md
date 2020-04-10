@@ -10,8 +10,6 @@ ID는
 </style>
 ~~~
 
-
-
 Class는
 
 ~~~css

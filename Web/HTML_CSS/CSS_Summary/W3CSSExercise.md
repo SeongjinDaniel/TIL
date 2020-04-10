@@ -163,8 +163,6 @@ a:hover {
     background-position: 50% 50%;
 ~~~
 
-
-
 css속성은 정말 많다. 
 
 To Be Continued
