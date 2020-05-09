@@ -77,33 +77,16 @@ Today I Learned. Daily commit.
 
 [Login](https://github.com/SeongjinOliver/TIL/tree/master/Web/Login)
 
-[MVC]()
+[MVC](https://github.com/SeongjinOliver/TIL/tree/master/Web/MVC)
 
-[Mybatis]()
+[Mybatis](https://github.com/SeongjinOliver/TIL/tree/master/Web/Mybatis)
 
-[SVG]()
+[SVG](https://github.com/SeongjinOliver/TIL/tree/master/Web/SVG)
 
-[Servlet]()
+[Servlet](https://github.com/SeongjinOliver/TIL/tree/master/Web/Servlet)
 
-[SpringFW]()
+[SpringFW](https://github.com/SeongjinOliver/TIL/tree/master/Web/SpringFW)
 
+# WeeT_Dev_Diary
 
-
-
-
-
-
-
-
-
-
-#### 
-
-# Web Programming
-
-# Git
-
-
-
-
-
+[WeeT-project](https://github.com/SeongjinOliver/TIL/tree/master/wee-T_ProjectDevelopmentDairy)
