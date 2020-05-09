@@ -5,88 +5,74 @@ Today I Learned. Daily commit.
 
 -----
 
-# Algorithm
+## Algorithm
 
-[Anything](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Anything)
+- [Anything](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Anything)
+- [BOJ](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/BOJ)
+- [Basic](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Basic)
+- [Codility](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Codility)
 
-[BOJ](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/BOJ)
+## Bixby
 
-[Basic](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Basic)
+- [Bixby](https://github.com/SeongjinOliver/TIL/tree/master/Bixby)
 
-[Codility](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Codility)
+## DataBase(Oracle)
 
-# Bixby
+- [Oracle](https://github.com/SeongjinOliver/TIL/tree/master/DataBase(Oracle))
 
-[Bixby](https://github.com/SeongjinOliver/TIL/tree/master/Bixby)
+## DeepLearning
 
-# DataBase(Oracle)
+- [PART1_AIConceptAndReady](https://github.com/SeongjinOliver/TIL/tree/master/DeepLearning/PART1_AIConceptAndReady)
 
-[Oracle](https://github.com/SeongjinOliver/TIL/tree/master/DataBase(Oracle))
+- [PART2_Tensorflow2.0AndPytorch](https://github.com/SeongjinOliver/TIL/tree/master/DeepLearning/PART2_Tensorflow2.0AndPytorch)
 
-# DeepLearning
+## Docker
 
-[PART1_AIConceptAndReady](https://github.com/SeongjinOliver/TIL/tree/master/DeepLearning/PART1_AIConceptAndReady)
+- [Docker](https://github.com/SeongjinOliver/TIL/tree/master/Docker)
 
-[PART2_Tensorflow2.0AndPytorch](https://github.com/SeongjinOliver/TIL/tree/master/DeepLearning/PART2_Tensorflow2.0AndPytorch)
+## Git
 
-# Docker
+- [Git](https://github.com/SeongjinOliver/TIL/tree/master/Git)
 
-[Docker](https://github.com/SeongjinOliver/TIL/tree/master/Docker)
+## Java
 
-# Git
+- [Java](https://github.com/SeongjinOliver/TIL/tree/master/JAVA)
 
-[Git](https://github.com/SeongjinOliver/TIL/tree/master/Git)
+## JDBC
 
-# Java
+- [JDBC](https://github.com/SeongjinOliver/TIL/tree/master/JDBC)
 
-[Java](https://github.com/SeongjinOliver/TIL/tree/master/JAVA)
+## Linux
 
-# JDBC
+- [Linux](https://github.com/SeongjinOliver/TIL/tree/master/Linux)
 
-[JDBC](https://github.com/SeongjinOliver/TIL/tree/master/JDBC)
+## Programmers
 
-# Linux
+- [Programmers](https://github.com/SeongjinOliver/TIL/tree/master/Programmers)
 
-[Linux](https://github.com/SeongjinOliver/TIL/tree/master/Linux)
+## R
 
-# Programmers
+- [R](https://github.com/SeongjinOliver/TIL/tree/master/R)
 
-[Programmers](https://github.com/SeongjinOliver/TIL/tree/master/Programmers)
+## Spark
 
-# R
+- [Spark](https://github.com/SeongjinOliver/TIL/tree/master/Spark)
 
-[R](https://github.com/SeongjinOliver/TIL/tree/master/R)
+## Web
 
-# Spark
+- [HTML](https://github.com/SeongjinOliver/TIL/tree/master/Web/HTML_CSS/HTMLCSS_Study)
+- [CSS](https://github.com/SeongjinOliver/TIL/tree/master/Web/HTML_CSS/HTMLCSS_Study)
+- [CSS_Summary](https://github.com/SeongjinOliver/TIL/tree/master/Web/HTML_CSS/CSS_Summary)
+- [JSP](https://github.com/SeongjinOliver/TIL/tree/master/Web/JSP)
+- [JavaScript](https://github.com/SeongjinOliver/TIL/tree/master/Web/JavaScript)
+- [Leaflet](https://github.com/SeongjinOliver/TIL/tree/master/Web/Leaflet)
+- [Login](https://github.com/SeongjinOliver/TIL/tree/master/Web/Login)
+- [MVC](https://github.com/SeongjinOliver/TIL/tree/master/Web/MVC)
+- [Mybatis](https://github.com/SeongjinOliver/TIL/tree/master/Web/Mybatis)
+- [SVG](https://github.com/SeongjinOliver/TIL/tree/master/Web/SVG)
+- [Servlet](https://github.com/SeongjinOliver/TIL/tree/master/Web/Servlet)
+- [SpringFW](https://github.com/SeongjinOliver/TIL/tree/master/Web/SpringFW)
 
-[Spark](https://github.com/SeongjinOliver/TIL/tree/master/Spark)
+## WeeT_Dev_Diary
 
-# Web
-
-[HTML]()(https://github.com/SeongjinOliver/TIL/tree/master/Web/HTML_CSS/HTMLCSS_Study)
-
-[CSS](https://github.com/SeongjinOliver/TIL/tree/master/Web/HTML_CSS/HTMLCSS_Study)
-
-[CSS_Summary](https://github.com/SeongjinOliver/TIL/tree/master/Web/HTML_CSS/CSS_Summary)
-
-[JSP](https://github.com/SeongjinOliver/TIL/tree/master/Web/JSP)
-
-[JavaScript](https://github.com/SeongjinOliver/TIL/tree/master/Web/JavaScript)
-
-[Leaflet](https://github.com/SeongjinOliver/TIL/tree/master/Web/Leaflet)
-
-[Login](https://github.com/SeongjinOliver/TIL/tree/master/Web/Login)
-
-[MVC](https://github.com/SeongjinOliver/TIL/tree/master/Web/MVC)
-
-[Mybatis](https://github.com/SeongjinOliver/TIL/tree/master/Web/Mybatis)
-
-[SVG](https://github.com/SeongjinOliver/TIL/tree/master/Web/SVG)
-
-[Servlet](https://github.com/SeongjinOliver/TIL/tree/master/Web/Servlet)
-
-[SpringFW](https://github.com/SeongjinOliver/TIL/tree/master/Web/SpringFW)
-
-# WeeT_Dev_Diary
-
-[WeeT-project](https://github.com/SeongjinOliver/TIL/tree/master/wee-T_ProjectDevelopmentDairy)
+- [WeeT-project](https://github.com/SeongjinOliver/TIL/tree/master/wee-T_ProjectDevelopmentDairy)
