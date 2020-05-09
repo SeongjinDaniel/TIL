@@ -7,60 +7,60 @@ Today I Learned. Daily commit.
 
 -----
 
-## Algorithm
+### Algorithm
 
 - [Anything](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Anything)
 - [BOJ](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/BOJ)
 - [Basic](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Basic)
 - [Codility](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Codility)
 
-## Bixby
+### Bixby
 
 - [Bixby](https://github.com/SeongjinOliver/TIL/tree/master/Bixby)
 
-## DataBase(Oracle)
+### DataBase(Oracle)
 
 - [Oracle](https://github.com/SeongjinOliver/TIL/tree/master/DataBase(Oracle))
 
-## DeepLearning
+### DeepLearning
 
 - [PART1_AIConceptAndReady](https://github.com/SeongjinOliver/TIL/tree/master/DeepLearning/PART1_AIConceptAndReady)
 
 - [PART2_Tensorflow2.0AndPytorch](https://github.com/SeongjinOliver/TIL/tree/master/DeepLearning/PART2_Tensorflow2.0AndPytorch)
 
-## Docker
+### Docker
 
 - [Docker](https://github.com/SeongjinOliver/TIL/tree/master/Docker)
 
-## Git
+### Git
 
 - [Git](https://github.com/SeongjinOliver/TIL/tree/master/Git)
 
-## Java
+### Java
 
 - [Java](https://github.com/SeongjinOliver/TIL/tree/master/JAVA)
 
-## JDBC
+### JDBC
 
 - [JDBC](https://github.com/SeongjinOliver/TIL/tree/master/JDBC)
 
-## Linux
+### Linux
 
 - [Linux](https://github.com/SeongjinOliver/TIL/tree/master/Linux)
 
-## Programmers
+### Programmers
 
 - [Programmers](https://github.com/SeongjinOliver/TIL/tree/master/Programmers)
 
-## R
+### R
 
 - [R](https://github.com/SeongjinOliver/TIL/tree/master/R)
 
-## Spark
+### Spark
 
 - [Spark](https://github.com/SeongjinOliver/TIL/tree/master/Spark)
 
-## Web
+### Web
 
 - [HTML](https://github.com/SeongjinOliver/TIL/tree/master/Web/HTML_CSS/HTMLCSS_Study)
 - [CSS](https://github.com/SeongjinOliver/TIL/tree/master/Web/HTML_CSS/HTMLCSS_Study)
@@ -75,6 +75,6 @@ Today I Learned. Daily commit.
 - [Servlet](https://github.com/SeongjinOliver/TIL/tree/master/Web/Servlet)
 - [SpringFW](https://github.com/SeongjinOliver/TIL/tree/master/Web/SpringFW)
 
-## WeeT_Dev_Diary
+### WeeT_Dev_Diary
 
 - [WeeT-project](https://github.com/SeongjinOliver/TIL/tree/master/wee-T_ProjectDevelopmentDairy)
