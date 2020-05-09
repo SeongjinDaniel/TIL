@@ -5,7 +5,7 @@ Today I Learned. Daily commit.
 
 -----
 
-## [Algorithm](https://github.com/SeongjinOliver/TIL#Algorithm)
+**[Algorithm](https://github.com/SeongjinOliver/TIL#Algorithm)**
 
 - [Anything](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Anything)
 - [BOJ](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/BOJ)
