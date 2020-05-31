@@ -1,5 +1,7 @@
 # jsp javascript에서 Ajax를 이용하여 Controller와 응답하기
 
+[참고 사이트](https://webcoding.tistory.com/entry/Spring-스프링-RequestBody-ResponseBody-사용하기-1)
+
 이 질문에 대한 답변을 정확하게 이해하기 위해서는, 웹 요청과(Request) 응답(Response), Servlet과 JSP에 대한 지식이 필요하며,
 
 아울러 Java.io 패키지와 연관이 있는 Stream이라는 것에 대해서도 알아야할 필요가 있습니다.
