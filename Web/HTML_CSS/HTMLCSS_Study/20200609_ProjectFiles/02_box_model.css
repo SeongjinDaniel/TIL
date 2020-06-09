@@ -1,0 +1,16 @@
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: magenta;
+    /* border-color: black;
+    border-width: 2px;
+    border-style: solid; */
+    border: black solid 2px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+span{
+    display: block;
+}
