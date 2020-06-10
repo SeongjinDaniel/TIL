@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>1. 반복문</h3>
+    {# 사용자에게 보여주지 않는 로직은 {%%}를 사용한다. endfor를 반드시 해주어야한다.#}
+    
+    {% for food  in foods %}
+        <p>{{ food }}</p>
+    {% endfor %}
+
+    {% for food in foods %}
+        <p>{{ forloop.counter }} {{ food }}</p>
+    {% endfor %}
+
+    {% for element in empty_list %}
+        <p>{{ element }}</p>
+    {% empty %}
+        <p>지금 아무것도 없네요...</p>
+    {% endfor %}
+
+    <h3>2. 조건문</h3>
+    {% if '짜장면' in foods %}
+        <p>짜장면 역시 또자강!!</p>
+    {% endif %}
+
+    
+    {% for food in foods %}
+        {% if forloop.first %}
+            <p>짜장면엔 고추가루지!!</p>
+        {% else %}
+            <p>{{ food }}</p>
+        {% endif %}
+    {% endfor %}
+
+    <h3>3. length filter</h3>
+    {% for food in foods %}
+        {% if food|length > 2 %}
+            <p>메뉴 이름이 너무 길어요</p>
+        {% else %}
+            <p>{{ food }}, {{ food|length }}</p>
+        {% endif %}
+
+    {% endfor %}
+
+    <h3>4. lorem ipsum</h3>
+    <p>{% lorem %}</p> {# 이미 정의된 함수 호출이기 때문에 {%%}를 사용한다. #}
+    <hr>
+    {% lorem 3 w %}
+    <hr>
+    {% lorem 4 w random %}
+    <hr>
+
+    <h3>5. 글자수 제한 filter</h3>
+    <p>{{ messages|truncatewords:3 }}</p> {# 끝을 워드 단위로 자른다.#}
+    <p>{{ messages|truncatechars:3 }}</p>
+    <p>{{ messages|truncatechars:10 }}</p> {#...이 무조건 나옴#}
+
+    <h3>6. 글자 관련 필터</h3>
+    <p>{{ 'ABC'|lower }}</p>
+    <p>{{ messages|title }}</p> {# 단어 단위를 대문자로 변경해준다#}
+    <p>{{ messages|capfirst }}</p> {# 맨앞 단어만 대문자로 변경해준다#}
+    <p>{{ foods|random }}</p>
+
+
+    <h3>7. 연산</h3>
+    <p>{{ 4|add:6 }}</p> {#template은 연산하지 않는다!!#}
+    
+    <h3>8. 날짜 표현</h3>
+    <p>{{ datetime_now }}</p> {#view에서 넘겨줌#}
+    <p>{% now "DATETIME_FORMAT" %}</p> {#built in tag!!#}
+    <p>{% now "DATE_FORMAT" %}</p> {#built in tag!!#}
+    <p>{% now "SHORT_DATE_FORMAT" %}</p> {#built in tag!!#}
+    <p>{% now "SHORT_DATETIME_FORMAT" %}</p> {#built in tag!!#}
+    
+
+</body>
+</html>
