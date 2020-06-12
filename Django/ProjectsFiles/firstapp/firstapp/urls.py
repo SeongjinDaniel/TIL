@@ -30,4 +30,6 @@ urlpatterns = [
     # url에서는 _안쓰는게 좋다 인식 못함!
     path('dtl-practice/', views.dtl_practice), # 혼합형 할 때 _쓰는것을 snake case라고 한다.
     path('palindrome/<text>/', views.palindrome),
+    path('throw/', views.throw), # trailing comma !! 잊지말것!
+    path('catch/', views.catch),
 ]

@@ -5,6 +5,7 @@
 # 4. local django
 
 import random
+from pprint import pprint
 from datetime import datetime # 공교롭게도 라이브러리 이름과 패키지 이름이 똑같다
 from django.shortcuts import render
 
@@ -86,4 +87,21 @@ def palindrome(request, text):
     
     return render(request, 'palindrome.html', context)
 
+
+def throw(request):
+    return render(request, 'throw.html')
+
+
+def catch(request):
+    #pprint(request.META)
+    # request.GET : Query dict(dictionary)!! -> key 가져오기 : request.GET.get('message')
+    
+    #print(request.GET.get('message'))
+    message = request.GET.get('message')
+    message2 = request.GET.get('message2')
+    context = {
+        'message':message,
+        'message2':message2,
+    }
+    return render(request, 'catch.html', context)
 
