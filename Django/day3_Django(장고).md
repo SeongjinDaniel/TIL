@@ -125,3 +125,5 @@ app_name/
 구글에 **django template inheritance** 검색
 
 https://docs.djangoproject.com/en/3.0/ref/templates/language/#template-inheritance
+
+ 
