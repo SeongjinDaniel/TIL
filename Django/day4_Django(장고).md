@@ -110,10 +110,6 @@
 
 
 
-
-
------
-
 새로운 프로젝트 생성 !!!
 
 `jango-admin startproject crud`
@@ -422,7 +418,10 @@ admin.site.register(Article)
 
 **django는 기본적으로 app_name/templates만 알고 있다.**
 
-​    								  **app_name/static**만 알고있다.
+**app_name/static**만 알고있다.
+=======
+
+
 
 
 
