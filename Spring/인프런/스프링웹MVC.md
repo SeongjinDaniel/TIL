@@ -9,6 +9,7 @@
 배포하며 운영하고 있습니다.
 이 강좌는 스프링 MVC 동작 원리와 설정 방법 그리고 애노테이션 기반 MVC 활용 방법에 대해 다루고
 있으며 다음과 같은 특징이 있습니다
+
 1. 아쉽지만 Webflux는 다루지 않습니다.
 스프링 프레임워크 5 버전부터 리액티브 스택 기반으로 웹 애플리케이션을 개발할 때 사용할 수 있는 스프링
 Webflux를 제공하지만 이번 강좌에서 다루는 기술 스택과 차이가 크기 때문에 이번 강좌에서 다루지
@@ -229,3 +230,77 @@ public class HelloServlet extends HttpServlet {
 ![image-20200616164434742](C:\Users\seouz\AppData\Roaming\Typora\typora-user-images\image-20200616164434742.png)
 
 ↑↑↑↑↑↑↑ main에 java 폴더를 만든후 진행 ↑↑↑↑↑↑↑ 이렇게 설정하면 이제 source 디렉토리가 된다.
+
+
+
+
+
+### 6. 서블릿 리스너와 필터
+서블릿 리스너
+
+- 웹 애플리케이션에서 발생하는 주요 이벤트를 감지하고 각 이벤트에 특별한 작업이 필요한 경우에
+  사용할 수 있다.
+
+  - 서블릿 컨텍스트 수준의 이벤트
+    - 컨텍스트 라이프사이클 이벤트
+    - 컨텍스트 애트리뷰트 변경 이벤트
+  - 세션 수준의 이벤트
+    - 세션 라이프사이클 이벤트
+    - 세션 애트리뷰트 변경 이벤트
+  - 서블릿 필터
+    - 들어온 요청을 서블릿으로 보내고, 또 서블릿이 작성한 응답을 클라이언트로 보내기 전에 특별한
+      처리가 필요한 경우에 사용할 수 있다.
+    - 체인 형태의 구조
+
+  ![image](https://user-images.githubusercontent.com/55625864/84770413-7bbb6500-b012-11ea-8ada-b4996045d12f.png)
+
+참고
+● https://docs.oracle.com/cd/B14099_19/web.1012/b14017/filters.htm#i1000654
+
+
+
+
+
+### 7. 스프링 IoC 컨테이너 연동
+
+![image](https://user-images.githubusercontent.com/55625864/84770771-20d63d80-b013-11ea-98a0-5610fc3e7224.png)
+
+(출처: https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc )
+
+서블릿 애플리케이션에 스프링 연동하기
+
+- 서블릿에서 스프링이 제공하는 IoC 컨테이너 활용하는 방법
+- 스프링이 제공하는 서블릿 구현체 DispatcherServlet 사용하기
+
+ContextLoaderListener
+
+- 서블릿 리스너 구현체
+- ApplicationContext를 만들어 준다.
+- ApplicationContext를 서블릿 컨텍스트 라이프사이클에 따라 등록하고 소멸시켜준다.
+- 서블릿에서 IoC 컨테이너를 ServletContext를 통해 꺼내 사용할 수 있다.
+
+
+
+
+
+### 8. 스프링 MVC 연동
+
+![image](https://user-images.githubusercontent.com/55625864/84781872-55052a80-b022-11ea-8621-2e45da79db22.png)
+
+(출처: https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc )
+
+서블릿 애플리케이션에 스프링 연동하기
+
+- 서블릿에서 스프링이 제공하는 IoC 컨테이너 활용하는 방법
+- 스프링이 제공하는 서블릿 구현체 DispatcherServlet 사용하기
+
+DispatcherServlet
+
+- 스프링 MVC의 핵심.
+- Front Controller 역할을 한다.
+
+참고
+
+- http://www.corej2eepatterns.com/FrontController.htm
+- https://www.oracle.com/technetwork/java/frontcontroller-135648.html
+- https://martinfowler.com/eaaCatalog/frontController.html
