@@ -158,9 +158,9 @@ INSTALLED_APPS = [
 
 ---
 
-#### Model 작성 3단계
+#### Model 작성 3단계(중요)
 
-1. **models.py 작성**
+1. **models.py 작성 또는 수정**
 2. **makemigrations(설계도 작성)**
 3. **migrate(db 작성, 구축)**
 
@@ -297,7 +297,7 @@ content에서 !로 끝나는 것들을 찾음
 
 
 
-#### CRUD
+#### :boom: CRUD
 
 #### CREATE
 
@@ -418,8 +418,7 @@ admin.site.register(Article)
 
 **django는 기본적으로 app_name/templates만 알고 있다.**
 
-**app_name/static**만 알고있다.
-=======
+**app_name/static만 알고있다.**
 
 
 
