@@ -304,3 +304,100 @@ DispatcherServlet
 - http://www.corej2eepatterns.com/FrontController.htm
 - https://www.oracle.com/technetwork/java/frontcontroller-135648.html
 - https://martinfowler.com/eaaCatalog/frontController.html
+
+
+
+
+
+### 9. DispatcherServlet 동작 원리 1부
+DispatcherServlet 초기화
+
+- 다음의 특별한 타입의 빈들을 찾거나, 기본 전략에 해당하는 빈들을 등록한다.
+- HandlerMapping: 핸들러를 찾아주는 인터페이스
+- HandlerAdapter: 핸들러를 실행하는 인터페이스
+- HandlerExceptionResolver
+- ViewResolver
+- ...
+
+DispatcherServlet 동작 순서
+
+1. 청을 분석한다. (로케일, 테마, 멀티파트 등)
+2. (핸들러 맵핑에게 위임하여) 요청을 처리할 핸들러를 찾는다.
+3. (등록되어 있는 핸들러 어댑터 중에) 해당 핸들러를 실행할 수 있는 “핸들러 어댑터”를 찾는다.
+4. 찾아낸 “핸들러 어댑터”를 사용해서 핸들러의 응답을 처리한다.
+   - 핸들러의 리턴값을 보고 어떻게 처리할지 판단한다.
+     - 뷰 이름에 해당하는 뷰를 찾아서 모델 데이터를 랜더링한다.
+     - @ResponseEntity가 있다면 Converter를 사용해서 응답 본문을 만들고.
+5. (부가적으로) 예외가 발생했다면, 예외 처리 핸들러에 요청 처리를 위임한다.
+6. 최종적으로 응답을 보낸다.
+
+HandlerMapping
+
+- RequestMappingHandlerMapping
+
+HandlerAdapter
+
+- RequestMappingHandlerAdapter
+
+
+
+
+
+### 10. DispatcherServlet 동작 원리 2부: SimpleController
+HandlerMapping
+
+- BeanNameUrlHandlerMapping
+
+HandlerAdapter
+
+- SimpleControllerHandlerAdapter
+
+```java
+@org.springframework.stereotype.Controller ( "/simple" )
+public class SimpleController implements Controller {
+    @Override
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse
+    response) throws Exception {
+    	return new ModelAndView( "/WEB-INF/simple.jsp" );
+    }
+}
+```
+
+
+
+### 11. DispatcherServlet 동작 원리 3부: 커스텀 ViewResolver
+ViewResolver
+
+- InternalResourceViewResolver
+
+InternalResourceViewResolver
+
+- Prefix
+- Suffix
+
+```java
+@Configuration
+@ComponentScan
+public class WebConfig {
+    
+	@Bean
+	public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix( "/WEB-INF/" );
+        viewResolver.setSuffix( ".jsp" );
+        return viewResolver;
+    }
+}
+```
+
+```java
+@org.springframework.stereotype.Controller ( "/simple" )
+public class SimpleController implements Controller {
+    @Override
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse
+    response) throws Exception {
+    	return new ModelAndView( " /WEB-INF/ simple .jsp " );
+    }
+}
+```
+

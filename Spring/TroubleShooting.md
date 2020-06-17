@@ -46,3 +46,17 @@ sevlet 테스트 및 공부를 하다가 서버를 종료하면 "destroy"를 오
 
 
 
+#### 3. Maven dependency가 pom.xml을 수정하면 변경 안됨
+
+- Automatically download에서 source를 체크한다
+
+  ![image](https://user-images.githubusercontent.com/55625864/84783667-76671600-b024-11ea-822f-40502f5fcde5.png)
+
+  
+
+#### 
+
+- 에러 메시지
+  - Configuration Error: deployment source 'me.whiteship:war exploded' is not valid
+    [2020-06-17 02:45:39,205] Artifact me.whiteship:war exploded: Error during artifact deployment. See server log for details.
+

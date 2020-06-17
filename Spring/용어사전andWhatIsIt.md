@@ -6,6 +6,7 @@
 
 - ServletContextEvent
 - HttpSessionEvent
+- **ServletContextEvent와 ServletContextListener**
 
 ![image](https://user-images.githubusercontent.com/55625864/84773453-6432ab00-b017-11ea-877a-cbe81c61381c.png)
 
@@ -15,3 +16,67 @@
 
 
 
+## [Spring] @PostConstruct , @PreDestroy
+
+
+
+@postConstruct
+
+\- 객체의 초기화 부분
+\- 객체가 생성된 후 별도의 초기화 작업을 위해 실행하는 메소드를 선언한다.
+\- @PostConstruct 어노테이션을 설정해놓은 init 메소드는 WAS가 띄워질 때 실행된다.
+
+
+ @PreDestory
+
+\- 마지막 소멸 단계
+\- 스프링 컨테이너에서 객체(빈)를 제거하기 전에 해야할 작업이 있다면 메소드위에 사용하는 어노테이션.
+\- close() 하기 직전에 실행 -> ((AbstractApplicationContext) context).close()
+
+
+ 
+
+< 예제 >
+//초기화 메소드
+@PostConstruct
+public void init(){
+  System.out.println("초기화 메소드!!");
+}
+//소멸 메소드
+@PreDestroy
+public void destory(){
+  System.out.println("종료 직전!!");    
+}
+
+
+(!) xml에서 어노테이션을 사용 안하고 bean에 지정 하는 방법
+ \- init-method 와 destroy-method를 사용
+
+// 초기화 메소드
+public void init() {
+System.out.println("초기화 메소드!!");
+}
+
+// 소멸 메소드
+public void destory() {
+  System.out.println("종료 직전!!"); 
+}
+
+xml
+<bean id="지정 아이디" class="패키지.클래스명" init-method="init" destroy-method="destory"></bean>
+
+java의 implements InitializingBean, DisposableBean도 같은 기능을 한다.
+
+
+
+출처: https://goddaehee.tistory.com/46 [갓대희의 작은공간]
+
+
+
+
+
+## [[Spring\] @Controller와 @RestController 차이](https://mangkyu.tistory.com/49)
+
+
+
+- 블로그 글이 좋아서!! Controller와 RestController의 차이 확인!
