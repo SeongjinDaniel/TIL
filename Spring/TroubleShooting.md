@@ -796,3 +796,33 @@ Process finished with exit code -1
 **스프링 부트 2.3.1 말고 2.3.0을 써보세요. 현재 2.3.1에는 이슈가 있습니다.**
 
 **https://www.youtube.com/watch?v=-mFD1iX5MJo**
+
+
+
+
+
+### JSR 303 애노테이션이 안나옵니다.
+
+spring 2.3.0 부터는 validation이 빠져서 추가해야합니다. 프로젝트 만들때 validation을 사용할거면 추가하면 됩니다.
+
+**Solution**
+
+https://www.youtube.com/watch?v=cP8TwMV4LjE&feature=youtu.be
+
+
+
+### Validation Starter no longer included in web starters
+
+As of [#19550](https://github.com/spring-projects/spring-boot/issues/19550), Web and WebFlux starters do not depend on the validation starter by default anymore. If your application is using validation features, for example you find that `javax.validation.*` imports are not being resolved, you’ll need to add the starter yourself.
+
+**추가하면 끝!!**
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+```
+
+
+

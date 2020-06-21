@@ -1329,3 +1329,348 @@ OPTIONS
 
 - https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beansmeta-annotations
 - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/annotation/AliasFor.html
+
+
+
+
+
+### 37. HTTP 요청 맵핑하기 7부: 맵핑 연습 문제
+다음 요청을 처리할 수 있는 핸들러 메소드를 맵핑하는 @RequestMapping (또는 @GetMapping, @PostMapping 등)을 정의하세요.
+
+1. GET /events
+2. GET /events/1,
+GET /events/2,
+GET /events/3,
+...
+3. POST /events CONTENT-TYPE: application/json ACCEPT: application/json
+4. DELETE /events/1,
+DELETE /events/2,
+DELETE /events/3,
+...
+5. PUT /events/1 CONTENT-TYPE: application/json ACCEPT: application/json,
+PUT /events/2 CONTENT-TYPE: application/json ACCEPT: application/json,
+...
+
+
+
+SampleControllerTest
+
+```java
+package me.whiteship.demowebmvc;
+
+import jdk.jshell.spi.ExecutionControlProvider;
+import org.hamcrest.collection.HasItemInArray;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest
+public class SampleControllerTest {
+
+    @Autowired
+    MockMvc mockMvc;
+
+    @Test
+    public void helloTest() throws Exception {
+        mockMvc.perform(get("/hello"))
+                .andDo(print())
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    public void getEvents() throws Exception {
+        mockMvc.perform(get("/events/1"))
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    public void getEventsWithId() throws Exception {
+        mockMvc.perform(get("/events/1"))
+                .andExpect(status().isOk())
+        ;
+        mockMvc.perform(get("/events/2"))
+                .andExpect(status().isOk())
+        ;
+        mockMvc.perform(get("/events/3"))
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    public void createEvent() throws Exception {
+        mockMvc.perform(
+                post("events")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    public void deleteEvent() throws Exception{
+        mockMvc.perform(delete("/events/1"))
+                .andExpect(status().isOk())
+        ;
+        mockMvc.perform(delete("/events/2"))
+                .andExpect(status().isOk())
+        ;
+        mockMvc.perform(delete("/events/3"))
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    public void updateEvent() throws Exception {
+        mockMvc.perform(
+                put("/events")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk())
+        ;
+    }
+
+}
+```
+
+SampleController
+
+```java
+package me.whiteship.demowebmvc;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.MediaTypeEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+public class SampleController {
+
+    @GetMapping("/events")
+    @ResponseBody
+    public String events(){
+        return "events";
+    }
+
+    @GetMapping("/events/{id}")
+    @ResponseBody
+    public String getAnEvents(@PathVariable int id){
+        return "event";
+    }
+
+    @DeleteMapping("/events/{id}")
+    @ResponseBody
+    public String removeAnEvents(@PathVariable int id){
+        return "event";
+    }
+
+    @GetHelloMapping
+    @ResponseBody
+    public String hello(){
+        return "hello";
+    }
+
+}
+
+```
+
+EventUpdateController
+
+```java
+package me.whiteship.demowebmvc;
+
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+@RequestMapping(
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        consumes = MediaType.APPLICATION_JSON_VALUE)
+public class EventUpdateController {
+
+    @PutMapping("/events")
+    @ResponseBody
+    public String updateEvent(){
+        return "event";
+    }
+
+    @PostMapping("/events")
+    @ResponseBody
+    public String createEvent(){
+        return "event";
+    }
+}
+
+```
+
+
+
+
+
+### 38. 핸들러 메소드 1부: 지원하는 메소드 아규먼트와 리턴 타입
+핸들러 메소드 아규먼트: 주로 요청 그 자체 또는 요청에 들어있는 정보를 받아오는데 사용한다.
+
+| 핸들러 메소드 아규먼트                                       | 설명                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| WebRequest<br/>NativeWebRequest<br/>ServletRequest(Response)<br/>HttpServletRequest(Response) | 요청 또는 응답 자체에 접근 가능한 API                        |
+| InputStream<br/>Reader<br/>OutputStream<br/>Writer           | 요청 본문을 읽어오거나, 응답 본문을 쓸 때 사용할 수 있는 API |
+| PushBuilder                                                  | 스프링 5, HTTP/2 리소스 푸쉬에 사용                          |
+| HttpMethod                                                   | GET, POST, ... 등에 대한 정보                                |
+| Locale<br/>TimeZone<br/>ZoneId                               | LocaleResolver가 분석한 요청의 Locale 정보                   |
+| **@PathVariable**                                            | **URI 템플릿 변수 읽을 때 사용**                             |
+| **@MatrixVariable**                                          | **URI 경로 중에 키/값 쌍을 읽어 올 때 사용**                 |
+| **@RequestParam**                                            | **서블릿 요청 매개변수 값을 선언한 메소드 아규먼트 타입으로 변환해준다.<br/>단순 타입인 경우에 이 애노테이션을 생략할 수 있다.** |
+| **@RequestHeader**                                           | **요청 헤더 값을 선언한 메소드 아규먼트 타입으로 변환해준다.** |
+| ...                                                          | ...                                                          |
+
+참고:
+
+https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-methods
+https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-arguments
+
+핸들러 메소드 리턴: 주로 응답 또는 모델을 랜더링할 뷰에 대한 정보를 제공하는데 사용한다.
+
+| @ResponseBody                | 리턴 값을 HttpMessageConverter를 사용해 응답 본문으로<br/>사용한다. |
+| ---------------------------- | ------------------------------------------------------------ |
+| HttpEntity<br/>ReponseEntity | 응답 본문 뿐 아니라 헤더 정보까지, 전체 응답을 만들 때 사용한다. |
+| String                       | ViewResolver를 사용해서 뷰를 찾을 때 사용할 뷰 이름.         |
+| View                         | 암묵적인 모델 정보를 랜더링할 뷰 인스턴스                    |
+| Map<br />Model               | (RequestToViewNameTranslator를 통해서) 암묵적으로 판단한<br/>뷰 랜더링할 때 사용할 모델 정보 |
+| @ModelAttribute              | (RequestToViewNameTranslator를 통해서) 암묵적으로 판단한 뷰 랜더링할 때 사용할 모델 정보에 추가한다.<br/>이 애노테이션은 생략할 수 있다. |
+| ...                          | ...                                                          |
+
+참고:
+https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-returntypes
+
+
+
+
+
+### 39. 핸들러 메소드 2부: URI 패턴
+@PathVariable
+
+- 요청 URI 패턴의 일부를 핸들러 메소드 아규먼트로 받는 방법.
+- 타입 변환 지원.
+- (기본)값이 반드시 있어야 한다.
+- Optional 지원.
+
+@MatrixVariable
+
+- 요청 URI 패턴에서 키/값 쌍의 데이터를 메소드 아규먼트로 받는 방법
+- 타입 변환 지원.
+- (기본)값이 반드시 있어야 한다.
+- Optional 지원.
+- 이 기능은 기본적으로 비활성화 되어 있음. 활성화 하려면 다음과 같이 설정해야 함.
+
+```java
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        urlPathHelper.setRemoveSemicolonContent( false );
+        configurer.setUrlPathHelper(urlPathHelper);
+    }
+}
+```
+
+참고:
+https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-typeconversion
+https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-matrix-variables
+
+
+
+
+
+### 40. 핸들러 메소드 3부: @RequestMapping
+@RequestParam
+
+- 요청 매개변수에 들어있는 단순 타입 데이터를 메소드 아규먼트로 받아올 수 있다.
+
+- 값이 반드시 있어야 한다.
+
+  - required=false 또는 Optional을 사용해서 부가적인 값으로 설정할 수도 있다.
+
+    String이 아닌 값들은 타입 컨버전을 지원한다.
+
+- Map<String, String> 또는 MultiValueMap<String, String>에 사용해서 모든 요청 매개변수를 받아 올 수도 있다.
+
+- 이 애노테이션은 생략 할 수 잇다.
+
+요청 매개변수란?
+
+- 쿼리 매개변수
+- 폼 데이터
+
+참고:
+
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-requestparam
+
+
+
+
+
+### 41. 핸들러 메소드 4부: 폼 서브밋 (타임리프)
+폼을 보여줄 요청 처리
+
+- GET /events/form
+- 뷰: events/form.html
+- 모델: “event”, new Event()
+
+타임리프
+
+- @{}: URL 표현식
+- ${}: variable 표현식
+- *{}: selection 표현식
+
+참고
+
+- https://www.thymeleaf.org/doc/articles/standarddialect5minutes.html
+  https://www.getpostman.com/downloads/
+
+
+
+
+
+### 42. 핸들러 메소드 5부: @ModelAttribute
+@ModelAttribute
+
+- 여러 곳에 있는 단순 타입 데이터를 복합 타입 객체로 받아오거나 해당 객체를 새로 만들 때 사용할 수 있다. 
+- 여러 곳? URI 패스, 요청 매개변수, 세션 등
+- 생략 가능
+
+값을 바인딩 할 수 없는 경우에는?
+
+- BindException 발생 400 에러
+
+바인딩 에러를 직접 다루고 싶은 경우
+
+- BindingResult 타입의 아규먼트를 바로 오른쪽에 추가한다.
+
+바인딩 이후에 검증 작업을 추가로 하고 싶은 경우
+
+- @Valid 또는 @Validated 애노테이션을 사용한다.
+
+참고
+
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-modelattrib-method-args
