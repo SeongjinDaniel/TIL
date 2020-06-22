@@ -1674,3 +1674,418 @@ https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#m
 참고
 
 - https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-modelattrib-method-args
+
+
+
+
+
+### 43. 핸들러 메소드 6부: @Validated
+
+스프링 MVC 핸들러 메소드 아규먼트에 사용할 수 있으며 validation group이라는 힌트를 사용할 수 있다.
+
+@Valid 애노테이션에는 그룹을 지정할 방법이 없다.
+
+@Validated는 스프링이 제공하는 애노테이션으로 그룹 클래스를 설정할 수 있다.
+
+
+
+
+
+### 44. 핸들러 메소드 7부: 폼 서브밋 (에러 처리)
+바인딩 에러 발생 시 Model에 담기는 정보
+
+- Event
+- BindingResult.event
+
+타임리프 사용시 바인딩 에러 보여주기
+
+- https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#field-errors
+
+```
+<p th:if="${#fields.hasErrors('limit')}" th:errors="*{limit}">Incorrect date</p>
+```
+
+Post / Redirect / Get 패턴
+
+- https://en.wikipedia.org/wiki/Post/Redirect/Get
+- Post 이후에 브라우저를 리프래시 하더라도 폼 서브밋이 발생하지 않도록 하는 패턴
+
+타임리프 목록 보여주기
+
+- https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#listing-seed-starter-data
+
+```
+<a th:href="@{/events/form}">Create New Event</a>
+    <div th:unless="${#lists.isEmpty(eventList)}">
+    <ul th:each="event: ${eventList}">
+    <p th:text="${event.Name}">Event Name</p>
+    </ul>
+</div>
+```
+
+
+
+
+
+### 45. 핸들러 메소드 8부: @SessionAttributes
+모델 정보를 HTTP 세션에 저장해주는 애노테이션
+
+- HttpSession을 직접 사용할 수도 있지만
+- 이 애노테이션에 설정한 이름에 해당하는 모델 정보를 자동으로 세션에 넣어준다.
+- @ModelAttribute는 세션에 있는 데이터도 바인딩한다.
+- 여러 화면(또는 요청)에서 사용해야 하는 객체를 공유할 때 사용한다.
+
+SessionStatus를 사용해서 세션 처리 완료를 알려줄 수 있다.
+
+- 폼 처리 끝나고 세션을 비울 때 사용한다.
+
+
+
+
+
+### 46. 핸들러 메소드 9부: 멀티 폼 서브밋
+세션을 사용해서 여러 폼에 걸쳐 데이터를 나눠 입력 받고 저장하기
+
+- 이벤트 이름 입력받고
+- 이벤트 제한 인원 입력받고
+- 서브밋 -> 이벤트 목록으로!
+
+완료된 경우에 세션에서 모델 객체 제거하기
+
+- SessionStatus
+
+
+
+
+
+### 47. 핸들러 메소드 10부: @SessionAttribute
+HTTP 세션에 들어있는 값 참조할 때 사용
+
+- HttpSession을 사용할 때 비해 타입 컨버전을 자동으로 지원하기 때문에 조금 편리함.
+- HTTP 세션에 데이터를 넣고 빼고 싶은 경우에는 HttpSession을 사용할 것.
+
+@SessionAttributes와는 다르다.
+
+- @SessionAttributes는 해당 컨트롤러 내에서만 동작.
+  - 즉, 해당 컨트롤러 안에서 다루는 특정 모델 객체를 세션에 넣고 공유할 때 사용.
+- @SessionAttribute는 컨트롤러 밖(인터셉터 또는 필터 등)에서 만들어 준 세션 데이터에 접근할 때 사용한다.
+
+
+
+
+
+### 48. 핸들러 메소드 11부: RedirectAttributes
+리다이렉트 할 때 기본적으로 Model에 들어있는 primitive type 데이터는 URI 쿼리 매개변수에 추가된다.
+
+- 스프링 부트에서는 이 기능이 기본적으로 비활성화 되어 있다.
+- Ignore-default-model-on-redirect 프로퍼티를 사용해서 활성화 할 수 있다.(기본적으로 true인데 이것을 false로 변경하면 활성화 가능)
+- 임의의 객체를 저장할 수 없다. String으로만 넘겨줘야한다.
+
+원하는 값만 리다이렉트 할 때 전달하고 싶다면 RedirectAttributes에 명시적으로 추가할 수 있다.
+
+리다이렉트 요청을 처리하는 곳에서 쿼리 매개변수를 @RequestParam 또는 @ModelAttribute로 받을 수 있다.
+
+
+
+
+
+### 49. 핸들러 메소드 12부: Flash Attributes
+주로 리다이렉트시에 데이터를 전달할 때 사용한다.
+
+- 데이터가 URI에 노출되지 않는다.
+- 임의의 객체를 저장할 수 있다.
+- 보통 HTTP 세션을 사용한다.
+
+리다이렉트 하기 전에 데이터를 HTTP 세션에 저장하고 리다이렉트 요청을 처리 한 다음 그 즉시 제거한다.
+
+RedirectAttributes를 통해 사용할 수 있다.
+
+XPath
+
+- https://www.w3schools.com/xml/xpath_syntax.asp
+- https://www.freeformatter.com/xpath-tester.html#ad-output
+
+
+
+
+
+### 50. 핸들러 메소드 13부: MultipartFile
+MultipartFile
+
+- 파일 업로드시 사용하는 메소드 아규먼트
+- MultipartResolver 빈이 설정 되어 있어야 사용할 수 있다. (스프링 부트 자동 설정이 해 줌)
+- POST multipart/form-data 요청에 들어있는 파일을 참조할 수 있다.
+- List<MultipartFile> 아큐먼트로 여러 파일을 참조할 수도 있다.
+
+파일 업로드 폼
+
+```html
+<form method="POST" enctype="multipart/form-data" action="#" th:action="@{/file}">
+    File: <input type="file" name="file"/>
+    <input type="submit" value="Upload"/>
+</form>
+```
+
+파일 업로드 처리 핸들러
+
+```java
+@PostMapping("/file")
+public String uploadFile(@RequestParam MultipartFile file,
+RedirectAttributes attributes) {
+    String message = file.getOriginalFilename() + " is uploaded.";
+    System.out.println(message);
+    attributes.addFlashAttribute("message", message);
+    return "redirect:/events/list";
+}
+```
+
+메시지 출력
+
+```html
+<div th:if="${message}">
+	<h2 th:text="${message}"/>
+</div>
+```
+
+파일 업로드 관련 스프링 부트 설정
+
+- MultipartAutoConfiguration
+- MultipartProperties
+
+참고
+
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-multipart-forms
+- https://spring.io/guides/gs/uploading-files/
+
+
+
+
+
+### 51. 핸들러 메소드 14부: ResponseEntity
+파일 리소스를 읽어오는 방법
+
+- 스프링 ResourceLoader 사용하기
+
+파일 다운로드 응답 헤더에 설정할 내용
+
+- Content-Disposition: 사용자가 해당 파일을 받을 때 사용할 파일 이름
+- Content-Type: 어떤 파일인가
+- Content-Length: 얼마나 큰 파일인가
+
+파일의 종류(미디어 타입) 알아내는 방법
+
+- http://tika.apache.org/
+
+ResponseEntity
+
+- 응답 상태 코드
+- 응답 헤더
+- 응답 본문
+
+```java
+@GetMapping("/file/{filename}")
+//@ResponseBody
+public ResponseEntity<Resource> downloadFile(@PathVariable String filename) throws
+IOException {
+    Resource resource = resourceLoader.getResource("classpath:" + filename);
+    File file = resource.getFile();
+    Tika tika = new Tika();
+    String type = tika.detect(file);
+    return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachement; filename=\"" +
+        resource.getFilename() + "\"")
+        .header(HttpHeaders.CONTENT_TYPE, type)
+        .header(HttpHeaders.CONTENT_LENGTH, String.valueOf(file.length()))
+        .body(resource);
+}
+```
+
+
+
+참고
+
+- https://spring.io/guides/gs/uploading-files/
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition
+- https://www.baeldung.com/java-file-mime-type
+
+
+
+
+
+### 52. 핸들러 메소드 15부: @RequestBody & HttpEntity
+@RequestBody
+
+- 요청 본문(body)에 들어있는 데이터를 HttpMessageConveter를 통해 변환한 객체로 받아올 수 있다.
+- @Valid 또는 @Validated를 사용해서 값을 검증 할 수 있다.
+- BindingResult 아규먼트를 사용해 코드로 바인딩 또는 검증 에러를 확인할 수 있다.
+
+HttpMessageConverter
+
+- 스프링 MVC 설정 (WebMvcConfigurer)에서 설정할 수 있다.
+- configureMessageConverters: 기본 메시지 컨버터 대체
+- extendMessageConverters: 메시지 컨버터에 추가
+- 기본 컨버터
+  - WebMvcConfigurationSupport.addDefaultHttpMessageConverters
+
+HttpEntity
+
+- @RequestBody와 비슷하지만 추가적으로 요청 헤더 정보를 사용할 수 있다.
+
+참고
+
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-requestbody
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-httpentity
+
+
+
+
+
+### 53. 핸들러 메소드 16부: @ResponseBody & ResponseEntity
+@ResponseBody
+
+- 데이터를 HttpMessageConverter를 사용해 응답 본문 메시지로 보낼 때 사용한다.
+- @RestController 사용시 자동으로 모든 핸들러 메소드에 적용 된다.
+
+ResponseEntity
+
+- 응답 헤더 상태 코드 본문을 직접 다루고 싶은 경우에 사용한다.
+
+참고
+
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-responsebody
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-responseentity
+
+
+
+
+
+### 54. 핸들러 메소드 17부: 정리
+다루지 못한 내용
+
+- @JsonView: https://www.youtube.com/watch?v=5QyXswB_Usg&t=188s
+- PushBuidler: HTTP/2, 스프링 5
+
+과제
+
+- 프로젝트 코드 분석
+- https://github.com/spring-projects/spring-petclinic
+- 컨트롤러 코드 위주로...
+
+
+
+
+
+### 55. 모델: @ModelAttribute 또 다른 사용법
+@ModelAttribute의 다른 용법
+
+- @RequestMapping을 사용한 핸들러 메소드의 아규먼트에 사용하기 (이미 살펴 봤습니다.)
+
+- @Controller 또는 @ControllerAdvice (이 애노테이션은 뒤에서 다룹니다.)를 사용한 클래스에서
+
+  모델 정보를 초기화 할 때 사용한다.
+
+- @RequestMapping과 같이 사용하면 해당 메소드에서 리턴하는 객체를 모델에 넣어 준다.
+
+  - RequestToViewNameTranslator
+
+@ModelAttribute 메소드
+
+```java
+@ModelAttribute
+public void subjects(Model model) {
+    model.addAttribute("subjects", List.of("study", "seminar", "hobby", "social"));
+}
+```
+
+
+
+
+
+### 56. DataBinder: @InitBinder
+특정 컨트롤러에서 바인딩 또는 검증 설정을 변경하고 싶을 때 사용
+
+```java
+@InitBinder
+public void initEventBinder( WebDataBinder webDataBinder) {
+	webDataBinder.setDisallowedFields("id");
+}
+```
+
+
+
+
+
+### 바인딩 설정
+
+- webDataBinder.setDisallowedFields();
+
+포매터 설정
+
+- webDataBinder.addCustomFormatter();
+
+Validator 설정
+
+- webDataBinder.addValidators();
+
+특정 모델 객체에만 바인딩 또는 Validator 설정을 적용하고 싶은 경우
+
+- @InitBinder(“event”)
+
+참고
+
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-initbinder
+- https://github.com/spring-projects/spring-petclinic/blob/master/src/main/java/org/springframework/samples/petclinic/owner/PetController.java
+
+
+
+
+
+### 57. 예외 처리 핸들러: @ExceptionHandler
+특정 예외가 발생한 요청을 처리하는 핸들러 정의
+
+- 지원하는 메소드 아규먼트 (해당 예외 객체, 핸들러 객체, ...)
+- 지원하는 리턴 값
+- REST API의 경우 응답 본문에 에러에 대한 정보를 담아주고, 상태 코드를 설정하려면
+  ResponseEntity를 주로 사용한다.
+
+참고
+
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-exceptionhandler
+
+
+
+
+
+### 58. 전역 컨트롤러: @(Rest)ControllerAdvice
+예외 처리, 바인딩 설정, 모델 객체를 모든 컨트롤러 전반에 걸쳐 적용하고 싶은 경우에 사용한다.
+
+- @ExceptionHandler
+- @InitBinder
+- @ModelAttributes
+
+적용할 범위를 지정할 수도 있다.
+
+- 특정 애노테이션을 가지고 있는 컨트롤러에만 적용하기
+- 특정 패키지 이하의 컨트롤러에만 적용하기
+- 특정 클래스 타입에만 적용하기
+
+참고
+
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-controller-advice
+
+
+
+
+
+### 59. 스프링 MVC 강좌 마무리
+시간 관계 상 살펴보지 못한 내용
+
+- 비동기 요청 처리
+- CORS 설정
+- HTTP/2
+- 웹 소켓
+- 웹 플럭스
+- ...
+
+하지만 이번 강좌가 여러분이 직접 학습해 나갈 수 있는 디딤돌이 되었길 바랍니다.
+감사합니다.
