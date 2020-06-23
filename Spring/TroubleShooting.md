@@ -826,3 +826,14 @@ As of [#19550](https://github.com/spring-projects/spring-boot/issues/19550), Web
 
 
 
+
+
+### server port 변경하기
+
+1. 최상단메뉴 Run - Edit Configurations
+
+2. Environment variables 추가
+   - Name : server.port
+   - value : 8000(원하는 포트번호)
+
+![image](https://user-images.githubusercontent.com/55625864/85368033-6c35a200-b565-11ea-9598-bdb7b6bf0857.png)
