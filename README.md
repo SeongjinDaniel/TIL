@@ -2,7 +2,6 @@
 Today I Learned. Daily commit.
 
 - 오늘 공부했던 내용을 정리하고 확인한다.
-
 - 대분류로 나누고 하위 디렉토리 폴더 URL 링크를 연결한다.
 
 -----
@@ -74,6 +73,9 @@ Today I Learned. Daily commit.
 - [SVG](https://github.com/SeongjinOliver/TIL/tree/master/Web/SVG)
 - [Servlet](https://github.com/SeongjinOliver/TIL/tree/master/Web/Servlet)
 - [SpringFW](https://github.com/SeongjinOliver/TIL/tree/master/Web/SpringFW)
+
+### Spring
+
 - [Spring](https://github.com/SeongjinOliver/TIL/tree/master/Spring)
 
 ### WeeT_Dev_Diary
