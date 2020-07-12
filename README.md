@@ -20,6 +20,7 @@ Today I Learned. Daily commit.
 ### DataBase(Oracle)
 
 - [Oracle](https://github.com/SeongjinOliver/TIL/tree/master/DataBase(Oracle))
+- [MySQL](https://github.com/SeongjinOliver/TIL/tree/master/DataBase/MySQL)
 
 ### DeepLearning
 
@@ -38,6 +39,7 @@ Today I Learned. Daily commit.
 ### Java
 
 - [Java](https://github.com/SeongjinOliver/TIL/tree/master/JAVA)
+- [ObjectOrientedProgramming](https://github.com/SeongjinOliver/TIL/tree/master/ObjectOrientedProgramming)
 
 ### JDBC
 
@@ -73,12 +75,15 @@ Today I Learned. Daily commit.
 - [SVG](https://github.com/SeongjinOliver/TIL/tree/master/Web/SVG)
 - [Servlet](https://github.com/SeongjinOliver/TIL/tree/master/Web/Servlet)
 - [SpringFW](https://github.com/SeongjinOliver/TIL/tree/master/Web/SpringFW)
+- [Django](https://github.com/SeongjinOliver/TIL/tree/master/Django)
 
 ### Spring
 
 - [Spring](https://github.com/SeongjinOliver/TIL/tree/master/Spring)
 
-### WeeT_Dev_Diary
+### Project
 
 - [WeeT-project](https://github.com/SeongjinOliver/TIL/tree/master/wee-T_ProjectDevelopmentDairy)
+- [Youtube_sns](https://github.com/SeongjinOliver/TIL/tree/master/Youtube_sns)
+- [편마김편복](https://github.com/SeongjinOliver/TIL/tree/master/watcheap)
 
