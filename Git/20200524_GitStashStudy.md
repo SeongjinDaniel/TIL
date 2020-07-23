@@ -62,8 +62,8 @@ $ git stash list
 
 
 3. stash 적용하기(했던 작업을 다시 가져오기)
-  git stash apply
-  위의 명령어를 통해 했던 작업을 다시 가져온다.
+    git stash apply
+    위의 명령어를 통해 했던 작업을 다시 가져온다.
 
   ```
   // 가장 최근의 stash를 가져와 적용한다.
@@ -89,8 +89,8 @@ $ git stash list
     
 
 4. stash 제거하기
-  `git stash drop`
-  apply 옵션은 단순히 stash를 적용하는 것으로, 해당 stash는 스택에 여전히 남아있다. 스택에 남아 있는 stash는 위의 명령어을 사용하여 제거할 수 있다.
+    `git stash drop`
+    apply 옵션은 단순히 stash를 적용하는 것으로, 해당 stash는 스택에 여전히 남아있다. 스택에 남아 있는 stash는 위의 명령어을 사용하여 제거할 수 있다.
 
   ````
   // 가장 최근의 stash를 제거한다.
@@ -126,3 +126,37 @@ $ git stash-unapply
 
 
 copy right) https://gmlwjd9405.github.io/2018/05/18/git-stash.html
+
+
+
+---
+
+
+
+`git stash save`
+
+- 현재 작업을 저장해두고 branch를 head로 돌린다.(git reset –-hard)
+
+`git stash list`
+
+- 저장되어 있는 stash들 보기
+
+`git stash pop`
+
+- stash들은 stack에 저장된다. 따라서 가장 최근에 save한 stash가 현재 branch에 적용된다.
+
+`git stash apply`
+
+- git stash pop 과 비슷한 명령어지만 stash list에서 삭제하지 않는다는 점이 다르다.
+
+`git stash drop`
+
+- 필요 없는 stash를 삭제
+
+`git stash clear`
+
+- 전체 stash list를 삭제
+
+
+
+copy right) https://wit.nts-corp.com/2014/03/25/1153
