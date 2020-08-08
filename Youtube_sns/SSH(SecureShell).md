@@ -13,4 +13,5 @@ SSH란 Secure Shell Protocol, 즉 네트워크 프로토콜 중 하나로 컴퓨
 ### 참고
 
 - https://baked-corn.tistory.com/52
-- 
+- https://www.youtube.com/watch?v=jUyrwaCct44
+- https://www.youtube.com/watch?v=qkGaUqlH47s
