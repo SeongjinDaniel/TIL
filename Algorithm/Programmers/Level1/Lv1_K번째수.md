@@ -1,10 +1,14 @@
 # Lv1_K번째수
 
-### 문제 [K번째수](https://programmers.co.kr/learn/courses/30/lessons/42748)
 
 
+### Question
 
-#### Solution
+- ### [K번째수](https://programmers.co.kr/learn/courses/30/lessons/42748)
+
+  
+
+#### Mine
 
 ```java
 def solution(array, commands):

@@ -2,13 +2,13 @@
 
 
 
-#### 문제
+#### Question
 
 - [Lv1_다른 사람의 풀이](https://programmers.co.kr/learn/courses/30/lessons/12916)
 
 
 
-#### Solution
+#### Mine
 
 ```java
 class Solution {
@@ -34,7 +34,7 @@ class Solution {
 
 
 
-#### Other Solution
+#### etc
 
 ```java
 class Solution {

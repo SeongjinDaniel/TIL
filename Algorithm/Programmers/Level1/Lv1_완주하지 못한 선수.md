@@ -1,8 +1,8 @@
 # 완주하지 못한 선수
 
-- 링크
+#### Question
 
-  [완주하지 못한 선수](https://programmers.co.kr/learn/courses/30/lessons/42576)
+- [완주하지 못한 선수](https://programmers.co.kr/learn/courses/30/lessons/42576)
 
 해시로 풀라고 되어있던 문제 !! O(n2)이라서 성능 테스트 실패
 

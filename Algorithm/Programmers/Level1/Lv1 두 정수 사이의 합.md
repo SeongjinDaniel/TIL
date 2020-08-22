@@ -2,13 +2,13 @@
 
 
 
-#### 문제
+#### Question
 
 - [Lv1 두 정수 사이의 합](https://programmers.co.kr/learn/courses/30/lessons/12912)
 
 
 
-#### Solution
+#### Mine
 
 ```java
 class Solution {
@@ -41,7 +41,7 @@ class Solution {
 
 
 
-#### 개선된 Solution
+#### etc
 
 ```java
 class Solution {
@@ -70,7 +70,7 @@ class Solution {
 
 
 
-#### Another Solution
+#### etc
 
 ```java
 class Solution {

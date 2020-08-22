@@ -1,10 +1,12 @@
 # Lv1_모의고사
 
-### 문제 [모의고사](https://programmers.co.kr/learn/courses/30/lessons/42840#)
+### 문제
+
+- [모의고사](https://programmers.co.kr/learn/courses/30/lessons/42840#)
 
 
 
-#### Solution
+#### Mine
 
 ```java
 import java.util.*;

@@ -2,13 +2,13 @@
 
 
 
-#### 문제
+#### Question
 
 - [Lv1_같은 숫자는 싫어](https://programmers.co.kr/learn/courses/30/lessons/12906)
 
 
 
-#### Solution
+#### Mine
 
 ```java
 import java.util.*;

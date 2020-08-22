@@ -1,10 +1,12 @@
 # Lv1_체육복
 
-[문제 Lv1_체육복](https://programmers.co.kr/learn/courses/30/lessons/42862)
+#### Question
+
+- [Lv1_체육복](https://programmers.co.kr/learn/courses/30/lessons/42862)
 
 
 
-#### Solution
+#### Mine
 
 ```java
 class Solution {

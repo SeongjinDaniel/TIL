@@ -2,13 +2,13 @@
 
 
 
-#### 문제 
+#### Question
 
-- Lv1_나누어 떨어지는 숫자 배열
+- [Lv1_나누어 떨어지는 숫자 배열](https://programmers.co.kr/learn/courses/30/lessons/12910)
 
 
 
-#### Solution
+#### Mine
 
 ```java
 import java.util.*;
@@ -45,7 +45,7 @@ class Solution {
 
 
 
-#### 참고해야할 코드
+#### etc
 
 ```java
 public int[] divisible(int[] array, int divisor) {

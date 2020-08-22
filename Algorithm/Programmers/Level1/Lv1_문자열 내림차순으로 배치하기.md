@@ -2,13 +2,13 @@
 
 
 
-#### 문제
+#### Question
 
 - [Lv1_문자열 내림차순으로 배치하기](https://programmers.co.kr/learn/courses/30/lessons/12917)
 
 
 
-#### Solution
+#### mine
 
 ```java
 import java.util.*;
@@ -34,7 +34,7 @@ class Solution {
 
 
 
-#### Other Solution
+#### etc
 
 ```java
 import java.util.Arrays;
@@ -60,7 +60,7 @@ string 객체에 .toCharArray() 함수를 통해 배열로 저장해서 StringBu
 
 
 
-#### Another Solution
+#### etc
 
 ```java
 import java.util.stream.Stream;
