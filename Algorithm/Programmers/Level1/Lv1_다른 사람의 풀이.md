@@ -4,7 +4,7 @@
 
 #### Question
 
-- [Lv1_다른 사람의 풀이](https://programmers.co.kr/learn/courses/30/lessons/12916)
+- [Lv1_다른 사람의 풀이](https://programmers.co.kr/learn/courses/30/lessons/12918)
 
 
 
@@ -12,21 +12,21 @@
 
 ```java
 class Solution {
-    boolean solution(String s) {
+    public boolean solution(String s) {
         boolean answer = true;
-        int pCnt = 0;
-        int yCnt = 0;
+        char temp;
         
-        for(int i = 0 ; i < s.length(); i++) {
-            if(s.charAt(i) == 'p' || s.charAt(i) == 'P') {
-                pCnt++;
-            } else if(s.charAt(i) == 'y' || s.charAt(i) == 'Y') {
-                yCnt++;
+        if(s.length() != 4 && s.length() != 6) {
+            return false;
+        }
+        for(int i = 0; i < s.length(); i ++) {
+            temp = s.charAt(i);
+            if(!(temp >= '0' && temp <= '9')) {
+                answer = false;
+                break;
             }
         }
         
-        if(pCnt != yCnt) answer = false;
-
         return answer;
     }
 }
@@ -34,18 +34,58 @@ class Solution {
 
 
 
-#### etc
+#### others
 
 ```java
+import java.util.*;
+ 
 class Solution {
-    boolean solution(String s) {
-        s = s.toUpperCase();
-
-        return s.chars().filter( e -> 'P'== e).count() == s.chars().filter( e -> 'Y'== e).count();
-    }
+  public boolean solution(String s) {
+        if (s.length() == 4 || s.length() == 6) return s.matches("(^[0-9]*$)");
+        return false;
+  }
 }
 ```
 
 
 
-람다 and s.toUpperCase() 사용!!
+#### others
+
+```java
+class Solution {
+  public boolean solution(String s) {
+    return (s.length() != 4 && s.length() != 6) || (s.split("[0-9]").length > 0) ? false:true;
+  }
+}
+```
+
+
+
+#### others
+
+```java
+class Solution {
+  public boolean solution(String s) {
+      boolean answer = false;
+      if(s.length() == 4 || s.length() == 6 ){
+        int i;       
+        for(i=0;i<s.length();i++){
+           if(!Character.isDigit(s.charAt(i))){
+               break;
+           }
+         }
+        if(i==s.length()){
+            answer =true;
+        }
+      }
+      return answer;
+  }
+}
+
+```
+
+
+
+#### 참고
+
+- [정규표현식](https://ko.wikipedia.org/wiki/%EC%A0%95%EA%B7%9C_%ED%91%9C%ED%98%84%EC%8B%9D)
