@@ -1,10 +1,10 @@
-# Lv1_다른 사람의 풀이
+# Lv1_문자열 다루기 기본
 
 
 
 #### Question
 
-- [Lv1_다른 사람의 풀이](https://programmers.co.kr/learn/courses/30/lessons/12918)
+- [Lv1_문자열 다루기 기본](https://programmers.co.kr/learn/courses/30/lessons/12918)
 
 
 
