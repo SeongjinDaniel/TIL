@@ -121,6 +121,20 @@ catch(SQLException e) {
 
 
 
+-----
+
+---
+
+자바에서 예외(Exception)은 크게 checked 예외와 unchecked 예외로 나뉘어진다. **checked** 예외는 코드에서 명시적으로 try-catch-finally 예외 처리를 해야하는 것을 의미하며, **unchecked** 예외는 그럴 필요가 없는 것을 의미한다. checked 예외에서 try-catch로 예외를 처리하지 않는 경우에는 메소드에 throws 절을 추가해야 한다.
+
+
+
+**자바에서 checked 예외는 java.lang.Exception 을 상속받는 형태이며,** unchecked 예외는 java.lang.RuntimeException을 상속받는 예외이다. checked 예외이든 unchecked 예외이든 두가지 모두 동일한 기능을 수행한다. 따라서, 어느 것이 더 낫다라고 말할 수는 없다. 하지만, 예외 발생시 어떠한 로직을 추가하느냐에 따라서 그 비용적인 측면은 다양할 수 있다.
+
+
+
+
+
 #### 참고 
 
 - https://meetup.toast.com/posts/47
@@ -131,3 +145,4 @@ catch(SQLException e) {
 - [Exception Handling in Spring MVC](https://baekjungho.github.io/spring-exceptionhandler/)
 - [Exception 처리, 어떻게 하는게 좋을까?](https://umbum.dev/896)
 - [Java에서 Checked Exception은 언제 써야 하는가?](https://blog.benelog.net/1901121)
+- [자바의 런타임 계열 예외와 checked 예외](https://hamait.tistory.com/213)
