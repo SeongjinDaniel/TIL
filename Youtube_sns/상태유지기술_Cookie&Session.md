@@ -167,3 +167,5 @@ Spring MVC의 어노테이션을 사용하는 방식입니다.
 - [부스트코스\] 쿠키와 세션 / Spring MVC Cookie & Session 사용법](http://blog.naver.com/njw1204/221641159167)
 
 - [[Spring Boot] Session과 Cache의 기본 저장소 !](https://sabarada.tistory.com/22)
+
+- [Spring MVC / HttpSession, @SessionAttribute, @SessionAttributes](https://ecsimsw.tistory.com/entry/Spring-MVC-HttpSession-SessionAttribute-SessionAttributes)
