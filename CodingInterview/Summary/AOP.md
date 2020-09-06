@@ -16,6 +16,10 @@ AOP는 OOP만으로는 모듈화하기 힘든 부가기능을 효과적으로 �
 
 
 
+`부가적인 기능?`
+
+
+
 #### 코드 분리
 
 - 메소드 분리 
@@ -56,3 +60,14 @@ AOP는 OOP만으로는 모듈화하기 힘든 부가기능을 효과적으로 �
 
 
 
+
+
+#### 고립된 단위 테스트
+
+
+
+
+
+#### 참고
+
+- [proxy pattern](https://refactoring.guru/design-patterns/proxy)
