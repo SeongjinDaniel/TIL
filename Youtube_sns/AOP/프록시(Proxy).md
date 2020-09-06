@@ -479,3 +479,4 @@ public class TxProxyFactoryBean implements FactoryBean<Object> {
 - [토비의 스프링 | 6장. AOP2 - 다이내믹 프록시](https://haviyj.tistory.com/28)
 - [Dynamic Proxy (동적 프록시)](https://yang1650.tistory.com/146)
 - [AOP Proxy](https://yang1650.tistory.com/145?category=616507)
+- [[Design_pattern] 프록시 패턴(Proxy Pattern)](https://limkydev.tistory.com/79)
