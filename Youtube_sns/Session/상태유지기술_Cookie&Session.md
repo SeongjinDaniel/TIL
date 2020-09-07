@@ -160,7 +160,41 @@ Spring MVC의 어노테이션을 사용하는 방식입니다.
 
 
 
+---
 
+
+
+### 쿠키의 종류
+
+쿠키는 크게 퍼스트 파티 (First-Party)와 서드 파티 (Third-Party)의 두종류로 나눌 수 있다.
+
+
+
+#### 퍼스트 파티 (First-Party) 쿠키
+
+퍼스트 파티 쿠키는 사용자가 방문한 웹사이트에서 직접 발행하는 쿠키 파일을 말한다. 예를 들어 사용자가 [naver.com](http://naver.com/)으로 접속했을 때 [naver.com](http://naver.com/)에서 로그인 기록에 관한 쿠키를 발행하는 건 퍼스트 파티 쿠키에 해당된다. 네이버에 "로그인 기억" 상태로 로그인하고, 창을 닫았다가 다시 네이버에 접속하면 로그인이 유지된 상태인 것을 알 수 있는데, 쿠키 정보를 이용한 것.
+
+접속한 도메인과 쿠키를 발행한 도메인이 동일 할 경우가 퍼스트 파티 쿠키이다. 서브 도메인이 발행한 쿠키도 퍼스트 쿠키로 간주된다. [test.com](http://test.com/) 사이트에서 [sub1.test.com](http://sub1.test.com/)이 발행한 쿠키는 퍼스트 파티 쿠키로 간주된다.
+
+#### 서드 파티 (Third-Party) 쿠키
+
+서드 파티 쿠키는 사용자가 방문한 웹사이트가 아닌, 다른 웹사이트 (제 3자)에서 발행한 쿠키 파일을 말한다. 보통 광고 서버에서 발행하는 쿠키가 여기에 해당된다. 간단하게 요약하면 접속한 사이트 도메인에서 발행되지 않은 쿠키는 모두 서드 파티 쿠키이다. (서브 도메인은 예외)
+
+예를 들어 [example.com](http://example.com/)이라는 사이트에 사용자가 접속을 했는데, 사이트 페이지 속에 [adserver.com](http://adserver.com/)의 스크립트가 심어져 있는 경우가 있다. 이 때 [adserver.com](http://adserver.com/)은 해당 사용자가 [example.com](http://example.com/)이라는 사이트를 방문했다는 정보를 담은 쿠키를 발행한다.
+
+
+
+그리고 사용자가 [test.com](http://test.com/)이라는 사이트에 방문했을 때, 마찬가지로 사이트 페이지 속에 [adserver.com](http://adserver.com/)의 스크립트가 심어져 있는 경우, [adserver.com](http://adserver.com/)은 해당 사용자가 [example.com](http://example.com/)이라는 사이트의 사용 내역에 대한 정보를 쿠키로 부터 빼올 수 있기 때문에, 그 정보를 활용하여 광고를 보여줄 수 있다.
+
+[adserver.com](http://adserver.com/)의 스크립트가 삽입 된 사이트가 많을 수록, [adserver.com](http://adserver.com/)은 각 개인의 온라인상의 행동을 추적하기가 쉬워지고, 그 행동 데이터를 분석하여 활용할 수 있는 영역이 넓어지게 된다.
+
+
+
+요즘은 개인정보 보호를 이유로 이 서드 파티 쿠키를 사용하지 않거나 막아버리는 것이 주된 흐름이다. 브라우저 자체에서 트레킹을 막는 설정을 할 수 있다던지, 애드 블록 같은 애드온을 사용한다던지, 백신 프로그램으로 막아버린다던지, 쿠키파일을 지워버린다던지 하며 서드 파티 쿠키는 점점 외면 받고 있다.
+
+일반 사용자 입장에서는 서드파티 쿠키는 지워버리거나 막아버려도 사실 불편한 것이 없다. 서드파티 쿠키는 대부분 온라인 광고에 이용되기 때문에, 오히려 사용자 입장에선 보기 싫은 광고를 막을 수 있어서 편의성이 좋아질 수가 있다.
+
+반면 퍼스트 파티 쿠키는 막아버리면 각 사이트 측에서는 사용자를 식별하기가 매우 어려워지기 때문에, 그만큼 서비스를 제공하기가 힘들어지고, 사용자 자체도 매번 로그인을 해야하는 등 번거로움이 따르기 때문에, 퍼스트 쿠키를 막거나 삭제하는 경우는 드물다.
 
 #### 참고
 
@@ -169,3 +203,5 @@ Spring MVC의 어노테이션을 사용하는 방식입니다.
 - [[Spring Boot] Session과 Cache의 기본 저장소 !](https://sabarada.tistory.com/22)
 
 - [Spring MVC / HttpSession, @SessionAttribute, @SessionAttributes](https://ecsimsw.tistory.com/entry/Spring-MVC-HttpSession-SessionAttribute-SessionAttributes)
+
+- [쿠키(Cookie)에 대해 알아보자](https://sy34.net/what-is-cookie/)
