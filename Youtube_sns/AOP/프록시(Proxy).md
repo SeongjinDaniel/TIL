@@ -43,7 +43,7 @@
 
 ### 다이내믹 프록시
 
-프록시를 만드는 것은 상당히 번거롭다. 하지만 자바에는 `java.lang.reflect` 패키지 안에 프록시를 손쉽게 만들게 지원해주는 클래스들이 있다. 마치 목프레임워크와 비슷하다. 이를 통해 몇 가지 API를 이용해 프록시처럼 동작하는 오브젝트를 다이내믹하게 생성해 보자. 프록시는 다음의 두 가지 기능으로 구성된다.
+프록시를 만드는 것은 상당히 번거롭다. 하지만 자바에는 `java.lang.reflect` 패키지 안에 프록시를 손쉽게 만들게 지원해주는 클래스들이 있다. 마치 목프레임워크와 비슷하다. 
 
 - 타깃과 같은 메소드를 구현하고 있다가 메소드가 호출되면 타깃 오브젝트로 위임한다.
 - 지정된 요청에 대해서는 부가기능을 수행한다.
@@ -100,6 +100,8 @@ Method langthMethod = String.class.getMethod("length"); //length 메소드를 �
 int length = lengthMethod.invoke(name) //int length = name.length();
 ```
 
+---
+
 
 
 #### 프록시 클래스 예제
@@ -141,9 +143,9 @@ public void simpleProxy() {
 
 ![img](https://t1.daumcdn.net/cfile/tistory/99B197505C4266501F)
 
-- **다이내믹 프록시**는 프록시 팩토리에 의해 런타임 시 다이내믹하게 만들어지는 오브젝트이다.
-- 클라이언트는 다이내믹 프록시를 통해 타깃의 인터페이스를 사용할 수 있다.
-- 부가기능은 따로 InvocationHandler를 구현한 오브젝트에 담으며 다음과 같이 하나의 메소드를 갖고 있다.
+- **다이내믹 프록시는 프록시 팩토리에 의해 런타임 시 다이내믹하게 만들어지는 오브젝트이다.**
+- **클라이언트는 다이내믹 프록시를 통해 타깃의 인터페이스를 사용할 수 있다.**
+- **부가기능은 따로 InvocationHandler를 구현한 오브젝트에 담으며 다음과 같이 하나의 메소드를 갖고 있다.**
 
 ```java
 public Object invoke(Object proxy, Method method, Object[] args)
