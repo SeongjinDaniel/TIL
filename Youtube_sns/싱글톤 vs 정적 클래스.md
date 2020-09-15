@@ -1,5 +1,11 @@
 #  싱글톤 vs 정적 클래스
 
+
+
+![image](https://user-images.githubusercontent.com/55625864/92618280-2635e200-f2fb-11ea-8cb3-521571ab6c84.png)
+
+
+
 ![image](https://user-images.githubusercontent.com/55625864/92617843-b45d9880-f2fa-11ea-994b-80b37ebe0e6a.png)
 
 
@@ -33,4 +39,4 @@
 - [Difference between Singleton Pattern vs Static Class in Java](https://javarevisited.blogspot.com/2013/03/difference-between-singleton-pattern-vs-static-class-java.html)
 - [Singleton pattern(싱글톤) vs. static](https://m.blog.naver.com/PostView.nhn?blogId=satang50&logNo=195684802&proxyReferer=https:%2F%2Fwww.google.com%2F)
 
-- 
+- [Singleton vs Static class](https://unityindepth.tistory.com/72)
