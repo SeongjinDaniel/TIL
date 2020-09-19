@@ -133,6 +133,29 @@ catch(SQLException e) {
 
 
 
+**IllegalArgumentException**: 메소드의 전달인자 값이 부적절한 경우 발생.
+-> Illegal(부적절한) Argument(아규먼트) Exception(예외)
+참고 링크: http://bufferoverflow.tistory.com/entry/파라미터-parameter-아규먼트-argument
+
+**IllegalStateException**: 객체의 상태가 메소드 호출에는 부적합한 경우 발생.
+-> Illegal(부적절한) State(상태) Exception(예외상황)
+ex> java.lang.IllegalStateException: getOutputStream() has already been called for this response
+-> 해당 response는 getOutputStream() 메소드를 호출하기 위한 준비가 되어있지 않습니다.
+
+**NullPointerException**: null 이 금지된 상황에서 전달인자 값이 null인 경우 발생한다.
+-> Null(null) Pointer(포인터) Exception(예외상황)
+
+**IndexOutOfBoundsException**: index 값이 범위를 벗어난 경우 발생한다.
+-> Index(인덱스) OutOfBounds(범위이탈) Exception(예외상황)
+
+**ConcurrentModificationException**: 금지된 곳에서 객체를 동시에 수정(concurrent modification)하는 것이 감지된 경우 발생한다.
+-> Concurrent(동시) Modification(수정) Exception(예외상황)
+참고 링크 : http://wonsama.tistory.com/194
+
+**UnsupportedOperationException**: 객체가 메소드를 지원하지 않는 경우 발생한다.
+-> Unsupported(지원하지 않는) Operation(객체) Exception(예외상황)
+참고 링크: http://younghoe.info/482
+
 
 
 #### 참고 
@@ -146,3 +169,5 @@ catch(SQLException e) {
 - [Exception 처리, 어떻게 하는게 좋을까?](https://umbum.dev/896)
 - [Java에서 Checked Exception은 언제 써야 하는가?](https://blog.benelog.net/1901121)
 - [자바의 런타임 계열 예외와 checked 예외](https://hamait.tistory.com/213)
+- [Java Exception의 종류](https://codepedia.tistory.com/entry/JavaException)
+- [[Java\] Error(에러)와 Exception(예외) 그리고 자주 보이는 Exception](https://java119.tistory.com/44)
