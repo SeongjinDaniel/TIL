@@ -126,4 +126,3 @@ Session의 timeout은 DD(Deployment Descriptor : web.xml)에서 설정하며, �
 
 - [JAVA HttpSession (javax.Servlet.Http)](https://m.blog.naver.com/PostView.nhn?blogId=rex4314&logNo=206376623&proxyReferer=https:%2F%2Fwww.google.com%2F)
 - [세션(Session) 이용하는 방법](https://enai.tistory.com/29)
-- 
