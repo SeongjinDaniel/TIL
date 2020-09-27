@@ -68,6 +68,25 @@ StringBuilder는 동기화를 지원하지 않기 때문에 멀티 쓰레드 환
 
 StringBuffer와 StringBuilder의 **차이점은 동기화 지원의 유무**이고 동기화를 고려하지 않는 환경에서 StringBuilder가 성능이 더 좋고, 동기화가 필요한 멀티쓰레드 환경에서는 StringBuffer를 사용하는 것이 유리합니다.
 
+---
+
+```
+StringBuilder는 변경가능한 문자열이지만 동기화(synchronized)가 적용되지 않음. 
+하지만 StringBuffer는 thread-safe라는 말에서처럼 변경가능하지만 multiple thread환경에서 안전한 클래스. StringBuffer는 multi thread환경에서 다른 값을 변경하지 못하도록 하므로 web이나 소켓환경과 같이 비동기로 동작하는 경우가 많을 때는 StringBuffer를 사용하는 것이 안전함.
+그러나 thread-safe는 thread-safe 속성으로 인해 StringBuffer 성능이 저하되는 단점도 있음.
+따라서 StringBuilder는 각 클래스의 동일한 메서드를 호출 할 때 StringBuffer보다 빠름.
+
+String
+단순히 문자열을 참조하거나 탐색 및 검색이 잦을 때 Good.
+
+StringBuilder
+런타임 때, 반복적인 문자열 추가 연산이 많을 때 Good.
+단일 스레드 환경이라면 StringBuffer 보다 성능이 좋을 수 있음.
+
+StringBuffer
+ 멀티 스레드 환경에서 반복적인 문자 추가 연산이 많을 때 Good.
+```
+
 
 
 ## 추가적인 내용
@@ -80,6 +99,8 @@ StringBuffer와 StringBuilder의 **차이점은 동기화 지원의 유무**이�
 - String클래스가 컴파일러 분석 단계에서 최적화될 가능성이 있기때문에 간혹 성능이 잘나오는 경우도 있음. 문자열 연산이 많지 않은 경우는 그냥 사용해도 무방.
 - 런타임에서 문자열 조합이 많아질 경우, String 클래스는 여전히 성능이 아주 안좋기 때문에!
 - , .concat()을 사용하는 사고(?)를 치면 안된다. 특히 현업에서...
+
+
 
 
 

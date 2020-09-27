@@ -17,3 +17,5 @@
 #### 참고
 
 - Memcached와 Redis - 강대명 지음 [한빛미디어]
+- [확장성 있는 웹 아키텍처와 분산 시스템](https://d2.naver.com/helloworld/206816)
+- 
