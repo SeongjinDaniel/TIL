@@ -4,6 +4,12 @@
 
 #### Question
 
+- [평균구하기](https://programmers.co.kr/learn/courses/30/lessons/12944)
+
+
+
+#### Mine
+
 ```java
 class Solution {
     public double solution(int[] arr) {
@@ -20,7 +26,7 @@ class Solution {
 
 
 
-#### Mine
+#### Others
 
 ```java
 import java.util.Arrays;
@@ -39,4 +45,4 @@ public class GetMean {
 }
 ```
 
-average()는 평균을 구하는 메소드고, orElse(double other)은 average의 값이 있으면 average를 리턴하고 값이 없으면other을 리턴하는 메소드라고 하네요(구글번역으로 한거라 정확하지는...)
+average()는 평균을 구하는 메소드고, orElse(double other)은 average의 값이 있으면 average를 리턴하고 값이 없으면other을 리턴하는 메소드라고 하네요
