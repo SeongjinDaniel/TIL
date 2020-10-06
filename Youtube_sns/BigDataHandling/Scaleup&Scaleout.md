@@ -70,13 +70,16 @@ Scale out은 수평적 확장으로써 여러대의 서버를 확장하여 관�
 
 
 
-여기까지 Scale up과 Scale out에 대해서 긴 여정에 대한 글을 보았습니다.
+위 정합성 문제를 위해서는 Load balancing, Sticky session, Session clustering, Session Storage에 대해서도 알아야합니다.
 
 
 
 #### 결론
 
-
+1. legacy인 scale up을 무조건 지양하는 것이 아니라 scale out과 비교하여 서로의 장점을 잘 사용할 수 있어야 합니다.
+2. scale up은 수직적 확장이고, scale out은 수평적 확장입니다.
+3. scale up은 OLTP을 요구할 때 사용되고 scale out은 OLAP을 요구할 때 사용됩니다.
+4. 대규모 트래픽을 예상하는 SNS 어플리케이션에는 scale out이 적합하다.
 
 
 
@@ -84,4 +87,3 @@ Scale out은 수평적 확장으로써 여러대의 서버를 확장하여 관�
 
 - Memcached와 Redis - 강대명 지음 [한빛미디어]
 - [확장성 있는 웹 아키텍처와 분산 시스템](https://d2.naver.com/helloworld/206816)
-- 
