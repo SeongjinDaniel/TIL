@@ -70,7 +70,7 @@ Scale out은 수평적 확장으로써 여러대의 서버를 확장하여 관�
 
 
 
-위 정합성 문제를 위해서는 Load balancing, Sticky session, Session clustering, Session Storage에 대해서도 알아야합니다.
+위 정합성 문제를 해결하기 위해서는 Sticky session, Session clustering, Session Storage에 대해서도 알아야합니다.
 
 
 
