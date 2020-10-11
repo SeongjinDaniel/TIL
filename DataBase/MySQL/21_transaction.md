@@ -17,6 +17,8 @@
 
 ![image](https://user-images.githubusercontent.com/55625864/87310641-33339080-c559-11ea-9f00-f0dbe444fbf0.png)
 
+그리고 종료했다가 재접속!!
+
 
 
 #### Commit
@@ -39,6 +41,71 @@
 
 - truncate를 사용하면 지정된 테이블의 모든 로우를 삭제한다.
 - delete문과 다른점은 delete문은 데이터베이스에 바로 반영하지 않으므로 rollback이 가능하지만 **truncate는 바로 데이터베이스에 반영하므로 rollback이 불가능하다.**
+
+
+
+```mysql
+delete from test_table2;
+select * from test_table2;
+
+rollback;
+select * from test_table2; -- 복원된거 확인 가능
+
+delete from test_table2;
+select * from test_table2;
+rollback;
+select * from test_table2;
+
+delete from test_table2;
+commit;
+select * from test_table2;
+rollback;
+select * from test_table2; -- 복원 안됨 커밋 했기 때문에
+-- -------------------------------------------------------------
+
+insert into test_table2 (data1, data2, data3) values (100, '문자열1', 11.11);
+insert into test_table2 (data1, data2, data3) values (200, '문자열2', 22.22);
+insert into test_table2 (data1, data2, data3) values (300, '문자열3', 33.33);
+
+-- ------------------------------------------------------------
+-- 이렇게 하면 rollback시 commit 바로 이후의 데이터가 저장된다.
+commit;
+select * from test_table2;
+
+update test_table2 set data2='새로운문자열', data3=44.44 where data1=100;
+select * from test_table2;
+delete from test_table2 where dat1=100;
+select * from test_table2;
+rollback;
+select * from test_table2;
+
+-- savepoint 까지 롤백 됌
+commit;
+select * from test_table2;
+
+update test_table2 set data2='새로운문자열', data3=44.44 where data1=100;
+savepoint aa;
+select * from test_table2;
+delete from test_table2 where data1=100;
+select * from test_table2;
+rollback to aa;
+select * from test_table2;
+
+-- 
+commit;
+
+select * from test_table2;
+
+delete from test_table2;
+select * from test_table2;
+rollback;
+select * from test_table2;
+
+truncate test_table2;
+rollback;
+select * from test_table2; -- rollback 불가능
+
+```
 
 
 
