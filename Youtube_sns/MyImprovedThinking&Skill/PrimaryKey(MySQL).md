@@ -141,6 +141,8 @@ primary key가 매번 table당 하나만 사용해야 한다는 문구는 보았
 
 앞으로는 primary key는 한테이블에 하나만 사용할 예정이고 unique도 섞어서 사용할 예정이다. 다음에는 unique가 2개가 되면 이런 현상이 나오는게 아닌가 생각해 볼 문제이다.
 
+foreign key 제약 조건을 설정할 때 참조되는 테이블의 필드는 반드시 unique나 primary key 제약 조건이 설정되어 있어야 한다.
+
 외래 키 관계의 경우 관계를 생성하는 상위 테이블 열은 `unique`또는 `primary`이어야하며 데이터 유형도 동일해야한다.
 
 
@@ -150,3 +152,4 @@ primary key가 매번 table당 하나만 사용해야 한다는 문구는 보았
 - https://stackoverflow.com/questions/52470537/failed-to-add-the-foreign-key-constraint-missing-index-for-constraint-error-cod
 - 생활코딩 Index(MySQL)
 - https://stackoverflow.com/questions/43511183/mysql-error-1822-failed-to-add-foreign-key-constraint-missing-index-for-contra
+- http://www.tcpschool.com/mysql/mysql_constraint_foreignKey
