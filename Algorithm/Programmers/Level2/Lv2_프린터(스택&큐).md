@@ -4,7 +4,7 @@
 
 #### Question
 
-- Lv2_프린터(스택/큐)
+- [Lv2_프린터(스택/큐)](https://programmers.co.kr/learn/courses/30/lessons/42587)
 
 
 
