@@ -37,7 +37,7 @@ public class ImmutableCredentials {
 
 보시다시피 *@ConstructorBinding을* 사용할 때 바인딩하려는 모든 매개 변수를 생성자에 제공해야합니다.
 
-*ImmutableCredentials의* 모든 필드  는 최종적입니다. 또한 setter 메서드가 없습니다.
+*ImmutableCredentials의* 모든 필드는 final입니다. 또한 setter 메서드가 없습니다.(@ConstructorBinding 어노테이션을 이용하면 final 필드에 값을 주입 -> immutable)
 
 또한 **생성자 바인딩을 사용하려면 *@EnableConfigurationProperties* 또는 *@ConfigurationPropertiesScan*****을 사용하여 구성 클래스를 명시 적으로 활성화해야** 한다는 점을 강조하는 것이 중요합니다 *.*
 
