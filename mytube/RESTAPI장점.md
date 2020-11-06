@@ -30,8 +30,18 @@ REST API의 몇 가지 주요 이점은 다음과 같습니다.
 
 
 
-#### 참고
+#### 참조
 
 - [REST API의 장점은 무엇입니까?](https://www.chakray.com/advantages-of-rest-api/)
 - [REST API의 장점 식별](https://openclassrooms.com/en/courses/6121936-build-your-web-projects-with-rest-apis/6268221-identify-the-advantages-of-a-rest-api)
 - [REST API: What is it, and what are its advantages in project development?](https://bbvaopen4u.com/en/actualidad/rest-api-what-it-and-what-are-its-advantages-project-development)
+
+
+
+---
+
+#### 참조2
+
+- https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
+- https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9
+- https://phauer.com/2015/restful-api-design-best-practices/
