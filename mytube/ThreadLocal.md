@@ -7,3 +7,6 @@ Thread Local 로 정의된 객체는 같은 Thread 라는 Scope 내에서 공유
 #### 참조
 
 - [Java 의 Thread Local 이란](https://jins-dev.tistory.com/entry/Java-의-Thread-Local-이란)
+
+- [[JAVA] ThreadLocal](https://velog.io/@skygl/ThreadLocal)
+
