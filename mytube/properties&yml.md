@@ -87,7 +87,7 @@ spring.profiles를 쓰면 development, local 환경을 분리할 수 있다.
 #### 참조
 
 - [Spring Property 관리](https://supawer0728.github.io/2018/03/11/Spring-Property/)
-
 - Spring boot 설정 파일 yaml 사용법 (설정 파일을 읽어서 bean으로 필요할 때 사용하는 방법)
 
-  
+- [SpringBoot Properties](https://kwonnam.pe.kr/wiki/springframework/springboot/properties) - profile include
+
