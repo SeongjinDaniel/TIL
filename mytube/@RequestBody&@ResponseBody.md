@@ -16,7 +16,7 @@
 
 **@RequestBody 어노테이션이란?**
 
-- HTTP 요청의 body 내용을 자바 객체로 매핑하는 역할을 합니다.
+- **HTTP 요청의 body 내용을 자바 객체로 매핑하는 역할을 합니다.**
 
 
 
@@ -32,7 +32,7 @@
 
 **@ResponseBody 어노테이션이란?**
 
-- 자바 객체를 HTTP 요청의 body 내용으로 매핑하는 역할을 합니다.
+- **자바 객체를 HTTP 요청의 body 내용으로 매핑하는 역할을 합니다.**
 
 
 
@@ -46,3 +46,5 @@
 
 - https://devyj.tistory.com/3
 - https://codelib.tistory.com/24
+
+- [@ReqeustBody와 @ResponseBody 언제 사용할까?](https://medium.com/webeveloper/reqeustbody%EC%99%80-responsebody-%EC%96%B8%EC%A0%9C-%EC%82%AC%EC%9A%A9%ED%95%A0%EA%B9%8C-2efcab364edb)
