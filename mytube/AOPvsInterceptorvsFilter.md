@@ -11,3 +11,5 @@
 #### 참고
 
 - https://goddaehee.tistory.com/154
+
+- [인터셉터(Interceptor)란? + 인터셉터를 이용한 로그인 처리](https://rongscodinghistory.tistory.com/2)
