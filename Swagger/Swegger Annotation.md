@@ -38,6 +38,28 @@
 
 
 
-#### @ApiResponses
+#### @ApiResponse
 
 - 작업의 가능한 응답을 설명합니다.
+- REST API 호출에서 가능한 성공 및 오류 코드를 설명하는 데 사용할 수 있습니다. 작업의 반환 유형을 설명하는 데 사용하거나 사용하지 않을 수 있지만 (일반적으로 성공적인 코드), 성공적인 응답은 [`ApiOperation`](https://docs.swagger.io/swagger-core/v1.5.0/apidocs/io/swagger/annotations/ApiOperation.html).
+- API가 이러한 응답에 대해 다른 응답 클래스를 사용하는 경우 여기에서 응답 클래스를 응답 코드와 연결하여 설명 할 수 있습니다. Swagger는 단일 응답 코드에 대해 여러 응답 유형을 허용하지 않습니다.
+- 이 주석은 직접 사용되지 않으며 Swagger에서 구문 분석하지 않습니다. 내에서 사용해야합니다 [`ApiResponses`](https://docs.swagger.io/swagger-core/v1.5.0/apidocs/io/swagger/annotations/ApiResponses.html).
+
+- https://docs.swagger.io/swagger-core/v1.5.0/apidocs/io/swagger/annotations/ApiResponse.html
+
+
+
+#### @ApiModel
+
+- Swagger 모델에 대한 추가 정보를 제공합니다.
+
+- 클래스는 작업의 유형으로 사용되므로 자동으로 검사되지만 모델의 구조를 조작 할 수 있습니다.
+- https://docs.swagger.io/swagger-core/v1.5.0/apidocs/io/swagger/annotations/ApiModel.html
+
+
+
+#### @ApiModelProperty
+
+- 모델 속성의 데이터를 추가하고 조작합니다.
+
+- https://docs.swagger.io/swagger-core/v1.5.0/apidocs/io/swagger/annotations/ApiModelProperty.html
