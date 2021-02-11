@@ -48,8 +48,9 @@
 
 
 
-## MFA(Multi Factor Authentication)
+### MFA(Multi Factor Authentication) - 다단계 인증
 
+- **2 개 이상의 증거**를 성공적으로 제시 한 후에 만 웹 사이트 또는 애플리케이션에 대한 **액세스 권한을 부여** 하는 [전자 인증](https://en.wikipedia.org/wiki/Electronic_authentication) 방법입니다.
 - 누군가가 사용자의 **계정정보를 취득했더라도 비인가된 접근을 막아줌**
 - **마스터 계정 / AWS IAM Users**에 적용 가능
 - 아래 서비스/콘솔과 **통합**되어 있음.
@@ -72,6 +73,10 @@
 | - 사용자<br />- 그룹<br />- Role | - Amazon S3 buckets(policy)<br />- Amazon Glacier vaults<br />- Amazon SNS topics<br />- Amazon SQS queues<br />- VPC Endpoints<br />- AWS key Management Service encryption keys |
 
 
+
+---
+
+#### 참고
 
 #### Amazon S3 Glacier이란 무엇입니까?
 
@@ -177,7 +182,15 @@ S3 Glacier 고객은 데이터를 수개월, 수년 혹은 수십년까지 비�
 9. **Auditing** - API 호출 로그를 얻기 위해 AWS CloudTrail 활성화
 10. **Root** - Root 계정의 사용을 줄이거나 없앰
 
+---
 
+#### 참고
+
+#### CloudTrail
+
+AWS CloudTrail은 AWS 계정의 거버넌스, 규정 준수, 운영 감사, 위험 감사를 지원하는 서비스입니다. CloudTrail을 사용하면 AWS 인프라에서 계정 활동과 관련된 작업을 기록하고 지속적으로 모니터링하며 보관할 수 있습니다. CloudTrail은 AWS Management Console, AWS SDK, 명령줄 도구 및 기타 AWS 서비스를 통해 수행된 작업을 비롯하여 AWS 계정 활동의 이벤트 기록을 제공합니다. 이러한 이벤트 기록을 통해 보안 분석, 리소스 변경 추적, 문제 해결을 간소화할 수 있습니다. 또한 CloudTrail을 사용하여 AWS 계정의 비정상적인 활동을 탐지할 수 있습니다. 이러한 기능을 통해 운영 분석과 문제 해결을 간소화할 수 있습니다.
+
+---
 
 #### 1. 개별 사용자 생성
 
