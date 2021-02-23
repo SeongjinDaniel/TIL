@@ -48,3 +48,5 @@ AWS Lambda는 서버를 프로비저닝하거나 관리하지 않고도 코드�
 - [AWS 람다(AWS Lambda)란?](https://www.44bits.io/ko/keyword/aws-lambda)
 
 - [[AWS] 람다(Lambda)란?](https://brownbears.tistory.com/428)
+
+![image-20210221225327626](C:\Users\oliver\AppData\Roaming\Typora\typora-user-images\image-20210221225327626.png)
