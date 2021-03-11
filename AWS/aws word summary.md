@@ -24,6 +24,8 @@
 
   AWS Elastic Beanstalk를 사용하면 각 환경이 한 번에 하나의 애플리케이션 버전 만 실행하는 환경으로 애플리케이션을 실행하는 모든 리소스를 관리 할 수 있습니다. 환경이 생성 될 때 Elastic Beanstalk는 애플리케이션 버전을 실행하는 데 필요한 모든 리소스를 프로비저닝합니다. Beanstalk에서 처리하므로 서버 프로비저닝, 구성 및 배포에 대해 걱정할 필요가 없습니다.
 
+  AWS Elastic Beanstalk는 Apache와 같은 친숙한 서버에서 Java, .NET, PHP, Node.js, Python, Ruby, Go 및 Docker로 개발 된 웹 애플리케이션 및 서비스를 배포하고 확장하기위한 사용하기 쉬운 서비스입니다. , Nginx, Passenger 및 IIS. 코드를 업로드하기 만하면 Elastic Beanstalk가 용량 프로비저닝,로드 밸런싱, 자동 확장에서 애플리케이션 상태 모니터링에 이르기까지 배포를 자동으로 처리합니다. 동시에 애플리케이션을 구동하는 AWS 리소스를 완전히 제어 할 수 있으며 언제든지 기본 리소스에 액세스 할 수 있습니다.
+
   - **'추가 배치로 롤링'배포 정책을 사용하여 배포** 
     - 이 방법을 사용하면 Elastic Beanstalk가 추가 인스턴스 배치를 시작한 다음 롤링 배포를 수행합니다. 추가 배치를 시작하는 데는 시간이 걸리며 배포 전반에 걸쳐 동일한 대역폭이 유지됩니다. 이 정책은 또한 롤링 방법에 비해 배포 시간이 훨씬 더 길지만 가용성 감소를 방지합니다. 마지막으로이 옵션은 배포 전반에 걸쳐 동일한 대역폭을 유지해야하는 경우에 적합합니다.
   - **'불변'배포 정책을 사용하여 배포** 
@@ -42,7 +44,22 @@
 
 AWS CloudFormation은 개발자와 기업이 관련 AWS 및 타사 리소스 모음을 쉽게 생성하고이를 질서 있고 예측 가능한 방식으로 프로비저닝 할 수있는 방법을 제공하는 서비스입니다. CloudFormation에서는 필요한 리소스 유형을 지정하기 위해 템플릿을 생성해야하므로이 옵션은 올바르지 않습니다.
 
-AWS CloudFormation은 개발자와 기업이 관련 AWS 및 타사 리소스 모음을 쉽게 생성하고이를 질서 있고 예측 가능한 방식으로 프로비저닝 할 수있는 방법을 제공하는 서비스입니다.
+AWS CloudFormation은 개발자와 기업이 관련 AWS 및 타사 리소스 모음을 쉽게 생성하고이를 질서 있고 예측 가능한 방식으로 프로비저닝 할 수있는 방법을 제공하는 서비스입니다. 매개 변수 유형을 통해 CloudFormation은 스택 생성 프로세스 초기에 입력을 검증 할 수 있습니다.
+CloudFormation은 현재 다음 매개 변수 유형을 지원합니다.
+
+```
+String – A literal string
+Number – An integer or float
+List<Number> – An array of integers or floats
+CommaDelimitedList – An array of literal strings that are separated by commas
+AWS::EC2::KeyPair::KeyName – An Amazon EC2 key pair name
+AWS::EC2::SecurityGroup::Id – A security group ID
+AWS::EC2::Subnet::Id – A subnet ID
+AWS::EC2::VPC::Id – A VPC ID
+List<AWS::EC2::VPC::Id> – An array of VPC IDs
+List<AWS::EC2::SecurityGroup::Id> – An array of security group IDs
+List<AWS::EC2::Subnet::Id> – An array of subnet IDs
+```
 
 AWS CloudFormation 템플릿은 AWS 인프라를 설명하는 JSON 또는 YAML 형식의 텍스트 파일입니다. 템플릿에는 몇 가지 주요 섹션이 포함됩니다. "리소스"섹션은 유일한 필수 섹션입니다. 선택 사항 인 "Transform"섹션은 AWS CloudFormation이 템플릿을 처리하는 데 사용하는 하나 이상의 매크로를 지정합니다.
 
@@ -77,6 +94,12 @@ AWS CloudFormation 템플릿은 AWS 인프라를 설명하는 JSON 또는 YAML �
 
   - [https](https://aws.amazon.com/xray/) : [//aws.amazon.com/xray/](https://aws.amazon.com/xray/)
 
+  AWS X-Ray는 개발자가 마이크로 서비스 아키텍처를 사용하여 구축 된 것과 같은 프로덕션 분산 애플리케이션을 분석하고 디버깅하는 데 도움이됩니다. X-Ray를 사용하면 성능 문제 및 오류의 근본 원인을 식별하고 해결하기 위해 애플리케이션 및 기본 서비스의 성능을 이해할 수 있습니다. X-Ray는 요청이 애플리케이션을 통과 할 때 요청에 대한 종단 간보기를 제공하고 애플리케이션의 기본 구성 요소 맵을 표시합니다.
+  
+  **IAM 역할 수정**
+  
+  쓰기 권한이있는 IAM 역할을 생성하고 애플리케이션을 실행하는 리소스에 할당합니다. AWS Identity and Access Management (IAM)를 사용하여 계정의 사용자 및 컴퓨팅 리소스에 X-Ray 권한을 부여 할 수 있습니다. 다른 문제 해결 옵션을 탐색하기 전에 권한이 올바르게 구성되었는지 확인하여 시작하는 첫 번째 장소 중 하나 여야합니다.
+  
 - **VPC 흐름 로그** 
 
   - VPC 흐름 로그는 VPC의 네트워크 인터페이스에서 송수신되는 IP 트래픽에 대한 정보를 캡처 할 수있는 기능입니다. 흐름 로그 데이터는 네트워크 추적을 분석하는 데 사용되며 네트워크 보안에 도움이됩니다. 흐름 로그 데이터는 Amazon CloudWatch Logs 또는 Amazon S3에 게시 할 수 있습니다. **VPC 흐름 로그를 사용하여 계정간에 데이터를 디버깅하고 추적 할 수 없습니다.**
@@ -102,7 +125,7 @@ AWS CloudFormation 템플릿은 AWS 인프라를 설명하는 JSON 또는 YAML �
 
   - https://docs.aws.amazon.com/ko_kr/elasticloadbalancing/latest/application/introduction.html
 
--  AWS Serverless Application Model (AWS SAM)
+- **AWS Serverless Application Model (AWS SAM)**
 
   - SAM은 다음 리소스 유형을 지원합니다.
 
@@ -125,6 +148,12 @@ AWS CloudFormation 템플릿은 AWS 인프라를 설명하는 JSON 또는 YAML �
       **AWS :: Serverless :: Api** -HTTPS 엔드 포인트를 통해 호출 할 수있는 Amazon API Gateway 리소스 및 메서드 모음을 생성합니다. API를 구성 할 때 완전한 제어와 유연성을 원하는 고급 사용 사례에 유용합니다.
 
       **AWS :: Serverless :: SimpleTable-** 단일 속성 기본 키가있는 DynamoDB 테이블을 생성합니다. 기본 키를 통해서만 데이터에 액세스해야 할 때 유용합니다.
+    
+  - AWS 서버리스 애플리케이션 모델 (AWS SAM)은 AWS에서 서버리스 애플리케이션을 구축하는 데 사용할 수있는 오픈 소스 프레임 워크입니다.
+
+    서버리스 애플리케이션은 Lambda 함수, 이벤트 소스 및 작업을 수행하기 위해 함께 작동하는 기타 리소스의 조합입니다. 서버리스 애플리케이션은 단순한 Lambda 함수가 아니라 API, 데이터베이스 및 이벤트 소스 매핑과 같은 추가 리소스를 포함 할 수 있습니다.
+
+    SAM (Serverless Application Model) 템플릿에는 몇 가지 주요 섹션이 포함됩니다. **변환(Transform) 및 리소스는 유일한 필수 섹션입니다.**
 
 - **UserPool**
 
@@ -256,6 +285,7 @@ AWS CloudFormation 템플릿은 AWS 인프라를 설명하는 JSON 또는 YAML �
 - **EBS**(Amazon Elastic Block Store) 
 
   - Amazon Elastic Block Store (EBS)는 모든 규모의 처리량과 트랜잭션 집약적 인 워크로드 모두를 위해 Amazon Elastic Compute Cloud (EC2)와 함께 사용하도록 설계된 사용하기 쉬운 고성능 블록 스토리지 서비스입니다. EBS는 Docker 이미지를 저장하고 배포하는 데 사용할 수 없습니다.
+  - **15000 IOPS의 200GiB 크기 볼륨** -잘못된 구성입니다. 프로비저닝 된 IOPS 대 요청 된 볼륨 크기 (GiB)의 최대 비율은 50 : 1입니다. 따라서 200GiB 볼륨 크기의 경우 가능한 최대 IOPS는 200 * 50 = 10000 IOPS입니다.
 
 - **CodeBuild** 
 
@@ -281,9 +311,21 @@ AWS CloudFormation 템플릿은 AWS 인프라를 설명하는 JSON 또는 YAML �
 
   - Amazon EC2 전용 호스트는 사용 전용 EC2 인스턴스 용량이있는 물리적 서버입니다. 전용 호스트를 사용하면 EC2 인스턴스에서 기존 소프트웨어 라이선스를 사용할 수 있습니다. 전용 호스트를 사용하면 인스턴스가 서버에 배치되는 방식을 파악하고 제어 할 수 있습니다. 이 옵션은 전용 인스턴스보다 비용이 많이 들기 때문에 현재 요구 사항에 적합한 선택이 아닙니다.
 
-- **스팟 인스턴스** 
+- **EC2 스팟 인스턴스** 
 
   - 스팟 인스턴스는 온 디맨드 가격보다 저렴한 가격으로 제공되는 미사용 EC2 인스턴스입니다. 스팟 인스턴스는 용량을 사용할 수 있고 요청에 대한 시간당 최고 가격이 스팟 가격을 초과 할 때마다 실행됩니다. 사용되지 않은 용량이있는 모든 인스턴스가 할당됩니다. 비용 효율적이지만 클라이언트의 단일 테넌트 하드웨어 요구 사항을 충족하지 못하므로 올바른 옵션이 아닙니다.
+
+    Amazon EC2가 스팟 인스턴스를 중단 할 때 다음 중 하나를 수행하도록 지정할 수 있습니다.
+
+    - 스팟 인스턴스 중지
+
+    - 스팟 인스턴스를 최대 절전 모드로 전환
+
+    - 스팟 인스턴스 종료
+
+    - 기본값은 중단 될 때 스팟 인스턴스를 종료하는 것입니다.
+
+    - **스팟 인스턴스 재부팅** -이것은 잘못된 옵션입니다.
 
 - **Auto Scaling 그룹**
 
@@ -300,9 +342,25 @@ AWS CloudFormation 템플릿은 AWS 인프라를 설명하는 JSON 또는 YAML �
 
   - Amazon Kinesis Data Streams를 사용하면 스트리밍 빅 데이터를 실시간으로 처리 할 수 있습니다. 여러 Amazon Kinesis 애플리케이션에 동일한 순서로 레코드를 읽거나 재생할 수있는 기능뿐 아니라 레코드 순서를 제공합니다. Amazon Kinesis Client Library (KCL)는 주어진 파티션 키에 대한 모든 레코드를 동일한 레코드 프로세서로 전송하므로 동일한 Amazon Kinesis 데이터 스트림에서 읽는 여러 애플리케이션을 쉽게 구축 할 수 있습니다 (예 : 계산, 집계 및 필터링 수행). . Amazon Kinesis Data Streams는 여러 애플리케이션이 동일한 스트림을 동시에 사용할 수있는 기능이 필요한 경우에 권장됩니다. 예를 들어 실시간 대시 보드를 업데이트하는 애플리케이션과 Amazon Redshift에 데이터를 보관하는 다른 애플리케이션이 있습니다.
 
+  - ProvisionedThroughputExceeded 예외로 인해 애플리케이션이 데이터 처리를 중지했습니다.
+
+    다음 중이 문제를 해결하는 데 도움이되는 조치는 무엇입니까? 
+
+    - **지수 백오프(backoff)로 재 시도하도록 데이터 생산자 구성**
+    - **충분한 용량을 제공하기 위해 데이터 스트림 내 샤드 수를 늘립니다.**
+
+    Amazon Kinesis Data Streams를 사용하면 특수한 요구에 맞게 스트리밍 데이터를 처리하거나 분석하는 사용자 지정 애플리케이션을 구축 할 수 있습니다. 클릭 스트림, 애플리케이션 로그 및 소셜 미디어와 같은 다양한 유형의 데이터를 수십만 소스의 Amazon Kinesis 데이터 스트림에 지속적으로 추가 할 수 있습니다.
+    Amazon Kinesis 데이터 스트림의 용량 제한은 데이터 스트림 내의 샤드 수로 정의됩니다. 제한은 데이터 처리량 또는 PUT 레코드 수로 초과 될 수 있습니다. 용량 제한을 초과하는 동안 데이터 넣기 호출은 ProvisionedThroughputExceeded 예외와 함께 거부됩니다.
+
+    이것이 데이터 스트림의 입력 데이터 속도의 일시적인 상승으로 인한 경우 데이터 생산자의 재시도 (지수 백 오프 포함)는 결국 요청 완료로 이어집니다.이것이 데이터 스트림의 입력 데이터 속도의 일시적인 상승으로 인한 경우 데이터 생산자의 재시도 (지수 백 오프 포함)는 결국 요청 완료로 이어집니다.
+
+    이것이 데이터 스트림의 입력 데이터 속도의 지속적인 상승으로 인한 경우 데이터 스트림 내의 샤드 수를 늘려 데이터 넣기 호출이 지속적으로 성공할 수있는 충분한 용량을 제공해야합니다.
+
 - **AWS Kinesis Data Firehose**  
 
-  - Amazon Kinesis Data Firehose는 스트리밍 데이터를 데이터 스토어 및 분석 도구에로드하는 가장 쉬운 방법입니다. 스트리밍 데이터를 캡처, 변환 및 Amazon S3, Amazon Redshift, Amazon Elasticsearch Service 및 Splunk로로드 할 수 있으므로 현재 이미 사용중인 기존 비즈니스 인텔리전스 도구 및 대시 보드를 통해 거의 실시간 분석이 가능합니다. 데이터 처리량에 맞게 자동으로 확장되고 지속적인 관리가 필요하지 않은 완전 관리 형 서비스입니다. 또한 데이터를로드하기 전에 일괄 처리, 압축 및 암호화하여 대상에서 사용되는 스토리지 양을 최소화하고 보안을 강화할 수 있습니다. Kinesis Data Firehose는 스트리밍 데이터를 데이터 스토어로로드하는 데 사용되므로이 옵션은 올바르지 않습니다.
+  - Amazon Kinesis Data Firehose는 스트리밍 데이터를 데이터 스토어 및 분석 도구에로드하는 가장 쉬운 방법입니다. 스트리밍 데이터를 캡처, 변환 및 Amazon S3, Amazon Redshift, Amazon Elasticsearch Service 및 Splunk로 로드 할 수 있으므로 현재 이미 사용중인 기존 비즈니스 인텔리전스 도구 및 대시 보드를 통해 거의 실시간 분석이 가능합니다. 데이터 처리량에 맞게 자동으로 확장되고 지속적인 관리가 필요하지 않은 완전 관리 형 서비스입니다. 또한 데이터를로드하기 전에 일괄 처리, 압축 및 암호화하여 대상에서 사용되는 스토리지 양을 최소화하고 보안을 강화할 수 있습니다. Kinesis Data Firehose는 스트리밍 데이터를 데이터 스토어로로드하는 데 사용되므로이 옵션은 올바르지 않습니다.
+
+    Kinesis Data Firehose를 사용하면 애플리케이션을 작성하거나 리소스를 관리 할 필요가 없습니다. Kinesis Data Firehose로 데이터를 전송하도록 데이터 생산자를 구성하면 지정한 대상으로 데이터가 자동으로 전송됩니다.
 
 - **AWS Kinesis Data Analytics** 
 
@@ -400,6 +458,19 @@ Kinesis Data Firehose는 스트리밍 데이터를 데이터 스토어 (Amazon S
 
   - 파라미터를 사용하면 스택을 생성하거나 업데이트 할 때마다 CloudFormation 템플릿에 사용자 지정 값을 입력 할 수 있습니다.
 
+#### S3
+
+Amazon은 다음 사용 사례에 멀티 파트 업로드를 사용할 것을 권장합니다.
+
+안정적인 고 대역폭 네트워크를 통해 큰 개체를 업로드하는 경우 멀티 스레드 성능을 위해 개체 부분을 병렬로 업로드하여 사용 가능한 대역폭의 사용을 최대화하려면 멀티 파트 업로드를 사용하십시오.
+
+불안정한 네트워크를 통해 업로드하는 경우 멀티 파트 업로드를 사용하여 업로드 다시 시작을 방지하여 네트워크 오류에 대한 복원력을 높입니다.
+
+**대용량 파일** 에는 **멀티 파트 업로드를 사용해야합니다** . 일반적으로 개체 크기가 100MB에 도달하면 한 번의 작업으로 개체를 업로드하는 대신 멀티 파트 업로드를 사용하는 것이 좋습니다.
+
+- **직접 Firehose 대상인 Amazon Simple Storage Service (Amazon S3)-Amazon** S3 대상의 경우 스트리밍 데이터가 S3 버킷으로 전달됩니다. 데이터 변환이 활성화 된 경우 선택적으로 소스 데이터를 다른 Amazon S3 버킷에 백업 할 수 있습니다.
+- **Amazon S3가 포함 된** Amazon Redshift-Amazon Redshift 대상의 경우 스트리밍 데이터가 먼저 S3 버킷으로 전송됩니다. 그런 다음 Kinesis Data Firehose는 Amazon Redshift COPY 명령을 실행하여 S3 버킷에서 Amazon Redshift 클러스터로 데이터를로드합니다. 데이터 변환이 활성화 된 경우 선택적으로 소스 데이터를 다른 Amazon S3 버킷에 백업 할 수 있습니다.
+
 - **S3 객체 잠금** 
 
   - <u>S3 객체 잠금을 사용하면 WORM ( "Write Once Read Many") 모델을 사용하여 객체를 저장할 수 있습니다.</u> S3 Object Lock은 우발적이거나 부적절한 데이터 삭제를 방지하는 데 도움이 될 수 있습니다.
@@ -407,6 +478,11 @@ Kinesis Data Firehose는 스트리밍 데이터를 데이터 스토어 (Amazon S
 - **S3 분석** 
 
   - <u>Amazon S3 분석 스토리지 클래스 분석을 사용하면 스토리지 액세스 패턴을 분석하여 올바른 데이터를 올바른 스토리지 클래스로 전환 할 시기를 결정할 수 있습니다.</u> S3 Analytics를 사용하여 S3 리소스에 대한 의도하지 않은 액세스를 식별 할 수 없습니다.
+
+
+- **액세스가 필요한 리소스와 미리 서명 된 URL 공유** -기본적으로 모든 개체는 비공개이며 개체 소유자는 개체에 액세스 할 수 있습니다. 그러나 개체 소유자는 자체 보안 자격 증명을 사용하여 미리 서명 된 URL을 만들어 개체를 다운로드 할 수있는 시간 제한 권한을 부여함으로써 다른 사용자와 개체를 선택적으로 공유 할 수 있습니다. 객체에 대해 사전 서명 된 URL을 생성 할 때 보안 자격 증명을 제공하고, 버킷 이름, 객체 키를 지정하고, HTTP 메서드 (객체를 다운로드하기위한 GET), 만료 날짜 및 시간을 지정해야합니다. 미리 서명 된 URL은 지정된 기간 동안 만 유효합니다.
+
+---
 
 - 
   <img src="https://user-images.githubusercontent.com/76925694/110321525-21a57880-8055-11eb-89ef-0b9ed587c26f.png" alt="image" style="zoom: 67%;" />
@@ -569,6 +645,172 @@ Kinesis Data Firehose는 스트리밍 데이터를 데이터 스토어 (Amazon S
 
   - **IAM** 
 
-    - IAM은 ACM에서 지원하지 않는 리전에서 HTTPS 연결을 지원해야하는 경우에만 인증서 관리자로 사용됩니다. IAM은 프라이빗 키를 안전하게 암호화하고 암호화 된 버전을 IAM SSL 인증서 스토리지에 저장합니다. IAM은 모든 리전에서 서버 인증서 배포를 지원하지만 AWS에서 사용하려면 외부 공급자로부터 인증서를 받아야합니다. ACM 인증서를 IAM에 업로드 할 수 없습니다. 또한 IAM 콘솔에서 인증서를 관리 할 수 없습니다.
+    - IAM은 ACM에서 지원하지 않는 리전에서 HTTPS 연결을 지원해야하는 경우에만 인증서 관리자로 사용됩니다. IAM은 프라이빗 키를 안전하게 암호화하고 암호화 된 버전을 IAM SSL 인증서 스토리지에 저장합니다. IAM은 모든 리전에서 서버 인증서 배포를 지원하지만 AWS에서 사용하려면 외부 공급자로부터 인증서를 받아야합니다. ACM 인증서를 IAM에 업로드 할 수 없습니다. 또한 IAM 콘솔에서 인증서를 관리 할 수 없습니다
 
-    
+
+#### DynamoDB
+
+- **DynamoDB – 데이터 읽기**
+
+  - Get Item:
+    - PK를 기반으로 읽기
+    - 기본 키 = HASH 또는 HASH-RANGE
+    - 기본적으로 일관된 읽기
+    - 강력하게 일관된 읽기(strongly consistent reads)를 사용 하는 옵션(RCU 증가 - 시간이 더 오래 걸릴 수 있음)
+    - 특정 속성만 포함하도록 **ProjectionExpression**을 지정할 수 있습니다.
+  - BatchGetItem:
+    - 최대 100개 품목
+    - 최대 16MB의 데이터
+    - 지연 시간을 최소화하기 위해 항목을 병렬로 검색
+
+  - **`ProjectionExpression`** : 프로젝션 표현식은 원하는 속성을 식별하는 문자열입니다. 단일 속성을 검색하려면 해당 이름을 지정하십시오. 여러 속성의 경우 이름은 쉼표로 구분되어야합니다.
+
+  - **모든 항목에 대해 GetItem 작업을 수행하는 동안 ConsistentRead = true 사용**
+
+    DynamoDB는 최종적으로 일관되고 강력하게 일관된 읽기를 지원합니다.
+
+    최종적으로 일관된 읽기
+
+    DynamoDB 테이블에서 데이터를 읽을 때 응답에 최근 완료된 쓰기 작업의 결과가 반영되지 않을 수 있습니다. 응답에 일부 오래된 데이터가 포함될 수 있습니다. 잠시 후 읽기 요청을 반복하면 응답이 최신 데이터를 반환해야합니다.
+
+    일관된 읽기
+
+    강력한 일관된 읽기를 요청하면 DynamoDB는 성공한 모든 이전 쓰기 작업의 업데이트를 반영하여 최신 데이터가 포함 된 응답을 반환합니다.
+
+    DynamoDB는 기본적으로 최종 일관성 읽기를 사용합니다. 읽기 작업 (예 : GetItem, Query 및 Scan)은 ConsistentRead 매개 변수를 제공합니다. 이 파라미터를 true로 설정하면 DynamoDB는 작업 중에 강력하게 일관된 읽기를 사용합니다. 주어진 사용 사례에 따라 모든 항목의 마지막 업데이트 된 값만 애플리케이션에서 사용되도록하려면 GetItem 작업에 대해 ConsistentRead = true를 설정하여 강력하게 일관된 읽기를 사용해야합니다.
+
+- **ElastiCache**
+  **Amazon S3를 백업으로 사용하는** Amazon ElastiCache-Amazon ElastiCache는 Redis 또는 Memcached와 호환되는 완전 관리 형 인 메모리 데이터 스토어입니다.
+
+- **Amazon Elasticsearch Service (Amazon ES)**
+
+  **Amazon S3에 데이터를 선택적으로 백업하는 Amazon Elasticsearch Service (Amazon ES)-Amazon** ES는 Kinesis Firehose에 지원되는 대상 유형입니다. 스트리밍 데이터는 Amazon ES 클러스터로 전달되며 선택적으로 S3 버킷에 동시에 백업 할 수 있습니다.
+  
+- **AWS CLI --dry-run 옵션 사용** : --dry-run 옵션은 실제로 요청하지 않고 작업에 필요한 권한이 있는지 확인하고 오류 응답을 제공합니다. 필요한 권한이있는 경우 오류 응답은 DryRunOperation이고, 그렇지 않으면 UnauthorizedOperation입니다.
+
+- **EC2 메타 데이터 서비스를 사용하여 정책** 을 검색 **하고 IAM 정책 시뮬레이터를 사용합니다.** EC2 메타 데이터 서비스는 instance-id, local-hostname, public-hostname과 같은 동적 정보를 검색하는 데 사용됩니다.
+
+- **Amazon Athena**
+  Amazon Athena는 표준 SQL을 사용하여 Amazon S3의 데이터를 쉽게 분석 할 수있는 대화 형 쿼리 서비스입니다. Athena는 서버리스이므로 관리 할 인프라가 없으며 실행 한 쿼리에 대해서만 비용을 지불합니다. 데이터베이스 트랜잭션을 관리하는 데 사용할 수 없습니다.
+
+- **Amazon Redshift**
+  Amazon Redshift는 대규모 데이터 세트 저장 및 분석을 위해 설계된 완전 관리 형 페타 바이트 규모의 클라우드 기반 데이터웨어 하우스 제품입니다. 데이터베이스 트랜잭션을 관리하는 데 사용할 수 없습니다.
+
+- DynamoDB에는 Amazon S3에 쓰는 두 가지 기본 백업 방법 (온 디맨드, 특정 시점 복구)이 있지만 이러한 백업에 사용되는 S3 버킷에는 액세스 할 수 없습니다.
+- **AWS Data Pipeline을 사용하여 테이블을 선택한 계정의 S3 버킷으로 내보내고 로컬에서 다운로드** 하는 것이 가장 쉬운 방법입니다. 이 방법은 가능한 가장 적은 양의 AWS 리소스를 사용하여 일회성 백업을 수행하려는 경우에 사용됩니다. Data Pipeline은 Amazon EMR을 사용하여 백업을 생성하고 스크립팅이 자동으로 수행됩니다. 이 작업을 수행하기 위해 Apache Hive 또는 Apache Spark를 배울 필요는 없습니다.
+- **Amazon EMR과 함께 Hive를 사용하여 데이터를 S3 버킷** 으로 내보내고 **로컬로 다운로드-Hive를 사용하여 데이터를 S3 버킷** 으로 내 보냅니다. 또는 오픈 소스 emr-dynamodb-connector를 사용하여 Spark 또는 Hive에서 사용자 지정 백업 방법을 관리합니다. 이러한 방법은 활성 Amazon EMR 사용자이고 Hive 또는 Spark에 익숙한 경우 사용하는 모범 사례입니다. 이러한 방법은 데이터 파이프 라인 방법보다 더 많은 제어를 제공합니다.
+- **AWS Glue를 사용하여 테이블을 Amazon S3에 복사하고 로컬로 다운로드** -AWS Glue를 사용하여 테이블을 Amazon S3에 복사합니다. 이는 Amazon Athena와 같은 다른 서비스에서도 사용할 수있는 자동화 된 연속 백업을 원하는 경우 사용하는 모범 사례입니다.
+
+---
+
+### EBS 볼륨 타입
+
+시험에 많이 나옴. 각 타입별 특징을 익혀두길
+
+- **SSD 군**
+  - General Purpose SSD (GP2)
+    - 다양한 워크로드에 대해 가격과 성능이 균형을 이루는 범용 SSD 볼륨
+    - 최대 10K IOPS 지원
+    - 1GB당 3IOPS속도가 나옴
+    - 가장 많이 사용 (성능면에서나 가격 면에서 합리적)
+    - Boot Volume으로 사용 가능
+    - 사용 사례
+      - 대부분의 워크로드
+      - 시스템 부팅 볼륨
+      - 가상 데스크톱
+      - 지연 시간이 짧은 대화 형 앱
+      - 개발 및 테스트 환경
+    - 1GiB-16TiB
+    - 작은 GP2 볼륨은 IOPS를 3,000으로 버스트 할 수 있음
+    - 최대 IOPS는 16,000
+    - GB당 3IOPS. 즉, **5334GB가 최대 IOPS**임을 의미
+    - **5.3 TiB 크기** - 일반 용도의 SSD는 (GP2) 볼륨은 다양한 작업에 이상적입니다 비용 효율적인 스토리지를 제공합니다. 이러한 볼륨은 한 자릿수 밀리 초의 지연 시간과 장시간 동안 3,000 IOPS까지 버스트 할 수있는 기능을 제공합니다. 최소 100IOPS (33.33GiB 이하)와 최대 16,000IOPS (5,334GiB 이상) 사이에서 기준 성능은 볼륨 크기의 GiB 당 3IOPS로 선형 적으로 확장됩니다.
+  - Provisioned IOPS SSD (IO1)
+    - 미션 크리티컬 한 저 지연 또는 높은 처리량 워크로드를 위한 고성능 SSD 볼륨
+      - 미션 크리티컬 : 사업이나 조직의 생존에 필수적인 것
+    - 극도의 I/O률을 요구하는 환경에서 주로 사용 됨
+      - 예: 매우 큰 DB 관리
+    - 10K 이상의 IOPS를 지원
+    - Boot Volume으로 사용 가능
+    - 사용 사례
+      - 지속적인 IOPS 승능 또는 볼륨당 16,000 IOPS(GP2의 제한 값)이상이 필요한 중요 비즈니스 애플리케이션
+      - 다음과 같은 대규모 데이터베이스 워크로드
+        - MongoDB
+        - Cassandra
+        - Microsoft SQL Server
+        - MySQL Server
+        - PostgreSQL
+        - Oracle
+    - 4GiB-16TiB
+    - IOPS가 프로비저닝 됨(PIOPS) - MIN 100-MAX 64,000 (Nitro 인스턴스) 기타 MAX 32,000 (기타 인스턴스)
+    - 요청된 볼륨 크기 (GiB 단위)에 대한 프로비저닝 된 IOPS의 최대 비율은 50:1
+- **Magnetic/HDD군**
+  - Throughput Optimized Hdd (ST1)
+    - 자주 액세스 하고 처리량이 많은 워크로드를 위해 설계된 저렴한 HDD 볼륨
+    - 주로 사용
+      - 빅데이터 Datawarehouse (빅데이터 보관)
+      - Log 프로세싱 (로그파일 보관)
+    - Boot volume으로 사용 불가능
+      - Windows10과 같은 운영체제를 가질 수 없음
+    - 사용 사례
+      - 저렴한 가격으로 일관되고 빠른 처리량이 필요한 스트리밍 워크로드
+      - 빅 데이터, 데이터 웨어 하우스, 로그 처리
+      - Apache Kafka
+    - 500GiB-16TiB
+    - 최대 IOPS는 500
+    - 500MiB/s의 최대 처리량 - 버스트 가능
+  - CDD HDD (SC1)
+    - 액세스 빈도가 낮은 워크로드를 위해 설계된 최저 비용 HDD 볼륨
+    - 파일 서버와 같이 드문 Volume 접근 시 주로 사용
+      - 빈번한 입출력이 없고, 오랫동안 보관해도 괜찮은 데이터를 보관할 때 사용
+    - Boot volume으로 사용 불가능
+    - 비용 매우 저렴
+    - 사용 사례
+      - 자주 액세스 하지 않는 대용량 데이터를 위한 처리량 지향 스토리지
+      - 최저 스토리지 비용이 중요한 시나리오
+    - 500GiB-16TiB
+    - 최대 IOPS는 250
+    - 250MiB의 최대 처리량 - 버스트 가능
+  - Magnetic (Standard)
+    - 디스크 1GB당 가장 싼 비용을 자랑함.
+    - Boot volume으로 유일하게 가능 (마그네틱/HDD라인 중)
+- EBS 볼륨은 크기 / 처리량 / IOPS(초당 I/O Ops)로 특징 지어 짐
+- 확실하지 않다고 생각되는 경우 항상 AWS 설명서를 참조하길
+- GP2및 IO1만 부팅 볼륨으로 사용할 수 있음 (마그네틱 제외)
+
+### EBS vs Instance Store
+
+- 일부 인스턴스는 루트 EBS 볼륨과 함께 제공되지 않음
+- 대신 '인스턴스 스토어' (= 임시 스토리지)와 함께 제공 됨
+- 인스턴스 스토어가 물리적으로 머신에 연결 됨(EBS는 네트워크 드라이브)
+- 장점
+  - I/O 성능 향상 (EBS gp2의 최대 IOPS는 16000, io1은 64000)
+  - 버퍼 / 캐시 / 스크래치 데이터 / 임시 콘텐츠에 적합
+  - 재부팅 후에도 데이터 유지
+- 단점
+  - 중지 또는 종료 시 인스턴스 스토어가 손실 됨
+  - 인스턴스 스토어의 크기를 조정할 수 있음
+  - 백업은 사용자가 운영해야 함
+
+---
+
+- **AWS CodeCommit** - AWS CodeCommit은 안전한 Git 기반 리포지토리를 호스팅하는 완전 관리 형 소스 제어 서비스입니다. 이를 통해 팀은 안전하고 확장 성이 뛰어난 에코 시스템에서 코드 공동 작업을 쉽게 수행 할 수 있습니다. AWS CodeCommit은 풀 요청, 분기 및 병합을 통해 팀원과 코드를 공동으로 작업하는 데 도움이됩니다. AWS CodeCommit은 리포지토리를 AWS 클라우드의 빌드, 스테이징 및 프로덕션 환경에 가깝게 유지합니다. 전체 애플리케이션 대신 증분 변경 사항을 전송할 수 있습니다. AWS CodeCommit은 모든 Git 명령을 지원하며 기존 Git 도구와 함께 작동합니다. 선호하는 개발 환경 플러그인, 지속적 통합 / 지속적 전달 시스템, 그래픽 클라이언트를 CodeCommit과 함께 계속 사용할 수 있습니다.
+
+- **AWS CodeBuild** - AWS CodeBuild는 소스 코드를 컴파일하고 테스트를 실행하며 배포 할 준비가 된 소프트웨어 패키지를 생성하는 완전 관리 형 지속적 통합 서비스입니다. CodeBuild를 사용하면 자체 빌드 서버를 프로비저닝, 관리 및 확장 할 필요가 없습니다. CodeBuild는 지속적으로 확장되고 여러 빌드를 동시에 처리하므로 빌드가 대기열에 남아 있지 않습니다.
+
+
+
+- **동기화 인식**
+
+  Amazon Cognito Sync는 애플리케이션 관련 사용자 데이터의 교차 디바이스 동기화를 지원하는 AWS 서비스 및 클라이언트 라이브러리입니다. 이를 사용하여 자체 백엔드 없이도 모바일 장치와 웹에서 사용자 프로필 데이터를 동기화 할 수 있습니다. 클라이언트 라이브러리는 데이터를 로컬로 캐시하므로 앱이 기기 연결 상태에 관계없이 데이터를 읽고 쓸 수 있습니다. 장치가 온라인 상태 일 때 데이터를 동기화 할 수 있으며 푸시 동기화를 설정 한 경우 업데이트를 사용할 수 있음을 다른 장치에 즉시 알립니다.
+
+- 개발자가 Amazon EC2 Auto Scaling 그룹을 동적으로 확장하도록 구성하고 있습니다. 다음 중 대상 추적 조정 정책의 일부
+
+  - **ASGAverageCPUUtilization-** 대상 추적 조정 정책에 대해 미리 정의 된 지표입니다. 이는 Auto Scaling 그룹의 평균 CPU 사용률을 나타냅니다.
+  - **ASGAverageNetworkOut-** 대상 추적 조정 정책에 대해 미리 정의 된 지표입니다. 이는 Auto Scaling 그룹이 모든 네트워크 인터페이스에서 보낸 평균 바이트 수를 나타냅니다.
+  - **ALBRequestCountPerTarget-** 대상 추적 조정 정책에 대해 미리 정의 된 메트릭입니다. 이는 Application Load Balancer 대상 그룹에서 대상 당 완료된 요청 수를 나타냅니다.
+
+- AWS Identity and Access Management (**IAM**) 데이터베이스 인증을 사용하여 DB 인스턴스에 인증 할 수 있습니다. 이 인증 방법을 사용하면 DB 인스턴스에 연결할 때 암호를 사용할 필요가 없습니다. 대신 인증 토큰을 사용합니다. 인증 토큰은 Amazon RDS가 요청시 생성하는 고유 한 문자열입니다. 각 토큰의 수명은 15 분입니다. 인증은 IAM을 사용하여 외부에서 관리되므로 데이터베이스에 사용자 자격 증명을 저장할 필요가 없습니다.
+  **RDS MySQL** -IAM 데이터베이스 인증은 MySQL 및 PostgreSQL에서 작동합니다.
+
+  **RDS PostGreSQL** -IAM 데이터베이스 인증은 MySQL 및 PostgreSQL에서 작동합니다.
