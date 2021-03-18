@@ -8,9 +8,11 @@
 
 `A class -> NotBlank에서 Validation 실행 -> B class` 이런 메커니즘만 허용됩니다. 즉, 제가 실패한 사례는 `A method -> NotBlank 적용 -> B method` 이러한 사례는 실패할 수 있습니다. 위 내용에서 절대 이해가 가지 않으실거라 생각하고, 바로 아래 내용을 확인하시기 바랍니다.
 
-그 이유는 NotBlank 애노테이션은 상호 Bean 사이에서만 동작할 수 있기 때문입니다. 아래와 같이 실패한 사례를 이야기 하겠습니다.
+그 이유는 **NotBlank 애노테이션은 상호 Bean 사이에서만 동작할 수 있기 때문입니다.** 문제를 해결했던 부분 @NotBlank Validation을 적용하려고 했지만 적용이 안되서 어떤 매커니즘이 있는지 찾아보았고 @NotBlank는 Bean Validation이라 각 계층에 걸쳐서 적용이 된다는 것을 알았습니다. 여기서 계층이라함은 Presentation Layer, Business Layer, Data Access Layer를 이야기합니다.
 
 
+
+아래와 같이 실패한 사례를 이야기 하겠습니다.
 
 #### Controller
 
