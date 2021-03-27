@@ -12,4 +12,3 @@
    - The actor who plays the main character is so hot.
 5. 이 계좌번호로 입금해주세요.
    - Please deposit to this account number.
-
