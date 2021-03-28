@@ -37,3 +37,47 @@ public class Solution {
 }
 ```
 
+
+
+#### Second Mine
+
+```java
+import java.util.*;
+
+// 앞의 index 배열과 같으면 list에 추가 하지 않고 같지 않으면 추가한다.
+public class Solution {
+    public Integer[] solution(int []arr) {
+        List<Integer> list = new ArrayList<>();
+        int oldNumber = arr[0];
+        list.add(arr[0]);
+        for (int i = 1; i < arr.length; i++) {
+            if(oldNumber != arr[i]) {
+                list.add(arr[i]);
+                oldNumber = arr[i];
+            }
+        }
+        Integer[] answer = list.toArray(new Integer[0]);
+        return answer;
+    }
+}
+```
+
+```java
+import java.util.*;
+
+// 앞의 index 배열과 같으면 list에 추가 하지 않고 같지 않으면 추가한다.
+public class Solution {
+    public Integer[] solution(int []arr) {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.add(arr[0]);
+        for (int i = 1; i < arr.length; i++) {
+            if(list.getLast() != arr[i]) {
+                list.add(arr[i]);
+            }
+        }
+        Integer[] answer = list.toArray(new Integer[0]);
+        return answer;
+    }
+}
+```
+
