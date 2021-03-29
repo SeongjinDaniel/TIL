@@ -62,6 +62,34 @@ public class Solution {
 }
 ```
 
+
+
+#### Third Mine
+
+```java
+import java.util.*;
+
+public class Solution {
+    public Integer[] solution(int []arr) {
+        LinkedList<Integer> list = new LinkedList<>();
+        int len = arr.length;
+        
+        list.add(arr[0]);
+        for(int i = 1; i < len; i++) {
+            if(list.getLast() != arr[i]) {
+                list.add(arr[i]);
+            }
+        }
+        Integer[] answer = list.toArray(new Integer[0]);
+        return answer;
+    }
+}
+```
+
+
+
+
+
 ```java
 import java.util.*;
 

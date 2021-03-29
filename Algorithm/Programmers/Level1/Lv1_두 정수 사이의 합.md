@@ -41,6 +41,38 @@ class Solution {
 
 
 
+#### Second mine
+
+```java
+class Solution {
+    public long solution(int a, int b) {
+        long answer = 0;
+        int big = 0, small = 0;
+
+        if (a > b) {
+            big = a;
+            small = b;
+        } else {
+            big = b;
+            small = a;
+        }
+        
+        System.out.println(big);
+        System.out.println(small);
+        
+        for(int i = small; i <= big; i++) {
+            answer += i;
+        }
+        
+        return answer;
+    }
+}
+```
+
+
+
+
+
 #### etc
 
 ```java
