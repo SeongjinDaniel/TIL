@@ -34,7 +34,30 @@ class Solution {
 
 
 
-#### etc
+#### Second Mine
+
+```java
+import java.util.*;
+class Solution {
+    public String solution(String s) {
+        String answer = "";
+        List<Character> list = new LinkedList<>();
+        
+        for (int i = 0; i < s.length(); i++) {
+            list.add(s.charAt(i));
+        }
+        Collections.sort(list, Collections.reverseOrder());
+        for (Character data : list) {
+            answer += data;
+        }
+        return answer;
+    }
+}
+```
+
+
+
+#### Others
 
 ```java
 import java.util.Arrays;
@@ -60,7 +83,7 @@ string 객체에 .toCharArray() 함수를 통해 배열로 저장해서 StringBu
 
 
 
-#### etc
+#### Others
 
 ```java
 import java.util.stream.Stream;
@@ -70,8 +93,8 @@ import java.util.Comparator;
 public class ReverseStr {
     public String reverseStr(String str){
         return Stream.of(str.split(""))
-    .sorted(Comparator.reverseOrder())
-    .collect(Collectors.joining()); // collect(Collectors.joining(", ") 이렇게 하면 Z, b, c d, e, f, g 이런식으로 출력이 된다!
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.joining()); // collect(Collectors.joining(", ") 이렇게 하면 Z, b, c d, e, f, g 이런식으로 출력이 된다!
     }
 
     // 아래는 테스트로 출력해 보기 위한 코드입니다.
