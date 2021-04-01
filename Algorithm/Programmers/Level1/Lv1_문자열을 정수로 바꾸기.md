@@ -26,6 +26,19 @@ class Solution {
 
 
 
+#### Second Mine
+
+```java
+class Solution {
+    public int solution(String s) {
+        int answer = Integer.parseInt(s);
+        return answer;
+    }
+}
+```
+
+
+
 #### Others
 
 ```java
