@@ -35,6 +35,34 @@ class Solution {
 
 
 
+#### Seond Mine
+
+```java
+class Solution {
+    public String solution(String s) {
+        String answer = "";
+        char[] chars = s.toCharArray();
+        int idx = 0;
+        for (int i = 0; i < chars.length; i++) {
+            if(chars[i] == ' ') {
+                idx = 0;
+                answer += " ";
+                continue;
+            }
+            if (idx % 2 == 0) {
+                answer += Character.toUpperCase(chars[i]);
+            } else {
+                answer += Character.toLowerCase(chars[i]);
+            }
+            idx++;
+        }
+        return answer;
+    }
+}
+```
+
+
+
 #### Others
 
 ```java
@@ -55,6 +83,16 @@ class Solution {
 ```
 
 - contains : 자바 스트링 contains () 메소드는 스트링에서 특성의 순서를 검색합니다. 만약 char 값의 시퀀스가 찾아진다면 True를, 반대라면 False를 반환합니다.
+
+
+
+#### Second Mine
+
+```java
+
+```
+
+
 
 
 
