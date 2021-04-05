@@ -38,7 +38,7 @@ class Solution {
 }
 ```
 
---> for 문 n번을 빼고 문자에 + n을 해주면 더 좋은 코드가 될수 있음.
+
 
 #### Others
 
