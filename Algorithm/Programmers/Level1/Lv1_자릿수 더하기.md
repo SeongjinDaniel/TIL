@@ -1,8 +1,14 @@
-# Lv1_다른 사람의 풀이
+# Lv1_자릿수 더하기
 
 
 
 #### Question
+
+[Lv1_자릿수 더하기](https://programmers.co.kr/learn/courses/30/lessons/12931)
+
+
+
+#### Mine
 
 ```java
 import java.util.*;
@@ -25,6 +31,26 @@ public class Solution {
 
 
 **Character.getNumericValue(input.charAt(i))**
+
+
+
+#### Second Mine
+
+```java
+import java.util.*;
+
+public class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        String s = String.valueOf(n);
+        for(int i = 0; i < s.length(); i++) {
+            answer += Integer.parseInt(String.valueOf(s.charAt(i)));
+        }
+        
+        return answer;
+    }
+}
+```
 
 
 

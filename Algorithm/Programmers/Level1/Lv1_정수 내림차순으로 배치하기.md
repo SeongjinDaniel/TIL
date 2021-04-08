@@ -30,6 +30,31 @@ class Solution {
 
 
 
+#### Second Mine
+
+```java
+import java.util.*;
+class Solution {
+    public long solution(long n) {
+        long answer = 0;
+        String s = String.valueOf(n);
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) {
+            list.add(Character.toString(s.charAt(i)));
+        }
+        Collections.sort(list, Collections.reverseOrder());
+        String ss = "";
+        for(int i = 0; i < list.size(); i++) {
+            ss += list.get(i);
+        }
+        answer = Long.parseLong(ss);
+        return answer;
+    }
+}
+```
+
+
+
 #### Others
 
 ```java
