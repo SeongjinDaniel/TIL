@@ -44,6 +44,35 @@ class Solution {
 
 
 
+#### Second Mine
+
+```java
+import java.util.*;
+class Solution {
+    public int[] solution(int[] arr) {
+        int len = arr.length;
+        if(len <= 1) return new int[]{-1};
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < len; i++) {
+            list.add(arr[i]);
+        }
+        Collections.sort(list, Comparator.reverseOrder());
+        int temp = list.remove(len - 1);
+        int[] answer = new int[len - 1];
+        int idx = 0;
+        for (int i = 0; i < len; i++) {
+            if(arr[i] == temp) continue;
+            answer[idx++] = arr[i];
+        }
+        return answer;
+    }
+}
+```
+
+
+
+
+
 #### Others
 
 ```java

@@ -51,3 +51,26 @@ public class ReverseInt {
 }
 ```
 
+
+
+#### Question
+
+- [Lv1_제일 작은 수 제거하기](https://programmers.co.kr/learn/courses/30/lessons/12935)
+
+```java
+import java.util.Arrays;
+import java.util.stream.Stream;
+import java.util.List;
+import java.util.ArrayList;
+
+class Solution {
+  public int[] solution(int[] arr) {
+      if (arr.length <= 1) return new int[]{ -1 };
+      int min = Arrays.stream(arr).min().getAsInt();
+      return Arrays.stream(arr).filter(i -> i != min).toArray();
+  }
+}
+```
+
+
+
