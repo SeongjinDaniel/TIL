@@ -33,6 +33,27 @@ class Solution {
 
 
 
+#### Second Mine
+
+```java
+class Solution {
+    public int gcd(int n, int m) {
+        if(m == 0) return n;
+        return gcd(m, n % m);
+    }    
+    
+    public int[] solution(int n, int m) {
+        int gcdValue = gcd(n, m);
+        int[] answer = {gcdValue, n * m / gcdValue};
+        return answer;
+    }
+}
+```
+
+
+
+
+
 #### Others
 
 ```java
