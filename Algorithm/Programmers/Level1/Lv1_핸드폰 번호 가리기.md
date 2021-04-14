@@ -36,6 +36,30 @@ class Solution {
 
 
 
+#### Second Mine
+
+```java
+class Solution {
+    public String solution(String phone_number) {
+        String answer = "";
+        int len = phone_number.length();
+        for (int i = 0 ; i < len; i++) {
+            if(i + 1 <= len - 4) {
+                answer += "*";
+            } else {
+                answer += Character.toString(phone_number.charAt(i));
+                // answer += phone_number.charAt(i); // 이것도 가능
+            }
+        }
+        return answer;
+    }
+}
+```
+
+
+
+
+
 #### Others
 
 ```java

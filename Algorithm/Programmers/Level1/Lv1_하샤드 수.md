@@ -32,6 +32,28 @@ class Solution {
 
 
 
+#### Second Mine
+
+```java
+class Solution {
+    public boolean solution(int x) {
+        boolean answer = true;
+        int realX = x;
+        String s = String.valueOf(x);
+        int sum = 0;
+        int idx = 0;
+        while(x != 0) {
+            sum += s.charAt(idx++) - '0';
+            x /= 10;
+        }
+        if(realX % sum != 0) answer = false;
+        return answer;
+    }
+}
+```
+
+
+
 #### Others
 
 ```java
