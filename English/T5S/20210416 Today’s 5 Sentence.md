@@ -8,7 +8,8 @@
    - I love you and can’t live without you.
 3. 일주일 휴가 받았어.
    - I’ve got a week’s vacation.
-4. 화와이 가는 것에 들떠 있어요.
+4. 하와이 가는 것에 들떠 있어요.
    - I’m excited about going to Hawaii.
 5. 이라크 전쟁에 반대합니다.
    - I’m against the war in Iraq.
+
