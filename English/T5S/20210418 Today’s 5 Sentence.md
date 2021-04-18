@@ -11,4 +11,4 @@
 4. 틀림없이 다 괜찮을 거예요.
    - I’m sure everything will be all right.
 5. 우리는 총을 소지하는게 허용되지 않아요.
-   - We are not allowed to own a gun.
+   - We are not allowed to own a gun. 
