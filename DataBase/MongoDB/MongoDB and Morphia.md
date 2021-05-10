@@ -78,4 +78,5 @@ Morphia는 MongoDB에서 문서로 저장된 POJO를 지속하고 검색하고 �
 
 - [데이터 기술 자료](https://kdata.or.kr/info/info_04_view.html?field=&keyword=&type=techreport&page=82&dbnum=152747&mode=detail&type=techreport)
 
-- [Database/Data | NoSQL - MongoDB 란 무엇인가?](Database/Data | NoSQL - MongoDB 란 무엇인가?)
+- [Database/Data | NoSQL - MongoDB 란 무엇인가?](https://mchaemil.github.io/2019/12/24/DB-nosql-what-is-the-nosql-and-mongodb.html)
+
