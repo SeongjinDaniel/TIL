@@ -59,3 +59,17 @@ brew install yarn
 
 yarn -v
 
+
+
+## React 프로젝트 생성하기
+
+**Yarn**
+
+```
+yarn create react-app [프로젝트 이름]
+```
+
+이렇게 하면 프로젝트에 필요한 모든 것들을 설치해준다.
+
+
+
