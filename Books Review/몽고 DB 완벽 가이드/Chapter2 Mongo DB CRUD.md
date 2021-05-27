@@ -92,3 +92,4 @@ WriteResult({"nMatched": 1, "nUpserted": 0, "nModified": 1})
 > db.movies.deleteOne({"title" : "Star Wars: Episode IV -A New Hope"})
 ```
 
+필터와 일치하는 모든 도큐먼트를 삭제하려면 deleteMany를 사용한다.
