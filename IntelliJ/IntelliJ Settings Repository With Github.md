@@ -2,6 +2,10 @@
 
 
 
+우선 plug in 깃 설치!
+
+
+
 ![image](https://user-images.githubusercontent.com/83576599/121976713-55640d00-cdbf-11eb-8e7d-595342b9776b.png)
 
 
