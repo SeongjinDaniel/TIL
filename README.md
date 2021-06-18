@@ -45,8 +45,8 @@ Today I Learned. Daily commit.
 
 ### Framework
 
-- [Spring](https://github.com/SeongjinOliver/TIL/tree/master/Spring)
-- Play
+- [Spring](https://github.com/SeongjinOliver/TIL/tree/master/Framework/Spring)
+- [Play](https://github.com/SeongjinOliver/TIL/tree/master/Framework/Play)
 
 ### Git
 
@@ -73,17 +73,17 @@ Today I Learned. Daily commit.
 
 - [Linux](https://github.com/SeongjinOliver/TIL/tree/master/Linux)
 
-#### Log
+### Log
 
 - [Log](https://github.com/SeongjinOliver/TIL/tree/master/Log)
 
-#### Mybatis
+### Mybatis
 
 - [Mybatis](https://github.com/SeongjinOliver/TIL/tree/master/Mybatis)
 
-### Programmers
+### Network
 
-- [Programmers](https://github.com/SeongjinOliver/TIL/tree/master/Programmers)
+- 
 
 ### R
 
@@ -93,9 +93,9 @@ Today I Learned. Daily commit.
 
 - [Spark](https://github.com/SeongjinOliver/TIL/tree/master/Spark)
 
-### Spring
+### Swagger
 
-- 
+- [Swagger](https://github.com/SeongjinOliver/TIL/tree/master/Swagger)
 
 ### Web
 
@@ -113,11 +113,7 @@ Today I Learned. Daily commit.
 - [SpringFW](https://github.com/SeongjinOliver/TIL/tree/master/Web/SpringFW)
 - [Django](https://github.com/SeongjinOliver/TIL/tree/master/Django)
 
-### Project
 
-- [WeeT-project](https://github.com/SeongjinOliver/TIL/tree/master/wee-T_ProjectDevelopmentDairy)
-- [mytube](https://github.com/SeongjinOliver/TIL/tree/master/Youtube_sns)
-- [편마김편복](https://github.com/SeongjinOliver/TIL/tree/master/watcheap)
 
 ### Book
 
