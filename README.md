@@ -12,15 +12,22 @@ Today I Learned. Daily commit.
 - [BOJ](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/BOJ)
 - [Basic](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Basic)
 - [Codility](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Codility)
+- [Programmers](https://github.com/SeongjinOliver/TIL/tree/master/Algorithm/Programmers)
 
 ### Bixby
 
 - [Bixby](https://github.com/SeongjinOliver/TIL/tree/master/Bixby)
 
+### Books Review
+
+- [몽고  DB 완벽 가이드](https://github.com/SeongjinOliver/TIL/tree/master/Books%20Review/%EB%AA%BD%EA%B3%A0%20DB%20%EC%99%84%EB%B2%BD%20%EA%B0%80%EC%9D%B4%EB%93%9C)
+
 ### DataBase(Oracle)
 
-- [Oracle](https://github.com/SeongjinOliver/TIL/tree/master/DataBase(Oracle))
 - [MySQL](https://github.com/SeongjinOliver/TIL/tree/master/DataBase/MySQL)
+- [Oracle](https://github.com/SeongjinOliver/TIL/tree/master/DataBase(Oracle))
+- [PostgreSQL](https://github.com/SeongjinOliver/TIL/tree/master/DataBase/PostgreSQL)
+- [MongoDB](https://github.com/SeongjinOliver/TIL/tree/master/DataBase)
 
 ### DeepLearning
 
@@ -32,9 +39,26 @@ Today I Learned. Daily commit.
 
 - [Docker](https://github.com/SeongjinOliver/TIL/tree/master/Docker)
 
+### English
+
+- [T5S](https://github.com/SeongjinOliver/TIL/tree/master/English/T5S)
+
+### Framework
+
+- [Spring](https://github.com/SeongjinOliver/TIL/tree/master/Spring)
+- Play
+
 ### Git
 
 - [Git](https://github.com/SeongjinOliver/TIL/tree/master/Git)
+
+### Intellij
+
+- [intellij](https://github.com/SeongjinOliver/TIL/tree/master/IntelliJ)
+
+### Interview
+
+- [Interview](https://github.com/SeongjinOliver/TIL/tree/master/Interview)
 
 ### Java
 
@@ -49,6 +73,14 @@ Today I Learned. Daily commit.
 
 - [Linux](https://github.com/SeongjinOliver/TIL/tree/master/Linux)
 
+#### Log
+
+- [Log](https://github.com/SeongjinOliver/TIL/tree/master/Log)
+
+#### Mybatis
+
+- [Mybatis](https://github.com/SeongjinOliver/TIL/tree/master/Mybatis)
+
 ### Programmers
 
 - [Programmers](https://github.com/SeongjinOliver/TIL/tree/master/Programmers)
@@ -60,6 +92,10 @@ Today I Learned. Daily commit.
 ### Spark
 
 - [Spark](https://github.com/SeongjinOliver/TIL/tree/master/Spark)
+
+### Spring
+
+- 
 
 ### Web
 
@@ -77,14 +113,10 @@ Today I Learned. Daily commit.
 - [SpringFW](https://github.com/SeongjinOliver/TIL/tree/master/Web/SpringFW)
 - [Django](https://github.com/SeongjinOliver/TIL/tree/master/Django)
 
-### Spring
-
-- [Spring](https://github.com/SeongjinOliver/TIL/tree/master/Spring)
-
 ### Project
 
 - [WeeT-project](https://github.com/SeongjinOliver/TIL/tree/master/wee-T_ProjectDevelopmentDairy)
-- [Youtube_sns](https://github.com/SeongjinOliver/TIL/tree/master/Youtube_sns)
+- [mytube](https://github.com/SeongjinOliver/TIL/tree/master/Youtube_sns)
 - [편마김편복](https://github.com/SeongjinOliver/TIL/tree/master/watcheap)
 
 ### Book
