@@ -4,6 +4,8 @@
 
 cmd 창에서 아래 와 같이 조회
 
+`netstat -a -o`
+
 ![image](https://user-images.githubusercontent.com/83576599/121993703-edbdba00-cdde-11eb-8d91-0e11b5404f49.png)
 
 
