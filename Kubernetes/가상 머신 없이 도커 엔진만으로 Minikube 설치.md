@@ -7,13 +7,13 @@
 ```
 curl -Lo minikube \
 https://storage.googleapis.com/minikube/releases/v1.12.0/minikube-linux-amd64 && chmod +x minikube && \
-sudo mv minikube /usr/local/bin/ 
+mv minikube /usr/local/bin/ 
 ```
 
 ```
 curl -Lo kubectl \
 https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl && chmod +x kubectl && \
-sudo mv kubectl /usr/local/bin
+mv kubectl /usr/local/bin
 ```
 
 
