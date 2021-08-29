@@ -1,0 +1,142 @@
+# Imperative command 모의고사 
+
+
+
+1. Deploy a pod named `nginx-pod` using the `nginx:alpine` image.
+
+   Use imperative commands only.
+
+   ```
+   $ kubectl run nginx-pod --image=nginx:alpine
+   ```
+
+   
+
+2. Deploy a `redis` pod using the `redis:alpine` image with the labels set to `tier=db`.
+
+   Either use imperative commands to create the pod with the labels. Or else use imperative commands to generate the pod definition file, then add the labels before creating the pod using the file.
+
+   - Pod Name: redis
+   - Image: redis:alpine
+   - Labels: tier=db
+
+   ```
+   $ kubectl run redis --image=redis:alpine --dry-run=client -o yaml > redis-pod.yaml
+   $ vi redis-pod.yaml
+   ---
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     labels:
+       tier: db
+     name: redis
+   spec:
+     containers:
+     - image: redis:alpine
+       name: redis
+     dnsPolicy: ClusterFirst
+     restartPolicy: Always
+   
+   $ kubectl create -f redis-pod.yaml
+   
+   # or
+   
+   $ kubectl run redis --image=redis:alpine --labels=tier=db
+   ```
+
+
+
+3. Create a service `redis-service` to expose the `redis` application within the cluster on port `6379`.
+
+   Use imperative commands.
+
+   ```
+   $ kubectl expose pod redis --name redis-service --port 6379 --target-port 6379
+   
+   $ kubectl describe svc redis-service
+   ```
+
+   
+
+4. Create a deployment named `webapp` using the image `kodekloud/webapp-color` with `3` replicas.
+
+   Try to use imperative commands only. Do not create definition files.
+
+   - Name: webapp
+   - Image: kodekloud/webapp-color
+   - Replicas: 3
+
+   ```
+   kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3
+   ```
+
+
+
+5. Create a new pod called `custom-nginx` using the `nginx` image and expose it on `container port 8080`.
+
+   - Pod created correctly?
+
+   ```
+   $ kubectl run custom-nginx --image=nginx --port=8080
+   
+   $ kubectl describe custom-nginx
+   ```
+
+
+
+6. Create a new namespace called `dev-ns`.
+
+   Use imperative commands.
+
+   - Namespace created?
+   
+   ```
+$ kubectl create namespace dev-ns 
+   # or
+   $ kubectl create ns dev-ns
+   ```
+   
+
+
+
+7. Create a new deployment called `redis-deploy` in the `dev-ns` namespace with the `redis` image. It should have `2` replicas.
+
+   Use imperative commands.
+
+   - 
+     'redis-deploy' created in the 'dev-ns' namespace?
+   - replicas: 2
+
+   ```
+   $ kubectl create deployment redis-deploy --image=redis --replicas=2 -n dev-ns
+   
+   # or
+   
+   $ kubectl create deployment redis-deploy --image=redis --namespace=dev-ns --replicas=2 --dry-run=client -o yaml > redis.yaml
+   # yaml 파일에서 확인 가능
+   ```
+
+
+
+8. Create a pod called `httpd` using the image `httpd:alpine` in the default namespace. Next, create a service of type `ClusterIP` by the same name `(httpd)`. The target port for the service should be `80`.
+
+   Try to do this with as few steps as possible.
+
+   - 
+     'httpd' pod created with the correct image?
+   - 'httpd' service is of type 'ClusterIP'?
+   - 'httpd' service uses correct target port 80?
+   - 'httpd' service exposes the 'httpd' pod?
+
+   ```
+   $ kubectl run httpd --image=httpd:alpine
+   $ kubectl expose pod httpd --target-port=80 --type=ClusterIP
+   
+   # or
+   
+   $ kubectl run httpd --image=httpd:alpine --port=80 --expose --dry-run=client -o yaml
+   $ kubectl run httpd --image=httpd:alpine --port=80 --expose
+   $ kubectl get pod httpd
+   ```
+
+   
