@@ -1,0 +1,118 @@
+# Scheduling 모의고사
+
+
+
+1. A pod definition file nginx.yaml is given. Create a pod using the file.
+
+   Only create the POD for now. We will inspect its status next.
+
+   ```
+   $ kubectl apply -f nginx.yaml
+   ```
+
+   
+
+
+
+2. What is the status of the created POD?
+
+   ```
+   $ kubectl get pods
+   ```
+
+
+
+3. Why is the POD in a pending state?
+
+   Inspect the environment for various kubernetes control plane components.
+
+   `Solution: `
+
+   `Run the command: kubectl get pods --namespace kube-system to see the status of scheduler pod. We have removed the scheduler from this Kubernetes cluster. As a result, as it stands, the pod will remain in a pending state forever.`
+
+   ```
+   $ kubectl -n kub-system get pods
+   
+   보시다시피 여기에는 다른 제어 평면 구성 요소가 나열되어 있습니다.
+   그러나 누락된 부분이 하나 있습니다. 바로 kube 스케줄러입니다.
+   이것이 우리가 이전에 만든 pod가 현재 보류 상태인 이유입니다.
+   
+   Answer: No scheduler present
+   ```
+
+
+
+4. Manually schedule the pod on `node01`.
+
+   Delete and recreate the POD if necessary.
+
+   - Status: Running
+   - Pod: nginx
+
+   `Solution:`
+
+   ```yaml
+   Delete the existing pod first. Run the below command:
+   
+   $ kubectl delete po nginx
+   To list and know the names of available nodes on the cluster:
+   
+   $ kubectl get nodes
+   Add the nodeName field under the spec section in the nginx.yaml file with node01 as the value:
+   
+   ---
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: nginx
+   spec:
+     nodeName: node01
+     containers:
+     -  image: nginx
+        name: nginx
+   Then run the command kubectl create -f nginx.yaml to create a pod from the definition file.
+   
+   To check the status of a nginx pod and to know the node name: 
+   
+   $ kubectl get pods -o wide
+   ```
+
+   
+
+5. Now schedule the same pod on the `controlplane` node.
+
+   Delete and recreate the POD if necessary.
+
+   - Status: Running
+   - Pod: nginx
+   - Node: controlplane
+
+   `Solution`
+
+   ```yaml
+   Delete the existing pod first. Run the below command:
+   
+   $ kubectl delete po nginx
+   To list and know the names of available nodes on the cluster:
+   
+   $ kubectl get nodes
+   Update the value of the nodeName field to controlplane:
+   
+   ---
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: nginx
+   spec:
+     nodeName: controlplane
+     containers:
+     -  image: nginx
+        name: nginx
+   Then run the command kubectl create -f nginx.yaml to create a pod from the definition file.
+   
+   To check the status of a nginx pod and to know the node name: 
+   
+   $ kubectl get pods -o wide
+   ```
+
+   
