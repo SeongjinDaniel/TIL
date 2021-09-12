@@ -36,13 +36,29 @@
    $ kubectl describe daemonset kube-proxy --namespace=kube-system
    ```
 
+   or 
+
+   ```
+   $ kubectl get nodes
+   $ kubectl -n kube-system get pods | grep proxy
+   $ kubectl -n kube-system get pods -o wide | grep proxy
+   ```
+
    
 
 5. What is the image used by the POD deployed by the `kube-flannel-ds` **DaemonSet**?
 
    ```
-   $ kubectl describe daemonset kube-flannel-ds --nsmaspace=kube-system
+   $ kubectl describe daemonset kube-flannel-ds --namespace=kube-system
    ```
+   
+   or
+   
+   ```
+   $ kubectl -n kube-system describe ds kube-flannel-ds | grep -i image
+   ```
+   
+   
 
 
 
@@ -88,3 +104,10 @@ spec:
 ```
 
 Then run kubectl apply -f fluentd.yaml
+
+
+
+```
+$ kubectl -n kub-system get ds elasticsearch
+```
+
