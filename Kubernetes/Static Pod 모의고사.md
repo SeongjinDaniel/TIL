@@ -137,6 +137,7 @@
 
    ```
    $ kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -o yaml --command -- sleep 1000 > static-busybox.yaml
+   $ kubectl get pods
    ```
 
    
@@ -187,6 +188,7 @@
 
     ```
     root@controlplane:~# ssh node01 
+    
     root@node01:~# ps -ef |  grep /usr/bin/kubelet 
     root       752   654  0 00:30 pts/0    00:00:00 grep --color=auto /usr/bin/kubelet
     root     28567     1  0 00:22 ?        00:00:11 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --network-plugin=cni --pod-infra-container-image=k8s.gcr.io/pause:3.2
