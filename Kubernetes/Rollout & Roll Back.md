@@ -28,8 +28,6 @@ $ kubectl rollout history deployment/myapp deployment
 
 
 
-
-
 ## Roll Back
 
 쿠버네티스는 배포를 통해 이전 버전으로 롤백하여 변경 사항을 취소할 수 있습니다.
@@ -45,9 +43,7 @@ $ kubectl rollout undo deployment/myapp-deployment
 
 
 
-
-
-#### Summarize Commands
+## Summarize Commands
 
 - Create
 
