@@ -24,7 +24,7 @@ $ kubectl rollout history deployment/myapp deployment
 
 1. **Recreate**: 모든 애플리케이션을 다 다운되었가 다 같이 살림.
    - 애플리케이션이 다운되어 사용자가 액세스할 수 없음.
-2. **Rolling Update**: 한번에 모든 애플리케이션을 파괴하지 않고 분할하여 다운시키고 다운된 것만 새로운 애플리케이션으로 업데이트하는 방식.
+2. **Rolling Update**: 한번에 모든 애플리케이션을 파괴하지 않고 분할하여 다운시키고 다운된 것만 새로운 애플리케이션으로 업데이트하는 방식. 이 방식이 kubernetes에서는 default.
 
 
 
