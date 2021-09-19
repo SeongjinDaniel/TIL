@@ -1,0 +1,115 @@
+# Rolling Updates & RollBack 모의고사
+
+
+
+1. We have deployed a simple web application. Inspect the PODs and the Services
+   Wait for the application to fully deploy and view the application using the link called `Webapp Portal` above your terminal.
+
+2. What is the current color of the web application?
+
+   Access the Webapp Portal.
+
+3. Run the script named `curl-test.sh` to send multiple requests to test the web application. Take a note of the output.
+
+   Execute the script at `/root/curl-test.sh`.
+
+   ```
+   $ sh curl-test.sh
+   ```
+
+4. Inspect the deployment and identify the number of PODs deployed by it
+
+   **Hint**
+
+   Run the command `kubectl describe deployment` and look at `Desired Replicas`
+
+   ```
+   $ kubectl describe deployment
+   ```
+
+5. What container image is used to deploy the applications?
+
+   ```
+   $ kubectl describe deployment
+   ```
+
+6. Inspect the deployment and identify the current strategy
+
+   ```
+   $ kubectl describe deployment
+   ```
+
+7. If you were to upgrade the application now what would happen?
+
+   ```
+   Answer: PODs are upgraded few at a time
+   ```
+
+8. Let us try that. Upgrade the application by setting the image on the deployment to `kodekloud/webapp-color:v2`
+
+   Do not delete and re-create the deployment. Only set the new image name for the existing deployment.
+
+   - Deployment Name: frontend
+   - Deployment Image: kodekloud/webapp-color:v2
+
+   
+
+   Run the command `kubectl edit deployment frontend` and modify the image to `kodekloud/webapp-color:v2`.
+   Next, save and exit. The pods should be recreated with the new image.
+
+   ```
+   $ kubectl edit deployment frontend
+   ---> image kodekloud/webapp-color:v2로 수정
+   수정하자마자 새포트가 열리고 이전 포트가 삭제되는 것을 볼 수 있습니다.
+   ```
+
+9. Run the script `curl-test.sh` again. Notice the requests now hit both the old and newer versions. However none of them fail.
+
+   Execute the script at `/root/curl-test.sh`.
+
+10. Up to how many PODs can be down for upgrade at a time
+
+    Consider the current strategy settings and number of PODs - 4
+
+    **Hint**
+
+    - 배포 세부 정보의 RollingUpdateStrategy에서 사용할 수 없는 최대 값 확인
+
+    ```
+    $ kubectl describe deployment frontend
+    ```
+
+11. Change the deployment strategy to `Recreate`
+
+    Do not delete and re-create the deployment. Only update the strategy type for the existing deployment.
+
+    - Deployment Name: frontend
+    - Deployment Image: kodekloud/webapp-color:v2
+    - Strategy: Recreate
+
+    **Hint**
+
+    Run the command `kubectl edit deployment frontend` and modify the required field. Make sure to delete the properties of rollingUpdate as well, set at `strategy.rollingUpdate`.
+
+    ```
+    $ kubectl edit deployment frontend
+    # 아래와 같이 수정한 후 저장하고 나온다.
+      strategy:
+        type: Recreate
+    ```
+
+12. Upgrade the application by setting the image on the deployment to `kodekloud/webapp-color:v3`
+
+    Do not delete and re-create the deployment. Only set the new image name for the existing deployment.
+
+    - Deployment Name: frontend
+    - Deployment Image: kodekloud/webapp-color:v3
+
+    ```
+    $ kubectl edit deployment frontend
+    ---> image kodekloud/webapp-color:v3로 수정
+    ```
+
+13. Run the script `curl-test.sh` again. Notice the failures. Wait for the new application to be ready. Notice that the requests now do not hit both the versions
+
+    Execute the script at `/root/curl-test.sh`.
