@@ -158,8 +158,21 @@
         args: ["--color", "green"]
     ```
 
+    or
+
+    ```yaml
+    args: ["--color=green"]
+    ```
+
     ```
     $ kubectl apply -f webapp-color-pod-2.yaml
     ```
 
+    **참고**
+
+    ```
+    $ kubectl run webapp-green --image=kodekloud/webapp-color --dry-run -o yaml > pod.yaml
+    ```
+
     
+
