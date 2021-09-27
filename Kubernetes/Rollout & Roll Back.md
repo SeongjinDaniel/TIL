@@ -41,6 +41,8 @@ $ kubectl rollout history deployment/myapp deployment
 $ kubectl rollout undo deployment/myapp-deployment
 ```
 
+https://kubernetes.io/ko/docs/concepts/workloads/controllers/deployment/
+
 
 
 ## Summarize Commands
