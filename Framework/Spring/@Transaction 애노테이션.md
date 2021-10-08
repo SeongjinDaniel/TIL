@@ -4,7 +4,9 @@
 
 스프링에서 트랜잭션 애노테이션을 사용했는데 롤백이 제대로 되지 않는 현상으로 인하여 조금 더 트랜잭션의 개념을 알아보고 이유를 찾아보고자 한다.
 
-@Transactional 만 붙이면 롤백이 안되고, @Transactional(rollbackFor = Exception.class)를 사용해야 롤백이 된다.
+@Transactional 만 붙이면 롤백이 안되고, @Transactional(rollbackFor = Exception.class)를 사용해야 롤백이 된다. **@Transactional** 은 기본적으로 **Unchecked Exception, Error** 만을 **rollback**하고 있다.
+그렇기 때문에 모든 예외에 대해서 **rollback**을 진행하고 싶을 경우 **(rollbackFor = Exception.class)** 를 붙여야 한다. 그 이유는 Checked Exception 같은 경우는 **예상된 에러**이며
+Unchecked Exception, Error 같은 경우는 예상치 못한 에러이기 때문이다.
 
 
 
