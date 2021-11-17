@@ -318,6 +318,12 @@
 
   
 
+  ---
+
+  `kubectl create sa john -n devleopment`
+
+  
+
 7. Create a nginx pod called `nginx-resolver` using image `nginx`, expose it internally with a service called `nginx-resolver-service`. Test that you are able to look up the service and pod names from within the cluster. Use the image: `busybox:1.28` for dns lookup. Record results in `/root/CKA/nginx.svc` and `/root/CKA/nginx.pod`
 
    `kubectl run nginx-resolver --image=nginx --port=80`
