@@ -2,21 +2,23 @@
 
 
 
-1. 이 약이 효과가 있을 거예요.
-   - This medicine will be very effective.
-   - This medicine is the best for your symptoms.
-   - **I think this medication will help you.**
-2. 한 번에 다섯 권 이상은 대출할 수 없어요. 
-   - We can’t let you check out more than 5 books at once.
-   - The maximum number of books you can check out is five.
-   - **You can’t check out more than five books at a time.**
-3. 선생님과 면답을 잡고 싶습니다. 우리 아이에 대해 말씀드릴게 있어요.
-   - Can I set up a meeting with the teacher? I’d like to talk about my child.
-   - I’d like to talk about how my child is doing in school.
-   - **I’d like to meet with the teacher. There is something I’d like to discuss with you about my child.**
-4. 보증금은 나중에 돌려받을 수 있는 거죠?
-   - Can I get the deposit back?
-   - Do I get the deposit back?
-   - (이사나갈 때) Do I get the deposit back once I move out?
-   - Are you going to return my deposit later?
-   - **I can get the deposit back, right?**
+1. 말씀하신 것에 대해 생각을 많이 해 봤어요.
+   - I’ve been thinking a lot about what you told me.
+   - I’ve spent a lot of time thinking about what you mentioned.
+   - **I’ve been thinking a lot about what you said.**
+2. 잠시 말씀 좀 나눌 수 있나요?
+   - Can I talk to you?
+   - I’d like to talk to you about something.
+   - I have something to tell you.
+   - **May I speak with you a second?**
+3. 사람들이 내가 끝났다고 생각하는 게 너무 싫어.
+   - I hate people who think I’m over.
+   - I hate people thinking I’m over.
+   - I don’t like people thinking I’m over.
+   - **I’m sick of people thinking I’m over.**
+4. 그녀를 돕고 싶은 것 같아요.
+   - I think I want to help her.
+   - **I suppose I would like to help her.**
+5. 그가 일하는 곳으로 제가 운전해서 간 게 기억나요.
+   - I remember that I drive to the place where he works.
+   - **I remember driving to his place of work.**
