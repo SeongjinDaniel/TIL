@@ -75,7 +75,7 @@ Today I Learned. Daily commit.
 
 ### Kubernetes
 
-- [Kubernete](https://github.com/SeongjinOliver/TIL/tree/master/Kubernetes)
+- [Kubernetes](https://github.com/SeongjinOliver/TIL/tree/master/Kubernetes)
 
 ### Linux
 
