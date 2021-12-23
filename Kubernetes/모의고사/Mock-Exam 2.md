@@ -315,21 +315,21 @@
   ```sh
   $ kubectl auth can-i update pods --as=john --names ????????
   $ kubectl auth can-i update pods --as=john -name
-```
+  ```
   
-
+  ---
   
----
-  
-`kubectl create sa john -n development`
-  
-  
-
+  `kubectl create sa john -n development`
 7. Create a nginx pod called `nginx-resolver` using image `nginx`, expose it internally with a service called `nginx-resolver-service`. Test that you are able to look up the service and pod names from within the cluster. Use the image: `busybox:1.28` for dns lookup. Record results in `/root/CKA/nginx.svc` and `/root/CKA/nginx.pod`
 
-   `kubectl run nginx-resolver --image=nginx --port=80`
-
-   `kubectl expose pod nginx-resolver --name=nginx-resolver-service --port=80 --target-port=80 --type=ClusterIP`
+   ```
+$ kubectl run nginx-resolver --image=nginx --port=80
+   $ kubectl expose pod nginx-resolver --name=nginx-resolver-service --port=80 --target-port=80 --type=ClusterIP
+   
+   or 
+   
+   $ kubectl run nginx-resolver --image=nginx --port=80 --expose --dry-run=client -o yaml > nginx-resolver.yaml
+   ```
    
    
    
@@ -343,22 +343,32 @@
    kubectl run nginx-resolver --image=nginx
    kubectl expose pod nginx-resolver --name=nginx-resolver-service --port=80 --target-port=80 --type=ClusterIP
    ```
-   
+
    To create a pod `test-nslookup`. Test that you are able to look up the service and pod names from within the cluster:
-   
+
    ```sh
-   kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service
-   kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service > /root/CKA/nginx.svc
+$  kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service
+$  kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service > /root/CKA/nginx.svc
    ```
-   
+
    Get the IP of the `nginx-resolver` pod and replace the dots(.) with hyphon(-) which will be used below.
-   
+
    ```sh
-   kubectl get pod nginx-resolver -o wide
-   kubectl run test-nslookup --image=busybox:1.28 --r
+$  kubectl get pod nginx-resolver -o wide
+$  kubectl run test-nslookup --image=busybox:1.28 --r
+
+$  kubectl get pod nginx-resolver -o wide
+$  kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup <P-O-D-I-P.default.pod> > /root/CKA/nginx.pod
+위는 아래와 같이
+kubectl run test-nslookup --image=busybox:1.28 --restart=Never --rm -it -- nslookup 10-244-2-2.default.pod > /root/CKA/nginx.pod
    ```
-   
-   
+
+   --rm 옵션은 실행이 끝나면 자동으로 Pod이 삭제되게끔 하는 옵션인데 이게 동작할려면 -it 옵션을 같이 붙여야 한다. (Pod가 이미 연결(attach)되어 있는 상태여야 한다는 의미). nslookup을 통해 파라미터로 전달된 이름에 대한 ip를 가져오는 방법을 통해 Service와 Pod을 찾아오는 방법으로 해결한다.
+
+첫번째 줄은 Service인 nginx-resolver-service의 이름 자체를 nslookup의 파라미터로 전달하여 그 결과로 IP를 가져오게 된다. kubernetes는 그 안에 자체 DNS 서버를 운영하는데 Service의 경우 Service의 이름을 DNS에 등록해둔다. 그래서 nslookup 명령어를 사용할 때 서비스 이름만으로도 동작이 가능했던 것이다. 두번째 줄은 Pod인 nginx-resolver에 대해 문제를 풀은건데 Service와는 다른 구조로 되어 있다. 10-244-2-2.default.pod 을 던지는데 이것을 해석하는 방법은 **Pod이 가지고 있는 IP.Pod이 속한 namespace.Resource 타입** 으로 보면 된다. Pod이 가지고 있는 IP는 **kubectl get pod -o wide** 하면 나오게 되는데 이 Pod이 가지고 있던 IP는 10.244.2.2 이다. IP를 표현할때 **. 대신 -를 사용**한것이다(DNS 이름에서는 .은 이미 예약되어 있기 때문에 사용할 수 없으니까..) 그리고 이 **Pod이 속한 namespace가 default**여서 default가 들어간 것이고, 마지막엔 **해당 Resource Type이 pod** 이니까 pod을 넣은것이다.
+
+- 참조
+  - [Kubernetes Mock Exam 정리(Mock Exam 2)](https://zgundam.tistory.com/195)
 
 8. Create a static pod on `node01` called `nginx-critical` with image `nginx` and make sure that it is recreated/restarted automatically in case of a failure.
 
@@ -415,3 +425,22 @@
    logout
    root@controlplane:~# kubectl get pods 
    ```
+
+---
+
+mkdir -p 옵션을 사용할 경우에는 
+
+존재하지 않는 중간의 디렉토리를 자동을 생성해 준다.
+
+예를 들면 아래 명령어를 입력하면 에러가 난다.
+
+```
+mkdir f1/f2/f3
+> mkdir: f1/f2: No such file or directory
+```
+
+하지만 mkdir -p 옵션을 이용하면 중간 디렉토리 역시 자동으로 생성해 준다.
+
+```
+> mkdir -p f1/f2/f3
+```
