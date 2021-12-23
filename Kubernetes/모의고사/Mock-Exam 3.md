@@ -120,6 +120,38 @@ spec:
    - Container 1 Environment Value Set
    - Container 2 Environment Value Set
 
+```yaml
+$ kubectl run multi-pod --image=nginx --dry-run=client -o yaml > multi.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: multi-pod
+  name: multi-pod
+spec:
+  containers:
+  - image: nginx
+    name: alpha
+    resources: {}
+    env:
+    - name: name
+      value: alpha
+  - image: busybox
+    name: beta
+    resources: {}
+    command: ["sleep","4800"]
+    env:
+    - name: name
+      value: beta
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+$ kubectl describe pod multi-pod
+```
+
 
 
 4. Create a Pod called `non-root-pod` , image: `redis:alpine`
@@ -127,8 +159,33 @@ spec:
    fsGroup: 2000
    - Pod non-root-pod fsGroup configured
    - Pod non-root-pod runAsUser configured
-
-
+   
+   ```yaml
+   $ kubectl run non-root-pod --image=redis:alpine --dry-run=client -o yaml > non-root-pod.yaml
+   
+   securityContext 부분 추가
+   
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     creationTimestamp: null
+     labels:
+       run: non-root-pod
+     name: non-root-pod
+   spec:
+     securityContext:
+       runAsUser: 1000
+       fsGroup: 2000
+     containers:
+     - image: redis:alpine
+       name: non-root-pod
+       resources: {}
+     dnsPolicy: ClusterFirst
+     restartPolicy: Always
+   status: {}
+   ```
+   
+   
 
 5. We have deployed a new pod called `np-test-1` and a service called `np-test-service`. Incoming connections to this service are not working. Troubleshoot and fix it.
    Create NetworkPolicy, by the name `ingress-to-nptest` that allows incoming connections to the service over port `80`.
@@ -299,4 +356,4 @@ spec:
 
    contro1ler로 되어있는걸 controller로 수정
 
-   `sed -i 's/kube-contro1ler-manager/kube-controller-manager/g' /etc/kubernetes//manifests/kube-controller-manager.yaml`
+   sed -i 's/kube-contro1ler-manager/kube-controller-manager/g' /etc/kubernetes/manifests/kube-controller-manager.yaml

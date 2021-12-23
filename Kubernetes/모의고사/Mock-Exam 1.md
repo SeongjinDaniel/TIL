@@ -81,7 +81,7 @@
    ```
    $ kubectl run static-busybox --image=busybox --command sleep 1000 --dry-run=client -o yaml > static-busybox.yaml
    $ cat static-busybox.yaml
-   $ ls -l /etc/kubenetes/manifests/
+   $ ls -l /etc/kubernetes/manifests/
    $ cd /var/lib/kubelet/
    $ grep -i staticPod config.yaml
    staticPodPath: /etc/kubernetes/manifests
