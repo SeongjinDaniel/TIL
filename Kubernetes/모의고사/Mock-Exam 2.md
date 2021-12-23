@@ -428,9 +428,7 @@ kubectl run test-nslookup --image=busybox:1.28 --restart=Never --rm -it -- nsloo
 
 ---
 
-mkdir -p 옵션을 사용할 경우에는 
-
-존재하지 않는 중간의 디렉토리를 자동을 생성해 준다.
+mkdir -p 옵션을 사용할 경우에는 존재하지 않는 중간의 디렉토리를 자동을 생성해 준다.
 
 예를 들면 아래 명령어를 입력하면 에러가 난다.
 
@@ -444,3 +442,7 @@ mkdir f1/f2/f3
 ```
 > mkdir -p f1/f2/f3
 ```
+
+성공적으로 수행!
+
+즉, mkdir -p 옵션은 안전하게 파일 경로를 생성해 준다.
