@@ -69,8 +69,19 @@
      Pod: super-user-pod
    - Container Image: busybox:1.28
    - SYS_TIME capabilities for the conatiner?
-
-
+   
+   ```
+   $ kubectl run super-user-pod --image=busybox:1.28 --command sleep 4800 --dry-run=client -o yaml > super-user-pod-03.yaml
+   super-user-pod-03.yaml에서 아래 추가
+   
+   securityContext:
+         capabilities:
+           add: ["SYS_TIME"]
+           
+   $ kubectl create -f super-user-pod-03.yaml
+   ```
+   
+   https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ 참고
 
 4. A pod definition file is created at `/root/CKA/use-pv.yaml`. Make use of this manifest file and mount the persistent volume called `pv-1`. Ensure the pod is running and the PV is bound.
 
@@ -123,7 +134,7 @@
        name: test-04-pod
        resources: {}
        volumeMounts:
-         - mountPath: "data"
+         - mountPath: "/data"
            name: my-pvc
      volumes:
        - name: my-pvc
@@ -138,7 +149,7 @@
 
    ```yaml
        volumeMounts:
-         - mountPath: "data"
+         - mountPath: "/data"
            name: my-pvc
      volumes:
        - name: my-pvc
@@ -248,8 +259,6 @@
    $ kubectl rollout history deployment nginx-deploy
    ```
 
-
-
 6. Create a new user called `john`. Grant him access to the cluster. John should have permission to `create, list, get, update and delete pods` in the `development` namespace . The private key exists in the location: `/root/CKA/john.key` and csr at `/root/CKA/john.csr`.
 
    `Important Note`: As of kubernetes 1.19, the CertificateSigningRequest object expects a `signerName`.
@@ -317,28 +326,32 @@
   $ kubectl auth can-i update pods --as=john -name
   ```
   
+  ```
+  $ kubectl certificate approve john-developer
+  ```
+  
   ---
   
   `kubectl create sa john -n development`
 7. Create a nginx pod called `nginx-resolver` using image `nginx`, expose it internally with a service called `nginx-resolver-service`. Test that you are able to look up the service and pod names from within the cluster. Use the image: `busybox:1.28` for dns lookup. Record results in `/root/CKA/nginx.svc` and `/root/CKA/nginx.pod`
 
    ```
-$ kubectl run nginx-resolver --image=nginx --port=80
+   $ kubectl run nginx-resolver --image=nginx --port=80
    $ kubectl expose pod nginx-resolver --name=nginx-resolver-service --port=80 --target-port=80 --type=ClusterIP
    
    or 
    
    $ kubectl run nginx-resolver --image=nginx --port=80 --expose --dry-run=client -o yaml > nginx-resolver.yaml
    ```
+
    
-   
-   
+
    **Solution**
-   
+
    Use the command `kubectl run` and create a nginx pod and busybox pod. Resolve it, nginx service and its pod name from `busybox` pod.
-   
+
    To create a pod `nginx-resolver` and expose it internally:
-   
+
    ```sh
    kubectl run nginx-resolver --image=nginx
    kubectl expose pod nginx-resolver --name=nginx-resolver-service --port=80 --target-port=80 --type=ClusterIP
@@ -347,15 +360,16 @@ $ kubectl run nginx-resolver --image=nginx --port=80
    To create a pod `test-nslookup`. Test that you are able to look up the service and pod names from within the cluster:
 
    ```sh
-$  kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service
-$  kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service > /root/CKA/nginx.svc
+   $  kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service
+   $  kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service > /root/CKA/nginx.svc
    ```
 
    Get the IP of the `nginx-resolver` pod and replace the dots(.) with hyphon(-) which will be used below.
 
    ```sh
-$  kubectl get pod nginx-resolver -o wide
-$  kubectl run test-nslookup --image=busybox:1.28 --r
+   $  kubectl get pod nginx-resolver -o wide
+   $  kubectl run test-nslookup --image=busybox:1.28 --r
+   ```
 
 $  kubectl get pod nginx-resolver -o wide
 $  kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup <P-O-D-I-P.default.pod> > /root/CKA/nginx.pod
@@ -369,6 +383,7 @@ kubectl run test-nslookup --image=busybox:1.28 --restart=Never --rm -it -- nsloo
 
 - 참조
   - [Kubernetes Mock Exam 정리(Mock Exam 2)](https://zgundam.tistory.com/195)
+   ```
 
 8. Create a static pod on `node01` called `nginx-critical` with image `nginx` and make sure that it is recreated/restarted automatically in case of a failure.
 
@@ -381,68 +396,68 @@ kubectl run test-nslookup --image=busybox:1.28 --restart=Never --rm -it -- nsloo
    ```sh
    kubectl run nginx-critical --image=nginx --dry-run=client -o yaml > static.yaml
    ```
-
-   Copy the contents of this file or use `scp` command to transfer this file from `controlplane` to `node01` node.
-
-   ```shell
-   root@controlplane:~# scp static.yaml node01:/root/
-   ```
-
-   To know the IP Address of the `node01` node:
-
-   ```shell
-   root@controlplane:~# kubectl get nodes -o wide
    
-   # Perform SSH
-   root@controlplane:~# ssh node01
-   OR
-   root@controlplane:~# ssh <IP of node01>
+   Copy the contents of this file or use `scp` command to transfer this file from `controlplane` to `node01` node.
+   
    ```
-
-   On `node01` node:
-   Check if static pod directory is present which is `/etc/kubernetes/manifests`, if it's not present then create it.
-
-   ```shell
-   root@node01:~# mkdir -p /etc/kubernetes/manifests
+      root@controlplane:~# scp static.yaml node01:/root/
    ```
-
-   Add that complete path to the `staticPodPath` field in the kubelet `config.yaml` file.
-
-   ```shell
-   root@node01:~# vi /var/lib/kubelet/config.yaml
+   
+   To know the IP Address of the `node01` node:
+   
+      ```shell
+      root@controlplane:~# kubectl get nodes -o wide
+      
+      # Perform SSH
+      root@controlplane:~# ssh node01
+      OR
+      root@controlplane:~# ssh <IP of node01>
+      ```
+   
+      On `node01` node:
+      Check if static pod directory is present which is `/etc/kubernetes/manifests`, if it's not present then create it.
+   
+      ```shell
+      root@node01:~# mkdir -p /etc/kubernetes/manifests
+      ```
+   
+      Add that complete path to the `staticPodPath` field in the kubelet `config.yaml` file.
+   
+      ```shell
+      root@node01:~# vi /var/lib/kubelet/config.yaml
+      ```
+   
+      now, move/copy the static.yaml to path `/etc/kubernetes/manifests/`.
+   
+      ```shell
+      root@node01:~# cp /root/static.yaml /etc/kubernetes/manifests/
+      ```
+   
+      Go back to the `controlplane` node and check the status of static pod:
+   
+      ```shell
+      root@node01:~# exit
+      logout
+      root@controlplane:~# kubectl get pods 
+      ```
+   
+   ---
+   
+   mkdir -p 옵션을 사용할 경우에는 존재하지 않는 중간의 디렉토리를 자동을 생성해 준다.
+   
+   예를 들면 아래 명령어를 입력하면 에러가 난다.
+   
    ```
-
-   now, move/copy the static.yaml to path `/etc/kubernetes/manifests/`.
-
-   ```shell
-   root@node01:~# cp /root/static.yaml /etc/kubernetes/manifests/
+   mkdir f1/f2/f3
+   > mkdir: f1/f2: No such file or directory
    ```
-
-   Go back to the `controlplane` node and check the status of static pod:
-
-   ```shell
-   root@node01:~# exit
-   logout
-   root@controlplane:~# kubectl get pods 
+   
+   하지만 mkdir -p 옵션을 이용하면 중간 디렉토리 역시 자동으로 생성해 준다.
+   
    ```
-
----
-
-mkdir -p 옵션을 사용할 경우에는 존재하지 않는 중간의 디렉토리를 자동을 생성해 준다.
-
-예를 들면 아래 명령어를 입력하면 에러가 난다.
-
-```
-mkdir f1/f2/f3
-> mkdir: f1/f2: No such file or directory
-```
-
-하지만 mkdir -p 옵션을 이용하면 중간 디렉토리 역시 자동으로 생성해 준다.
-
-```
-> mkdir -p f1/f2/f3
-```
-
-성공적으로 수행!
-
-즉, mkdir -p 옵션은 안전하게 파일 경로를 생성해 준다.
+   > mkdir -p f1/f2/f3
+   ```
+   
+   성공적으로 수행!
+   
+   즉, mkdir -p 옵션은 안전하게 파일 경로를 생성해 준다.
