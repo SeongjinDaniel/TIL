@@ -60,6 +60,55 @@ class Solution {
 
 
 
+#### Mine2
+
+```java
+import java.util.*;
+class Solution {
+    public int[] solution(int[] progresses, int[] speeds) {
+        int[] answer = {};
+        int firstIdx = 0;
+        boolean flag = false;
+        int count = 0;
+        List<Integer> result = new ArrayList<>();
+        
+        // 1. PriorityQueue progresses 저장
+        // 2. while(!PriorityQueue.isEmpty()) 나 제거 될 때 까지 speeds 더하기 
+        // 3. 만약 순서대로 idx를 확인할 때 100 이상이면 poll하면서 count++해서 result에 저장하기
+        PriorityQueue<Integer> prior = new PriorityQueue<>();
+        for (int progress : progresses) {
+            prior.add(progress);
+        }
+        
+        while(!prior.isEmpty()) {
+            for(int i = 0; i < progresses.length; i++) {
+                progresses[i] += speeds[i];
+                if (progresses[firstIdx] >= 100) {
+                    firstIdx++;
+                    prior.poll();
+                    count++;
+                    flag = true;
+                }
+            }
+            if (flag) {
+                result.add(count);
+                flag = false;
+                count = 0;
+            }
+        }
+        
+        // list to array
+        answer = result.stream().mapToInt(Integer::intValue).toArray();
+        
+        return answer;
+    }
+}
+```
+
+
+
+
+
 #### Others
 
 ```java
