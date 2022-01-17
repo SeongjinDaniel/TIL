@@ -92,5 +92,21 @@
     drain을 하면 기존에 생성된 pod들은 영원히 삭제된다.
     
     그러나 cordon을 하면 pod는 남아 있는다.
+
+14. How many nodes can host workloads in this cluster?
     
+    Inspect the applications and taints set on the nodes.
     
+    ```shell
+    $ kubectl describe node controlplane | grep -i taint
+    $ kubectl describe node node01 | grep -i taint
+    ```
+
+15. What is the version of ETCD running on the cluster?
+    
+    ```shell
+    $ kubectl logs etcd-controlplane -n kube-system
+    Look at the ETCD Logs using the command
+    $ kubectl describe pod etcd-controlplane -n kube-system
+    check the image used by the ETCD pod
+    ```
