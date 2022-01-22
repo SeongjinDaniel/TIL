@@ -28,19 +28,19 @@
    
    해당 node label과 key, value가 맞으면 적용 가능!!
 
-5. pod 강제 해당 yaml 파일과 변경하기
+5. **pod 강제 해당 yaml 파일과 변경하기**
    
    ```shell
    $ kubectl replace -f test.yaml --force
    ```
 
-6. daemonsets에 할당된 pod 조회
+6. **daemonsets에 할당된 pod 조회**
    
    ```shell
    $ kubectl describe daemonset kube-proxy -n kube-system
    ```
 
-7. daemonsets 생성하기
+7. **daemonsets 생성하기**
    
    ```shell
    $ kubectl create deployment elasticsearch --image=k8s.gcr.io/fluentd-elasticsearch:1.20 -n kube-system --dry-run=client -o yaml > fluentd.yaml. 
@@ -50,17 +50,17 @@
    Finally, create the Daemonset by running kubectl create -f fluentd.yaml
    ```
 
-8. static pod 구분 방법
+8. **static pod 구분 방법**
    
    - -controlplane라고 써있는 이름들은 static pod이다. 아마도 해당 node 이름이 마지막에 붙은 것을 추측할 수 있다.
 
-9. CPU & MEMORY 확인
+9. **CPU & MEMORY 확인**
    
    - `kubectl top node`
    
    - `kubectl top pods`
 
-10. configmap 생성 예제
+10. **configmap 생성 예제**
     
     ```shell
     $ kubectl create configmap webapp-config-map --from-literal=APP_COLOR=darkblue
@@ -71,13 +71,13 @@
     Run the command `kubectl describe secrets default-token-<id>` and look at the `data` field.  
     There are three secrets - `ca.crt`, `namespace` and `token`.
 
-12. secret 생성
+12. **secret 생성**
     
     ```shell
     $ kubectl create secret generic db-secret --from-literal=DB_Host=sql01 --from-literal=DB_User=root --from-literal=DB_Password=password123
     ```
 
-13. node drain 생성
+13. **node drain 생성**
     
     ```shell
     $ kubectl drain node01 --ignore-daemonsets
@@ -110,3 +110,38 @@
     $ kubectl describe pod etcd-controlplane -n kube-system
     check the image used by the ETCD pod
     ```
+
+16. **kubeconfig**
+    
+    ```shell
+    $ kubectl config view
+    $ kubectl config use-context
+    $ kubectl config --kubeconfig=/root/my-kube-config use-context research
+    To use that context, run the command
+    $ kubectl config --kubeconfig=/root/my-kube-config current-context
+    ```
+
+17. Check if the user can list pods in the `default` namespace.
+    
+    ```shell
+    $ kubectl get pods --as dev-user
+    ```
+
+18. secret type 확인
+    
+    ```shell
+    $ kubectl create secret --help 
+    
+    Available Commands:
+      docker-registry Create a secret for use with a Docker registry
+      generic         Create a secret from a local file, directory or literal value
+      tls             Create a TLS secret
+    ```
+
+19. secret 생성
+    
+    ```shell
+    $ kubectl create secret docker-registry private-reg-cred --docker-username=dock_user --docker-password=dock_password --docker-server=myprivateregistry.com:5000 --docker-email=dock_user@myprivateregistry.com
+    ```
+    
+    위 명령어는 도큐먼트에서 참고 할 수 있음
