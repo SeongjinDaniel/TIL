@@ -145,3 +145,90 @@
     ```
     
     위 명령어는 도큐먼트에서 참고 할 수 있음
+
+20. What is the user used to execute the sleep process within the `ubuntu-sleeper` pod?
+    
+    ```shell
+    $ kubectl exec ubuntu-sleeper -- whoami
+    ```
+
+21. pod 로그 저장하는 방법
+    
+    ```shell
+    $ kubectl exec [pod name] -- cat /var/app.log
+    $ kubectl exec webapp -- cat /log/app.log
+    ```
+
+22. node01 mac address 찾는 법
+    
+    ```shell
+    $ arp node01
+    ```
+
+23. If you were to ping google from the master node, which route does it take?
+    
+    What is the IP address of the Default Gateway?
+    
+    ```shell
+    $ ip route show default
+    default via 172.25.0.1 dev eth1
+    ```
+
+24. kube-scheduler의 port는 무엇이냐?
+    
+    ```shell
+    $ netstat -nplt | grep scheduler
+    tcp 0 0 127.0.0.1:10259 0.0.0.0:* LISTEN 3865/kube-scheduler
+    ```
+
+25. Inspect the kubelet service and identify the network plugin configured for Kubernetes.
+    
+    ```shell
+    $ ps -aux | grep kubelet | grep --color network-plugin=
+    ```
+
+26. What is the path configured with all binaries of CNI supported plugins
+    
+    ```shell
+    /opt/cni/bin
+    ```
+
+27. What is the CNI plugin configured to be used on this kubernetes cluster
+    
+    ```shell
+    $ ls /etc/cni/net.d
+    ```
+
+28. What binary executable file will be run by kubelet after a container and its associated namespace are created.
+    
+    - Look at the `type` field in file `/etc/cni/net.d/10-flannel.conflist`
+
+29. weave IPALLOC_RANGE 설정 
+    
+    Deploy `weave-net` networking solution to the cluster.
+    
+    Replace the default IP address and subnet of `weave-net` to the `10.50.0.0/16`
+    
+    ```shell
+    $ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')&env.IPALLOC_RANGE=10.50.0.0/16"
+    ```
+
+30. What is the POD IP address range configured by weave?
+    
+    - `ip addr show weave`
+
+31. What is the default gateway configured on the PODs scheduled on node01?
+    
+    Try scheduling a pod on node01 and check ip route output
+    
+    ```shell
+    $ ip addr show weave
+    ```
+
+32. What type of proxy is the kube-proxy configured to use?
+    
+    ```shell
+    $ kubectl -n kube-system describe pod [proxy pod name]
+    ```
+
+33. 
