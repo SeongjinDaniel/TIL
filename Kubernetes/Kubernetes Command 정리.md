@@ -231,4 +231,27 @@
     $ kubectl -n kube-system describe pod [proxy pod name]
     ```
 
-33. 
+33. Where is the configuration file located for configuring the CoreDNS service?
+    
+    ```shell
+    $ kubectl -n kube-system describe deployments.apps coredns | grep -A2 Args | grep Corefile
+    ```
+
+34. How is the Corefile passed in to the CoreDNS POD?
+    
+    ```shell
+    $ kubectl get cm -n kube-system
+    ```
+
+35. From the `hr` pod `nslookup` the `mysql` service and redirect the output to a file `/root/CKA/nslookup.out`
+    
+    ```shell
+    $ kubectl exec -it hr -- nslookup mysql.payroll > /root/CKA/nslookup.out 
+    ```
+
+36. If the requirement does not match any of the configured paths what service are the requests forwarded to?
+    
+    ```shell
+    $ kubectl describe ingress --namespace app-space
+    
+    ```
