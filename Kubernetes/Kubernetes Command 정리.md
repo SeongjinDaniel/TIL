@@ -253,5 +253,53 @@
     
     ```shell
     $ kubectl describe ingress --namespace app-space
+    ```
+
+37. log 확인하기
     
+    ```bash
+    $ kubectl exec webapp -- cat /log/app.log
+    ```
+    
+    ```bash
+    $ kubectl -n kube-system logs kube-controller-manager-controlplane
+    ```
+
+38. Fix the broken cluster
+    
+    ```bash
+    Step1. Check the status of services on the nodes.
+    NAME           STATUS     ROLES                  AGE   VERSION
+    controlplane   Ready      control-plane,master   20m   v1.20.0
+    node01         NotReady   <none>                 20m   v1.20.0
+    
+    Step2. Check the service logs using journalctl -u kubelet.
+    $ journalctl -u kubelet
+    ```
+
+```bash
+Step3. If it's stopped then start the stopped services.
+Alternatively, run the command:
+$ ssh node01 "service kubelet start"
+```
+
+39. nslookup
+    
+    service
+    
+    ```bash
+    $  kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service
+    ```
+    
+    pod
+    
+    ```bash
+    $ kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup <P-O-D-I-P.default.pod> > /root/CKA/nginx.pod
+    $ kubectl run test-nslookup --image=busybox:1.28 --restart=Never --rm -it -- nslookup 10-244-2-2.default.pod > /root/CKA/nginx.pod
+    ```
+
+40. controlplane에서 node01로 파일 옮기기
+    
+    ```bash
+    $ scp static-pod.yaml node01:/root/d
     ```
