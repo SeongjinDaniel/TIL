@@ -12,7 +12,7 @@
    $ kubectl get pods --selector env=dev
    $ kubectl get pods --selector bu=finance
    $ kubectl get all --selector env=prod,bu=finance,tier=frontend
-   $ kubectl get pods --show-lables
+   $ kubectl get pods --show-labels
    ```
 
 3. **taint 제거**
@@ -144,7 +144,7 @@
     $ kubectl create secret docker-registry private-reg-cred --docker-username=dock_user --docker-password=dock_password --docker-server=myprivateregistry.com:5000 --docker-email=dock_user@myprivateregistry.com
     ```
     
-    위 명령어는 도큐먼트에서 참고 할 수 있음
+    위 명령어는 도큐먼트에서 참고 할 수 있음 [Secrets | Kubernetes](https://kubernetes.io/docs/concepts/configuration/secret/)
 
 20. What is the user used to execute the sleep process within the `ubuntu-sleeper` pod?
     
@@ -159,47 +159,47 @@
     $ kubectl exec webapp -- cat /log/app.log
     ```
 
-22. node01 mac address 찾는 법
+22. **node01 mac address 찾는 법**
     
     ```shell
     $ arp node01
     ```
 
-23. If you were to ping google from the master node, which route does it take?
+23. **If you were to ping google from the master node, which route does it take?**
     
-    What is the IP address of the Default Gateway?
+    **What is the IP address of the Default Gateway?**
     
     ```shell
     $ ip route show default
     default via 172.25.0.1 dev eth1
     ```
 
-24. kube-scheduler의 port는 무엇이냐?
+24. **kube-scheduler의 port는 무엇이냐?**
     
     ```shell
     $ netstat -nplt | grep scheduler
     tcp 0 0 127.0.0.1:10259 0.0.0.0:* LISTEN 3865/kube-scheduler
     ```
 
-25. Inspect the kubelet service and identify the network plugin configured for Kubernetes.
+25. **Inspect the kubelet service and identify the network plugin configured for Kubernetes.**
     
     ```shell
     $ ps -aux | grep kubelet | grep --color network-plugin=
     ```
 
-26. What is the path configured with all binaries of CNI supported plugins
+26. **What is the path configured with all binaries of CNI supported plugins**
     
     ```shell
     /opt/cni/bin
     ```
 
-27. What is the CNI plugin configured to be used on this kubernetes cluster
+27. **What is the CNI plugin configured to be used on this kubernetes cluster**
     
     ```shell
     $ ls /etc/cni/net.d
     ```
 
-28. What binary executable file will be run by kubelet after a container and its associated namespace are created.
+28. **What binary executable file will be run by kubelet after a container and its associated namespace are created.**
     
     - Look at the `type` field in file `/etc/cni/net.d/10-flannel.conflist`
 
@@ -213,7 +213,7 @@
     $ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')&env.IPALLOC_RANGE=10.50.0.0/16"
     ```
 
-30. What is the POD IP address range configured by weave?
+30. **What is the POD IP address range configured by weave?**
     
     - `ip addr show weave`
 
@@ -237,7 +237,7 @@
     $ kubectl -n kube-system describe deployments.apps coredns | grep -A2 Args | grep Corefile
     ```
 
-34. How is the Corefile passed in to the CoreDNS POD?
+34. **How is the Corefile passed in to the CoreDNS POD?**
     
     ```shell
     $ kubectl get cm -n kube-system
@@ -265,7 +265,7 @@
     $ kubectl -n kube-system logs kube-controller-manager-controlplane
     ```
 
-38. Fix the broken cluster
+38. **Fix the broken cluster**
     
     ```bash
     Step1. Check the status of services on the nodes.
@@ -276,12 +276,12 @@
     Step2. Check the service logs using journalctl -u kubelet.
     $ journalctl -u kubelet
     ```
-
-```bash
-Step3. If it's stopped then start the stopped services.
-Alternatively, run the command:
-$ ssh node01 "service kubelet start"
-```
+    
+    ```bash
+    Step3. If it's stopped then start the stopped services.
+    Alternatively, run the command:
+    $ ssh node01 "service kubelet start"
+    ```
 
 39. nslookup
     
@@ -298,7 +298,7 @@ $ ssh node01 "service kubelet start"
     $ kubectl run test-nslookup --image=busybox:1.28 --restart=Never --rm -it -- nslookup 10-244-2-2.default.pod > /root/CKA/nginx.pod
     ```
 
-40. controlplane에서 node01로 파일 옮기기
+40. **controlplane에서 node01로 파일 옮기기**
     
     ```bash
     $ scp static-pod.yaml node01:/root/d
