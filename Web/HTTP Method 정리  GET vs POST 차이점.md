@@ -1,7 +1,5 @@
 # HTTP Method 정리 / GET vs POST 차이점
 
-
-
 ### GET
 
 GET 메소드는 주로 데이터를 **읽거나(Read)** **검색(Retrieve)**할 때에 사용되는 메소드이다.
@@ -16,9 +14,6 @@ POST 메소드는 주로 새로운 리소스를 **생성(create)**할 때 사용
 
 HTTP POST 요청은 클라이언트에서 서버로 전송할 때 추가적인 데이터를 body에 포함할 수 있다. 반면에 GET 요청은 모든 필요한 데이터를 URL에 포함하여 요청한다. HTML의 **<form>**태그에 **method="POST"** 또는 **method="GET"**(기본값)을 모두 사용할 수 있다. 만약에 GET 메소드를 사용하면 모든 form data는 URL로 인코딩되어 action URL에 query string parameters로 전달된다. POST 메소드를 사용하면 form data는 HTTP request의 message body에 나타날 것이다.
 
-
-
 #### 참조
 
 - [[HTTP] HTTP Method 정리 / GET vs POST 차이점](https://im-developer.tistory.com/166)
-
