@@ -1,30 +1,34 @@
 http://www.talkdev.net/git-%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%82%AC%EC%9A%A9%EB%B2%95/
--> ±Â!!
+-> êµ¿!!
 
 git init
 
 vim f1.txt
 
-gitÀÌ ÆÄÀÏÀ» ÃßÀûÇÏµµ·Ï ¸í·ÉÇÕ´Ï´Ù. 
+gitì´ íŒŒì¼ì„ ì¶”ì í•˜ë„ë¡ ëª…ë ¹í•©ë‹ˆë‹¤. 
 git add f1.txt
 
-ÇÁ·ÎÁ§Æ® Æú´õÀÇ »óÅÂ¸¦ È®ÀÎÇÕ´Ï´Ù. 
+í”„ë¡œì íŠ¸ í´ë”ì˜ ìƒíƒœë¥¼ í™•ì¸í•©ë‹ˆë‹¤. 
 git status
 
-¹öÀü¿¡ Æ÷ÇÔµÉ ¹öÀüÀ» ¸¸µç »ç¶÷¿¡ ´ëÇÑ Á¤º¸¸¦ ¼³Á¤ÇÕ´Ï´Ù. ÀÌ ¼³Á¤Àº ~/.gitconfig ÆÄÀÏ¿¡ ÀúÀåµÇ°í 1¹ø¸¸ ÇØÁÖ¸é µË´Ï´Ù.
-git config --global user.name "ÀÚ½ÅÀÇ ´Ğ³×ÀÓ"
-git config --global user.email "ÀÚ½ÅÀÇ ÀÌ¸ŞÀÏ"
+ë²„ì „ì— í¬í•¨ë  ë²„ì „ì„ ë§Œë“  ì‚¬ëŒì— ëŒ€í•œ ì •ë³´ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤. ì´ ì„¤ì •ì€ ~/.gitconfig íŒŒì¼ì— ì €ì¥ë˜ê³  1ë²ˆë§Œ í•´ì£¼ë©´ ë©ë‹ˆë‹¤.
+git config --global user.name "ìì‹ ì˜ ë‹‰ë„¤ì„"
+git config --global user.email "ìì‹ ì˜ ì´ë©”ì¼"
 
 // error: failed to push some refs to 'https://github.com/SeongjinOliver/TIL.git'
-ÀÌ·± ¿¡·¯°¡ ³­´Ù¸é
--> solution : git pull origin ºê·±Ä¡¸í --allow-unrelated-histories
+ì´ëŸ° ì—ëŸ¬ê°€ ë‚œë‹¤ë©´
+-> solution : git pull origin ë¸ŒëŸ°ì¹˜ëª… --allow-unrelated-histories
 
-git remote add origin master <¿ø°İÀúÀåÁÖ¼Ò>
--> git remote add origin <¿ø°İÀúÀåÁÖ¼Ò>
--> ¿ø°İÀúÀå¼Ò µî·Ï
+git remote add origin master <ì›ê²©ì €ì¥ì£¼ì†Œ>
+-> git remote add origin <ì›ê²©ì €ì¥ì£¼ì†Œ>
+-> ì›ê²©ì €ì¥ì†Œ ë“±ë¡
 git remote -v
--> ¿ø°İÀúÀå¼Ò º¸±â
+-> ì›ê²©ì €ì¥ì†Œ ë³´ê¸°
 git push -u origin master :
--> ¾ÕÀ¸·Î ÇöÀç ºê·£Ä¡¸¦ ¿ø°İÀúÀå¼Ò originÀÇ mastergit ¿¡ µ¿±âÈ­ÇÏ°Ú´Ù.
-git remote remove <¿ø°İÀúÀå¼ÒÀÌ¸§>
--> ¿ø°İÀúÀå¼Ò·Î µî·ÏÇÑ ÀÌ¸§°ú ÁÖ¼Ò »èÁ¦
+-> ì•ìœ¼ë¡œ í˜„ì¬ ë¸Œëœì¹˜ë¥¼ ì›ê²©ì €ì¥ì†Œ originì˜ mastergit ì— ë™ê¸°í™”í•˜ê² ë‹¤.
+git remote remove <ì›ê²©ì €ì¥ì†Œì´ë¦„>
+-> ì›ê²©ì €ì¥ì†Œë¡œ ë“±ë¡í•œ ì´ë¦„ê³¼ ì£¼ì†Œ ì‚­ì œ
+
+git ì€ ì „ì†¡ ê°€ëŠ¥í•œ ë²„í¼ ìµœëŒ€ ì‚¬ì´ì¦ˆì˜ ê¸°ë³¸ê°’ì„ 1MiB ë¡œ ë‘ê³  ìˆë‹¤.
+ë”°ë¼ì„œ ë‹¤ìŒê³¼ ê°™ì´ HTTP ë¡œ ì „ì†¡ ê°€ëŠ¥í•œ ë°”ì´íŠ¸ë¥¼ 500MB ë¡œ ëŠ˜ë¦¬ëŠ” ë²•ì´ë‹¤.
+-> git config http.postbuffer 524288000
